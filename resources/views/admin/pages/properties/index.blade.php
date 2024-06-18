@@ -9,7 +9,7 @@
 
                 <div class="table-responsive">
 
-                    <table class="table mb-0">
+                  <table id="properties-table" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -68,9 +68,7 @@
                     </table>
 
 
-                    <div>
-                        {{ $properties->links() }}
-                    </div>
+                   
                 </div>
 
             </div>
@@ -88,8 +86,7 @@
 @endSection
 
 @push('js')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 
 <script> 
 
 $('.status_change').change(function() {
@@ -116,6 +113,15 @@ $('.status_change').change(function() {
         }
     });
 });
+
+
+$(document).ready(function(){
+    
+    $("#properties-table").DataTable();
+
+});
+      
+    
 
 </script>
 @endpush

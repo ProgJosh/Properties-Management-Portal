@@ -19,10 +19,10 @@ class PropertiesController extends Controller
     {
         if(Auth::guard('admin')->user()->role == '0'){
 
-            $properties = Property::latest()->paginate(20);
+            $properties = Property::latest()->get();
            }else{
     
-            $properties = Property::where('landlord_id', Auth::guard('admin')->user()->id)->latest()->paginate(20);
+            $properties = Property::where('landlord_id', Auth::guard('admin')->user()->id)->latest()->get();
            }
         return view('admin.pages.properties.index', compact('properties'));
     }

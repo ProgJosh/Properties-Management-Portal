@@ -23,6 +23,13 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('dob')->nullable();
             $table->string('nid')->nullable();
+
+            $table->string('payment_method')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('branch_name')->nullable();
+            $table->string('account_name')->nullable();
+            $table->string('account_number')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

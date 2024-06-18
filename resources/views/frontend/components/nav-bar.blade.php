@@ -18,23 +18,19 @@
                        
                     </li>
                  
-                    <li class="nav-menu__item has-submenu">
-                        <a href="javascript:void(0)" class="nav-menu__link">Project</a>
-                        <ul class="nav-submenu">
-                            <li class="nav-submenu__item">
-                                <a href="" class="nav-submenu__link"> Project </a>
-                            </li>
-                            <li class="nav-submenu__item">
-                                <a href="" class="nav-submenu__link">Project Details</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-menu__item ">
-                        <a href="javascript:void(0)" class="nav-menu__link">Blog</a>
+                        <a href="#" class="nav-menu__link">Blog</a>
                          
                     </li>
                     <li class="nav-menu__item">
-                        <a href="" class="nav-menu__link">Contact</a>
+                        <a href="#" class="nav-menu__link">Contact</a>
+                    </li>
+
+
+                    
+                    <li class="nav-menu__item ">
+                        <a href="{{route('admin.register')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
+                         
                     </li>
 
                     <li class="nav-menu__item has-submenu">

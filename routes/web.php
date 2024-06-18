@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BookedController;
 use App\Http\Controllers\Frontend\HomeController; 
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Admin\EarningsController;
 
 require_once __DIR__.'/jetstream.php';
 
@@ -47,6 +48,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('/login', [LoginController::class, 'login'])->name('login');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    Route::get('profile', [LoginController::class, 'profile'])->name('profile')->middleware(['auth:admin']);
+    Route::get('profile/personal-info', [LoginController::class, 'profilePersonalInfo'])->name('profile.personal-info')->middleware(['auth:admin']);
+    Route::post('profile/personal-info-update', [LoginController::class, 'profilePersonalInfoUpdate'])->name('profile.personal-info-update')->middleware(['auth:admin']);
+
+    Route::get('profile/payment-info', [LoginController::class, 'profilePaymentInfo'])->name('profile.payment-info')->middleware(['auth:admin']);
+    Route::post('profile/payment-info-update', [LoginController::class, 'profilePaymentInfoUpdate'])->name('profile.payment-info-update')->middleware(['auth:admin']);
+
+    Route::get('profile/change-password', [LoginController::class, 'profileChangePassword'])->name('profile.change-password')->middleware(['auth:admin']);
+    Route::post('profile/change-password-update', [LoginController::class, 'profileChangePasswordUpdate'])->name('profile.change-password-update')->middleware(['auth:admin']);
+
+
+
+
     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard')->middleware(['auth:admin']);
 
 //Properties Routes
@@ -59,13 +73,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/property/delete/{id}', [PropertiesController::class, 'delete'])->name('property.delete')->middleware(['auth:admin']);
     Route::get('/property/{id}', [PropertiesController::class, 'show'])->name('property.show')->middleware(['auth:admin']);
     Route::post('/property/status', [PropertiesController::class, 'ajaxStatusUpdate'])->name('property.status');
+
+
+
     //Users
 
     Route::get('/landlords', [LandlordsController::class, 'landlords'])->name('landlords')->middleware(['auth:admin']);
     Route::get('/landlord/{id}', [LandlordsController::class, 'SingleLandlordProperties'])->name('single.landlord')->middleware(['auth:admin']);
 
     Route::get('/tenants', [TenantController::class, 'tenants'])->name('tenants')->middleware(['auth:admin']);
+    Route::get('tenant/delete/{id}', [TenantController::class, 'tanentDelete'])->name('tenant.delete')->middleware(['auth:admin']);
+   
+    Route::get('admin-list', [LandlordsController::class, 'adminList'])->name('list')->middleware(['auth:admin']);
+    Route::get('admin-create', [LandlordsController::class, 'adminCreate'])->name('create')->middleware(['auth:admin']);
 
+    Route::post('admin-create', [LandlordsController::class, 'adminStore'])->name('store')->middleware(['auth:admin']);
+
+    Route::get('admin-delete/{id}', [LandlordsController::class, 'adminDelete'])->name('delete')->middleware(['auth:admin']);
 
 
     //Booking Routes
@@ -73,4 +97,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/booked', [BookedController::class, 'booked'])->name('booked')->middleware(['auth:admin']);
     route::get('booked/{id}', [BookedController::class, 'show'])->name('booked.show')->middleware(['auth:admin']);
 
+    Route::get('earnings', [EarningsController::class, 'index'])->name('earnings')->middleware(['auth:admin']);
+    Route::post('withdraw', [EarningsController::class, 'withdraw'])->name('withdraw')->middleware(['auth:admin']);
+
+    Route::get('withdraw-requests', [EarningsController::class, 'withdrawRequests'])->name('withdraw-requests')->middleware(['auth:admin']);
+    
+    Route::get('withdraw-approve/{id}', [EarningsController::class, 'withdrawApprove'])->name('withdraw-approve')->middleware(['auth:admin']);
+    Route::get('withdraw-reject/{id}', [EarningsController::class, 'withdrawReject'])->name('withdraw-reject')->middleware(['auth:admin']);
 });

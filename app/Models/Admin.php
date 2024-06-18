@@ -19,4 +19,9 @@ class Admin extends  Authenticatable
 
         return $this->hasMany(Property::class, 'landlord_id');
     }
+
+    public function withdraws(){
+
+        return $this->hasMany(Withdraw::class, 'landlord_id');
+    }
 }

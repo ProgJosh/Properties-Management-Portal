@@ -373,64 +373,7 @@
 </section>
 <!-- ============================= Counter Section End ======================= -->
 <!-- ========================= Message Section Start ======================== -->
-<section class="message">
-    <div class="container container-two">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="message-thumb">
-                    <img src="{{ asset('frontend/assets/images/thumbs/message-img.png') }}" alt=""
-                        class="cover-img">
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="form-box">
-                    <h2 class="form-box__title">Get A Quote </h2>
-                    <form action="#">
-                        <div class="row gy-30">
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="position-relative">
-                                    <input type="text" class="common-input common-input--withIcon"
-                                        placeholder="Name">
-                                    <span class="input-icon"><i class="fas fa-user"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="position-relative">
-                                    <input type="tel" class="common-input common-input--withIcon"
-                                        placeholder="Your Phone">
-                                    <span class="input-icon"><i class="fas fa-phone"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="position-relative">
-                                    <input type="email" class="common-input common-input--withIcon"
-                                        placeholder="Your Email">
-                                    <span class="input-icon"><i class="fas fa-paper-plane"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-xs-6">
-                                <div class="position-relative">
-                                    <input type="text" class="common-input common-input--withIcon"
-                                        placeholder="Your Address">
-                                    <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="position-relative">
-                                    <textarea class="common-input common-input--withIcon" placeholder="Write Message.."></textarea>
-                                    <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <button type="submit" class="btn btn-main w-100"> Send Message </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+ 
 <!-- ========================= Message Section End ======================== -->
 <!-- ========================= Portfolio Section Start ==================== -->
 <section class="portfolio padding-t-120 padding-b-60">

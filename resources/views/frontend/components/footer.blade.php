@@ -5,7 +5,7 @@
                 <div class="footer-item">
                     <div class="footer-item__logo">
                         <a href="index.html"> <img
-                                src="{{ asset('frontend/assets/images/logo/white-logo.png') }}"
+                                src="{{ asset('frontend/assets/images/logo/logo-1.jpeg') }}"
                                 alt=""></a>
                     </div>
                     <p class="footer-item__desc">It is a long established fact that a reader will be

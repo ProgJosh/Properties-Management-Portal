@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8" />
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Property Management Portal') }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
@@ -11,12 +11,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico')}}">
+        <!-- third party css -->
+        <link href="{{ asset('assets/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.min.css')}} " rel="stylesheet" type="text/css" />
         <link href=" {{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+        <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
 
         @stack('css')
 
@@ -94,16 +98,34 @@
         <!-- Vendor js -->
         <script src="{{ asset('assets/js/vendor.min.js')}}"></script>
 
-         <!-- Chart JS -->
-         <script src="{{ asset('assets/libs/chart-js/Chart.bundle.min.js')}}"></script>
+        
+
+        <!-- Datatables init -->
+        <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+        
 
           <!-- Init js -->
-        <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
-
+          <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+          <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
+          <!-- Buttons examples -->
+          <script src="{{asset('assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
+          <script src="{{asset('assets/libs/datatables/buttons.bootstrap4.min.js')}}"></script>
+          <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
+          <script src="{{asset('assets/libs/pdfmake/pdfmake.min.js')}}"></script>
+          <script src="{{asset('assets/libs/pdfmake/vfs_fonts.js')}}"></script>
+          <script src="{{asset('assets/libs/datatables/buttons.html5.min.js')}}"></script>
+          <script src="{{asset('assets/libs/datatables/buttons.print.min.js')}}"></script>
+  
+          <!-- Responsive examples -->
+          <script src="{{asset('assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
+          <script src="{{asset('assets/libs/datatables/responsive.bootstrap4.min.js')}}"></script>
+  
+          <!-- Datatables init -->
+           
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js')}}"></script>
 
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="{{asset('assets/js/toastr.js')}}"></script>
         {!! Toastr::message() !!}
 
         @stack('js')

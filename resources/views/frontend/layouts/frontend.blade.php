@@ -170,7 +170,7 @@
 
 
     <!-- ==================== Right Offcanvas Start Here ==================== -->
-    <div class="common-offcanvas d-lg-block d-none">
+    {{-- <div class="common-offcanvas d-lg-block d-none">
         <div class="flx-between">
             <a href="index.html" class="mobile-menu__logo">
                 <img src="{{ asset('frontend/assets/images/logo/white-logo.png') }}" alt="Logo">
@@ -226,7 +226,7 @@
                     <i class="fab fa-instagram"></i></a></li>
         </ul>
 
-    </div>
+    </div> --}}
     <!-- ==================== Right Offcanvas End Here ==================== -->
 
 
