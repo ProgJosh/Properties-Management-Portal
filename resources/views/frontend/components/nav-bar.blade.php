@@ -29,7 +29,7 @@
 
                     
                     <li class="nav-menu__item ">
-                        <a href="{{route('admin.register')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
+                        <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
                          
                     </li>
 
