@@ -96,7 +96,3 @@ php artisan serve
 12. Visit http://localhost:8000/admin/login in your browser to login as admin.
 
 
-## Contact
- - 📫 How to reach me: saifulislamsapon@gmail.com
- - 📫 Fiverr: https://www.fiverr.com/creativesaiful
- - 📫 Phone: +880184023940
