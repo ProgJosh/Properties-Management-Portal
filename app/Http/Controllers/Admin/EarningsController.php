@@ -22,11 +22,15 @@ class EarningsController extends Controller
     
         $properyByLanlord = Property::where('landlord_id', $landlordid)->get();
 
+        $booking_ids = Booking::query()
+        ->whereIn('property_id', $properyByLanlord->pluck('id'))
+        ->pluck('id');
 
+        $totalAmount = Payment::query()
+                    ->whereIn('booking_id', $booking_ids)
+                    ->sum('amount');
 
-    $totalAmount = Payment::query()
-                ->whereIn('booking_id', $properyByLanlord->pluck('id'))
-                ->sum('amount');
+ 
 
     $revenue = $totalAmount - ($totalAmount * 0.10);
 

@@ -54,12 +54,12 @@
     <div class="logo-box">
         <a href="index.html" class="logo text-center">
             <span class="logo-lg">
-                <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="16">
+                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" width="60">
                 <!-- <span class="logo-lg-text-light">UBold</span> -->
             </span>
             <span class="logo-sm">
                 <!-- <span class="logo-sm-text-dark">U</span> -->
-                <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="28">
+                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" height="28">
             </span>
         </a>
     </div>
