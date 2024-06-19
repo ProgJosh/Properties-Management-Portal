@@ -212,7 +212,7 @@
                                             <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
                                             <label class="form-check-label" for="payPal">
                                                 Stripe
-                                                <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">
+                                                {{-- <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt=""> --}}
                                                 
                                             </label>
                                         </div>
@@ -227,15 +227,15 @@
                                     <li class="billing-list__item flx-between">
                                         <input type="hidden" name="amount" value="{{ $property->price }}">
                                         <span class="text text-poppins font-15"> {{ substr($property->name, 0, 20) }} </span>
-                                        <span class="amount fw-semibold text-heading text-poppins">${{ $property->price}} </span>
+                                        <span class="amount fw-semibold text-heading text-poppins">₱{{ $property->price}} </span>
                                     </li>
                                     
                                     <li class="billing-list__item flx-between">
                                         <span class="text text-poppins fw-semibold text-heading">Order Total</span>
-                                        <span class="amount fw-semibold text-heading text-poppins"> ${{$property->price}}</span>
+                                        <span class="amount fw-semibold text-heading text-poppins"> ₱{{$property->price}}</span>
                                     </li>
                                 </ul>
-                                <button type="submit" class="btn btn-main w-100 mt-4">Pay Now</button>
+                                <button type="submit" class="btn btn-main w-100 mt-4">Pay By Card</button>
                             </div>
                         </div>
                     </div>

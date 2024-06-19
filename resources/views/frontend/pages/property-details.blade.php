@@ -46,7 +46,7 @@
                         <div class="row property-item__content" >
                             <div class="col-md-8 ">
                                 <h4>{{ $property->name }} </h4> 
-                                <h4 class="property-item__price text-dark"> Price: ${{ $property->price }}
+                                <h4 class="property-item__price text-dark"> Price: ₱{{ $property->price }}
                                     <span class="day">/per day</span>
                                 </h4>
                                 <p class="text-gray-800">{{ $property->description }}</p>

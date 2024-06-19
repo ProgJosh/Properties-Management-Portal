@@ -246,7 +246,7 @@
                         </span>
                     </div>
                     <div class="property-item__content">
-                        <h6 class="property-item__price">$ {{ $property->price}} <span class="day">/per day</span> </h6>
+                        <h6 class="property-item__price">₱ {{ $property->price}} <span class="day">/per day</span> </h6>
                         <h6 class="property-item__title"> <a href="{{ route('property', $property->id)}}"
                                 class="link"> {{ $property->name}} </a> </h6>
                         <p class="property-item__location d-flex gap-2"> <span class="icon"> <i

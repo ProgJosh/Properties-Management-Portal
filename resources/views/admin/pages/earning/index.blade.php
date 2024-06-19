@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
 
-                    <h2 class="text-primary">${{ round($balance)}}</h2>
+                    <h2 class="text-primary">₱{{ round($balance)}}</h2>
                     <hr>
                     <form action="{{ route('admin.withdraw')}}" method="POST" class="mt-3">
                         @csrf
@@ -34,7 +34,7 @@
                 </div>
                 <div class="card-body">
 
-                    <h2 class="text-primary">${{ round($revenue)}}</h2>
+                    <h2 class="text-primary">₱{{ round($revenue)}}</h2>
                     <hr>
                    
 
@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-body">
 
-                    <h2 class="text-primary">${{ round($totalAmount)}}</h2>
+                    <h2 class="text-primary">₱{{ round($totalAmount)}}</h2>
                     <hr>
                   
 

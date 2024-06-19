@@ -52,7 +52,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center">
+        <a href="{{route('admin.dashboard')}}" class="logo text-center">
             <span class="logo-lg">
                 <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" width="60">
                 <!-- <span class="logo-lg-text-light">UBold</span> -->

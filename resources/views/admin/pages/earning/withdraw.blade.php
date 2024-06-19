@@ -45,7 +45,7 @@
 
 
                                 </td>
-                                <td>${{ $withdraw->amount }}</td>
+                                <td>₱{{ $withdraw->amount }}</td>
                                 <td>{{ $withdraw->status == 0 ? 'Pending' : ($withdraw->status == 1 ? 'Approved' : 'Rejected') }}
                                 </td>
                                 <td>{{ $withdraw->created_at }}</td>
