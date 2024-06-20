@@ -10,10 +10,12 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Admin\EarningsController;
+use App\Http\Controllers\Frontend\ContactController;
 
 require_once __DIR__.'/jetstream.php';
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/properties', [HomeController::class, 'properties'])->name('properties');
 Route::get('/property/{id}', [HomeController::class, 'property'])->name('property');
 
@@ -26,6 +28,7 @@ Route::get('/thankyou', [BookingController::class, 'thankyou'])->name('thankyou'
 Route::post('user/profile/update', [UserDashboardController::class, 'updateProfile'])->name('user.profile.update')->middleware('auth');
 Route::post('user/password/update', [UserDashboardController::class, 'updatePassword'])->name('user.password.update')->middleware('auth');
 Route::get('user/logout', [UserDashboardController::class, 'logout'])->name('user.logout');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

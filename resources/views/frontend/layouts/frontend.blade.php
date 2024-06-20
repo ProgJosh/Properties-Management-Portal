@@ -70,13 +70,10 @@
                      
                     </li>
                    
-                    <li class="nav-menu__item ">
-                        <a href="javascript:void(0)" class="nav-menu__link">Blog</a>
-                      
-                    </li>
+                   
 
                     <li class="nav-menu__item ">
-                        <a href="javascript:void(0)" class="nav-menu__link">Contact</a>
+                        <a href="{{route('contact')}}" class="nav-menu__link">Contact</a>
                       
                     </li>
 

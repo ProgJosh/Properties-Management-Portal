@@ -293,7 +293,7 @@
                                             <span class="icon text-gradient"><i class="fas fa-folder-open"></i></span>
                                             {{ $property->type }}</span>
                                         <h6 class="latest-blog__title">
-                                            <a href="blog-details.html"> {{ $property->name }}</a>
+                                            <a href="{{ route('property', $property->id) }}"> {{ $property->name }}</a>
                                         </h6>
                                     </div>
                             @endforeach
