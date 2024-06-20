@@ -99,11 +99,11 @@
 <div class="bottom-footer">
     <div class="container container-two">
         <div class="bottom-footer__inner flx-between gap-3">
-            <p class="bottom-footer__text"> &copy; CityScape 2024 | All Rights Reserved.</p>
+            <p class="bottom-footer__text"> &copy; Property Management Portal - 2024 | All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#" class="footer-link">Terms & Condition</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="{{ route('contact') }}" class="footer-link">Contact Us</a> 
             </div>
         </div>
     </div>

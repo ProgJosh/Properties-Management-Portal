@@ -209,13 +209,35 @@
                                     </div> --}}
                                     <div class="payment-method">
                                         <div class="common-radio">
-                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal" checked>
                                             <label class="form-check-label" for="payPal">
-                                                Stripe
-                                                {{-- <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt=""> --}}
+                                                Pay By Card
+                                                <!--<img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">-->
                                                 
                                             </label>
                                         </div>
+                                        
+                                        <div class="common-radio">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
+                                            <label class="form-check-label" for="payPal">
+                                                Pay By GCash
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/GCash_logo.svg" alt="">
+                                                
+                                            </label>
+                                        </div>
+                                        <div class="common-radio">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
+                                            <label class="form-check-label" for="payPal">
+                                                Pay By Bank
+                                                <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">
+                                                
+                                            </label>
+                                        </div>
+
+                                        @error('payment_method')
+                                            <span class="text-danger">{{$message}}</span>
+                                            
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
