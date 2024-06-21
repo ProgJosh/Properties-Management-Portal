@@ -138,13 +138,9 @@
                                         <label for="Country" class="form-label">Country</label>
                                         <div class="select-has-icon icon-black">
                                             <select class="select common-input" name="country" id="Country" required>
-                                                <option value="1" disabled> Country</option>
-                                                <option value="Australia">Australia</option>
-                                                <option value="Canada">Canada</option>
-                                                <option value="Europe">Europe</option>
-                                                <option value="Bangladesh">Bangladesh</option>
-                                                <option value="India">India</option>
-                                                <option value="Pakistan">Pakistan</option>
+                                             
+                                                <option value="Philippines" selected>Philippines</option>
+
                                             </select>
                                         </div>
 
@@ -164,13 +160,13 @@
                                         @enderror
 
                                     </div>
-                                    <div class="col-sm-6 col-xs-6">
+                                    {{-- <div class="col-sm-6 col-xs-6">
                                         <label for="State" class="form-label">State</label>
                                         <input type="text" class="common-input" name="state" id="State" placeholder="State" required>
                                         @error('state')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-6 col-xs-6">
                                         <label for="region" class="form-label">Region</label>
                                         <input type="text" class="common-input" name="region" id="region" placeholder="Region" required>

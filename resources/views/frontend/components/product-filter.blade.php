@@ -4,13 +4,20 @@
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                 <label for="location">Location</label>
                 <div class="select-has-icon">
-                    
+                    @php
+                    $locations = App\Models\Property::all();
+                    $propertyLocations = $locations->pluck('location')->toArray();
+                  
+                @endphp
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="location">
                         <option value="Location" disabled selected>Location</option>
                         <option value="all">All</option>
-                        <option value="guagua">Guagua</option>
-                        <option value="pampanga">pampanga</option>
-                        <option value="philippines">philippines.</option>
+
+                        @foreach ($propertyLocations as $location )
+                        <option value="{{ $location }}">{{ $location }}</option>
+                        @endforeach
+                     
+                         
                        
                     </select>
                     <span class="input-icon input-icon--left text-gradient">

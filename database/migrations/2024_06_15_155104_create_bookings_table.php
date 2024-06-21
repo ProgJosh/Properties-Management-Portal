@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('country');
             $table->string('city');
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->string('region')->nullable(); // Made nullable as it may not be necessary for all countries
             $table->string('zip_code');
 

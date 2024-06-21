@@ -77,11 +77,16 @@
                       
                     </li>
 
-
+                    @if (Auth::check())
+                        
+                    @else
                     <li class="nav-menu__item ">
                         <a href="{{route('admin.login')}}" class="nav-menu__link">Landlord Login</a>
                       
                     </li>
+
+                    @endif
+                   
 
 
                     <li class="nav-menu__item has-submenu">

@@ -72,7 +72,7 @@ class BookingController extends Controller
             'phone' => 'required',  
             'address' => 'required',
             'country' => 'required',
-            'state' => 'required',
+            'state' => 'nullable',
             'city' => 'required',
             'zip_code' => 'required',
             'region' => 'required',

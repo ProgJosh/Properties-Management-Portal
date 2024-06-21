@@ -52,7 +52,7 @@
                                                 $types = array_unique($propertyTypes->pluck('type')->toArray());
                 
                                             @endphp
-                                                <select class="select common-input" name="location">
+                                                <select class="select common-input" name="type">
                                                     <option value="" disabled>Type</option>
                                                     <option value="all">All</option>
                                                     @foreach ($types as $type )
@@ -73,7 +73,7 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane fade" id="pills-buy" role="tabpanel"
+                        {{-- <div class="tab-pane fade" id="pills-buy" role="tabpanel"
                             aria-labelledby="pills-buy-tab" tabindex="0">
 
                             <div class="filter">
@@ -140,13 +140,11 @@
                                         <div class="col-lg-3 col-sm-6 col-xs-6">
                                             <div class="select-has-icon icon-black">
                                                 <select class="select common-input">
-                                                    <option value="1" disabled>Location</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="1">Japan</option>
-                                                    <option value="1">Korea</option>
-                                                    <option value="1">Singapore</option>
-                                                    <option value="1">Germany</option>
-                                                    <option value="1">Thailand</option>
+                                                    <option disabled>Location</option>
+                                                    <option value="Guagua">Guagua</option>
+                                                    <option value="Pampanga">Pampanga</option>
+                                                    <option value="Philippines">Philippines</option>
+                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -158,7 +156,7 @@
                                 </form>
                             </div>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -341,7 +339,7 @@
 </div>
 <!-- ======================== Video popup Section End =================== -->
 <!-- ============================= Counter Section Start ======================= -->
-<section class="counter padding-y-120">
+{{-- <section class="counter padding-y-120">
     <div class="container">
         <div class="row gy-4">
             <div class="col-sm-3 col-6">
@@ -370,7 +368,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- ============================= Counter Section End ======================= -->
 <!-- ========================= Message Section Start ======================== -->
  
