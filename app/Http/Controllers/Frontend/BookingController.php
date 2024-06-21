@@ -142,7 +142,7 @@ class BookingController extends Controller
         $booking->phone = $request['phone'];
         $booking->address = $request['address'];
         $booking->country = $request['country'];
-        $booking->state = $request['state'];
+
         $booking->city = $request['city'];
         $booking->zip_code = $request['zip_code'];
         $booking->region = $request['region'];
