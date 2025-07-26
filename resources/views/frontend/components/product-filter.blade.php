@@ -4,13 +4,23 @@
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                 <label for="location">Location</label>
                 <div class="select-has-icon">
-                    
-                    <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="location">
+                    @php
+                    $locations = App\Models\Property::all();
+                    $propertyLocations = $locations->pluck('location')->toArray();
+                  
+                @endphp
+                        <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="location">
                         <option value="Location" disabled selected>Location</option>
                         <option value="all">All</option>
-                        <option value="guagua">Guagua</option>
-                        <option value="pampanga">pampanga</option>
-                        <option value="philippines">philippines.</option>
+
+                        @foreach ($propertyLocations as $location )
+                        <option value="{{ $location }}">{{ $location }}</option>
+                        @endforeach
+                     
+                         
+                       
+                    </select>
+                         
                        
                     </select>
                     <span class="input-icon input-icon--left text-gradient">
@@ -44,16 +54,16 @@
                 <div class="select-has-icon">
                     
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="accommodation">
-                        <option value="accommodation" disabled selected>Person</option>
-                        <option value="1">01</option>
-                        <option value="2">02</option>
-                        <option value="3">03</option>   
-                        <option value="4">04</option>
-                        <option value="5">05</option>
-                        <option value="6">06</option>
-                        <option value="7">07</option>
-                        <option value="8">08</option>
-                        <option value="9">09</option>
+                        <option value="accommodation" selected>Person</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>   
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
                         <option value="10">10</option>
 
                        
@@ -78,7 +88,10 @@
                     
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="type">
                         <option value="Type" disabled selected>Type</option>
-                        <option value="all">All</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="boarding ">Boarding </option>
+                        <option value="house">House</option>
+                        <option value="dormitory">Dormitory</option>
                         @foreach ($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach

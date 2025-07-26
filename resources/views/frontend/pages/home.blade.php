@@ -10,11 +10,11 @@
                 <div class="col-lg-6">
                     <div class="banner-inner position-relative">
                         <div class="banner-content">
-                            <span class="banner-content__subtitle text-uppercase font-14">FinTech Fusion</span>
-                            <h1 class="banner-content__title">Invest today in You <span
-                                    class="text-gradient">Dream Home</span> </h1>
-                            <p class="banner-content__desc font-18">Unlock the Power of Real Estate Making Your
-                                Real Estate Dreams a Reality Real Estate here Unlock the Power of Real Estate
+                            <span class="banner-content__subtitle text-uppercase font-14">HOME AWAITS!</span>
+                            <h1 class="banner-content__title">Find Your Apartment In<span
+                                    class="text-gradient">Guagua, Pampanga</span> </h1>
+                            <p class="banner-content__desc font-18">Discover Trusted Rentals in Guagua, Pampanga, 
+                                Making Your Apartment Search Effortless
                             </p>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                     <div class="row gy-sm-4 gy-3">
                                         <div class="col-lg-6 col-sm-6 col-xs-6">
                                             <input type="text" name="keyword" class="common-input"
-                                                placeholder="Enter Keyword">
+                                                placeholder="Enter place want to rent">
                                         </div>
                                        
                                         <div class="col-lg-3 col-sm-6 col-xs-6">
@@ -52,9 +52,12 @@
                                                 $types = array_unique($propertyTypes->pluck('type')->toArray());
                 
                                             @endphp
-                                                <select class="select common-input" name="location">
-                                                    <option value="" disabled>Type</option>
-                                                    <option value="all">All</option>
+                                                <select class="select common-input" name="type">
+                                                    <option value="Type of Apartment" disabled selected>Type of Apartment</option>
+                                                    <option value="apartment">Apartment</option>
+                                                    <option value="boarding ">Boarding </option>
+                                                    <option value="house">House</option>
+                                                    <option value="dormitory">Dormitory</option>
                                                     @foreach ($types as $type )
                                                     <option value="{{ $type }}">{{ $type }}</option>
                                                     @endforeach
@@ -73,93 +76,7 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane fade" id="pills-buy" role="tabpanel"
-                            aria-labelledby="pills-buy-tab" tabindex="0">
-
-                            <div class="filter">
-                                <form action="#">
-                                    <div class="row gy-sm-4 gy-3">
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <input type="text" class="common-input"
-                                                placeholder="Enter Keyword">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Property Type</option>
-                                                    <option value="1">Apartment</option>
-                                                    <option value="1">House</option>
-                                                    <option value="1">Land</option>
-                                                    <option value="1">Single Family</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Location</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="1">Japan</option>
-                                                    <option value="1">Korea</option>
-                                                    <option value="1">Singapore</option>
-                                                    <option value="1">Germany</option>
-                                                    <option value="1">Thailand</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <button type="submit" class="btn btn-main w-100">Find
-                                                Now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                        <div class="tab-pane fade" id="pills-sell" role="tabpanel"
-                            aria-labelledby="pills-sell-tab" tabindex="0">
-
-                            <div class="filter">
-                                <form action="#">
-                                    <div class="row gy-sm-4 gy-3">
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <input type="text" class="common-input"
-                                                placeholder="Enter Keyword">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Property Type</option>
-                                                    <option value="1">Apartment</option>
-                                                    <option value="1">House</option>
-                                                    <option value="1">Land</option>
-                                                    <option value="1">Single Family</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Location</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="1">Japan</option>
-                                                    <option value="1">Korea</option>
-                                                    <option value="1">Singapore</option>
-                                                    <option value="1">Germany</option>
-                                                    <option value="1">Thailand</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <button type="submit" class="btn btn-main w-100">Find
-                                                Now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -179,7 +96,7 @@
                             <i class="fas fa-users text-gradient"></i>
                         </span>
                         <div class="client-statistics__content">
-                            <h5 class="client-statistics__number statisticsCounter">4,000+</h5>
+                            <h5 class="client-statistics__number statisticsCounter">100+</h5>
                             <span class="client-statistics__text fs-18">Satisfied Clients</span>
                         </div>
                     </div>
@@ -190,11 +107,11 @@
                     <div class="section-heading style-left">
                         <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">About
                                 Us</span> </span>
-                        <h2 class="section-heading__title">Stay with us feel at home Your perfect stay awaits
+                        <h2 class="section-heading__title">Discover Your Idental Rental in Guagua, Pampanga
                         </h2>
-                        <p class="section-heading__desc">Real Estate is a vast industry that deals with the
-                            buying, selling, and renting of properties. It inv transactions related to
-                            residential</p>
+                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga,
+                            and find your perfect home with ease. Simplify your search and settle into a place you'll love. 
+                        </p>
                     </div>
                     <div class="about-box d-flex">
                         <div class="about-box__icon">
@@ -202,9 +119,10 @@
                         </div>
                         <div class="about-box__content">
                             <h6 class="about-box__title">Your Dream Home Awaits</h6>
-                            <p class="about-box__desc font-13">Real Estate is a vast industry that deals with
-                                the buying, selling, and renting of properties. It inv transactions related to
-                                residential, commercial, and industrial properties</p>
+                            <p class="about-box__desc font-13">Your go-to apartment finder for employees, students, and families
+                                seeking apartments or other properties around Guagua.Our system streamlines your search, providing
+                                detailed listings and essential information to help you find the perfect place effortlessly.
+                            </p>
                         </div>
                     </div>
                     <div class="about-button">
@@ -224,8 +142,9 @@
         <div class="section-heading style-left style-dark flx-between align-items-end gap-3">
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
-                        property</span> </span>
-                <h2 class="section-heading__title">Prestige Propert Management property for you</h2>
+                                                Apartment</span> </span>
+</span> </span>
+                <h2 class="section-heading__title">The Perfect Apartment For You</h2>
             </div>
             <a href="{{ route('properties')}}" class="btn btn-main">View More <span class="icon-right"> <i
                         class="fas fa-arrow-right"></i> </span> </a>
@@ -240,13 +159,14 @@
                         <a href="{{ route('property', $property->id)}}" class="link">
                             <img src="{{ asset('storage/'.$property->thumbnail) }}"
                                 alt="" class="cover-img">
-                        </a>
+                      
+                            </a>
                         <span class="property-item__badge">
-                            <a href="{{route('booking', $property->id)}}" class="text-light">Book Now</a>
+                            <a href="{{route('booking', $property->id)}}" class="text-light">Rent Now</a>
                         </span>
                     </div>
                     <div class="property-item__content">
-                        <h6 class="property-item__price">$ {{ $property->price}} <span class="day">/per day</span> </h6>
+                        <h6 class="property-item__price">₱ {{ $property->price}} <span class="day">/per day</span> </h6>
                         <h6 class="property-item__title"> <a href="{{ route('property', $property->id)}}"
                                 class="link"> {{ $property->name}} </a> </h6>
                         <p class="property-item__location d-flex gap-2"> <span class="icon"> <i
@@ -263,7 +183,7 @@
                                     <span class="text">{{ $property->bathroom}} Baths</span>
                                 </li>
                             </ul>
-                            <a href="{{route('booking', $property->id)}}" class="simple-btn">Book Now <span class="icon-right"> <i
+                            <a href="{{route('booking', $property->id)}}" class="simple-btn">Rent Now <span class="icon-right"> <i
                                         class="fas fa-arrow-right"></i> </span> </a>
                         </div>
                     </div>
@@ -285,8 +205,8 @@
     <div class="container container-two">
         <div class="section-heading">
             <span class="section-heading__subtitle bg-gray-100"> <span
-                    class="text-gradient fw-semibold">Property Type</span> </span>
-            <h2 class="section-heading__title">Let us find the perfect the property for you</h2>
+                    class="text-gradient fw-semibold">Apartment Type</span> </span>
+            <h2 class="section-heading__title">Let us find the perfect apartment for you</h2>
         </div>
         <div class="row gy-4">
             <div class="col-lg-4 col-sm-6 col-xs-6">
@@ -295,9 +215,10 @@
                         <img src="{{ asset('frontend/assets/images/icons/property-type-icon1.svg') }}"
                             alt="">
                     </span>
-                    <h6 class="property-type-item__title"> Seamless Solutions Your Success </h6>
-                    <p class="property-type-item__desc font-18">Customer satisfaction is crucial for amohlodi
-                        business as it leads to customer loyalty loves positive word</p>
+                    <h6 class="property-type-item__title"> Explore Listings </h6>
+                    <p class="property-type-item__desc font-18">Start by browsing our large database of apartments. Use our advanced search
+                        filters to narrow down your options based on location, price, amenities, and more. Each listing includes detailed descriptions,
+                    high-quality photos to help you find the apartment that meets your needs. </p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-6">
@@ -306,9 +227,11 @@
                         <img src="{{ asset('frontend/assets/images/icons/property-type-icon2.svg') }}"
                             alt="">
                     </span>
-                    <h6 class="property-type-item__title"> Proactive Realty Services </h6>
-                    <p class="property-type-item__desc font-18">Customer satisfaction is crucial for amohlodi
-                        business as it leads to customer loyalty loves positive word</p>
+                    <h6 class="property-type-item__title"> Submit Application </h6>
+                    <p class="property-type-item__desc font-18">Once you've found an apartment that catches your eye, submit
+                        your application directly through our platform. Track your application status and receive updates as
+                        your application is reviewed.
+                    </p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-xs-6">
@@ -317,9 +240,11 @@
                         <img src="{{ asset('frontend/assets/images/icons/property-type-icon3.svg') }}"
                             alt="">
                     </span>
-                    <h6 class="property-type-item__title"> Supreme Home Finders </h6>
-                    <p class="property-type-item__desc font-18">Customer satisfaction is crucial for amohlodi
-                        business as it leads to customer loyalty loves positive word</p>
+                    <h6 class="property-type-item__title"> Secure Your New Home </h6>
+                    <p class="property-type-item__desc font-18">After your application is approved, finalize the lease agreement and
+                        any other formalities through our platform. Our streamlined process ensures a hassle-free experience from start to finish.
+                        Once everything is in place, you're ready to move into your new apartment and start enjoying your new home.
+                    </p>
                 </div>
             </div>
         </div>
@@ -330,9 +255,9 @@
 <div class="video-popup ">
     <div class="container container-two">
         <div class="video-popup__thumb">
-            <img src="{{ asset('frontend/assets/images/thumbs/video-popup.png') }}" alt=""
+            <img src="{{ asset('frontend/assets/images/thumbs/apartment-guagua.png') }}" alt=""
                 class="cover-img">
-            <a href="https://www.youtube.com/watch?v=pPl3ZZdTP3g"
+            <a href="https://www.youtube.com/watch?v=v2VhVDSc-9E"
                 class="popup-video-link video-popup__button">
                 <i class="fas fa-play"></i>
             </a>
@@ -380,7 +305,7 @@
     <div class="section-heading">
         <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
                 Portfolio</span> </span>
-        <h2 class="section-heading__title">Optimum Homes & Properties Realty Experts</h2>
+        <h2 class="section-heading__title">Optimum Apartments Experts</h2>
     </div>
     <div class="portfolio-wrapper">
         
@@ -419,10 +344,10 @@
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Client
                         Testimonial</span> </span>
-                <h2 class="section-heading__title">Optimum Homes & Properties property for you</h2>
+                <h2 class="section-heading__title">Optimum Apartments for you</h2>
             </div>
-            <p class="section-heading__desc">Use receiving accounts a number a currencies and get paid like a
-                local Use receivin accounts a number paid the most beautiful think</p>
+            <p class="section-heading__desc">Discover a diverse selection of meticulously curated apartments designed to enhance 
+                your lifestyle, whether you're seeking modern amenities, spacious, layouts, or convenient locations. </p>
         </div>
         <div class="testimonial__inner">
             <div class="row">
@@ -431,15 +356,35 @@
                         <div class="testimonial-item">
                             <div class="testimonial-item__top flx-between">
                                 <div class="testimonial-item__info">
-                                    <h6 class="testimonial-item__name">Sakib Fahad</h6>
-                                    <span class="testimonial-item__designation">Content Creator</span>
+                                    <h6 class="testimonial-item__name">Jin Ashley Manalang</h6>
+                                    <span class="testimonial-item__designation">New User</span>
                                 </div>
                                 <img src="{{ asset('frontend/assets/images/icons/quote.svg') }}"
                                     alt="">
                             </div>
-                            <p class="testimonial-item__desc">Their product exceeded his my routi expectations.
-                                The the quality and attention to detail a the a moutstanding and it has become
-                                an essential most a education the a man who can do tant clearly</p>
+                            <p class="testimonial-item__desc">Finding an apartment in Guagua was effortless with
+                                this portal. I highly recommend it to anyone searching for quality rentals in Guagua.
+                                </p>
+                            <ul class="star-rating flx-align justify-content-end">
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-item__top flx-between">
+                                <div class="testimonial-item__info">
+                                    <h6 class="testimonial-item__name">Restine Alexandria Baul</h6>
+                                    <span class="testimonial-item__designation">New User</span>
+                                </div>
+                                <img src="{{ asset('frontend/assets/images/icons/quote.svg') }}"
+                                    alt="">
+                            </div>
+                            <p class="testimonial-item__desc">I appreciate how user-friendly and reliable this platform is.
+                                From the moment I started using it, I found the interface intuitive and easy to navigate.
+                            </p>
                             <ul class="star-rating flx-align justify-content-end">
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
@@ -451,28 +396,70 @@
                         <div class="testimonial-item">
                             <div class="testimonial-item__top flx-between">
                                 <div class="testimonial-item__info">
-                                    <h6 class="testimonial-item__name">John Doe</h6>
-                                    <span class="testimonial-item__designation">Frontend Developer</span>
+                                    <h6 class="testimonial-item__name">Angeline Castillo</h6>
+                                    <span class="testimonial-item__designation">New User</span>
                                 </div>
                                 <img src="{{ asset('frontend/assets/images/icons/quote.svg') }}"
                                     alt="">
                             </div>
-                            <p class="testimonial-item__desc">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Optio, autem! Consectetur illo tempora sed repudiandae eaque
-                                velit expedita, ipsa earum explicabo libero, voluptatibus aliquid odio</p>
+                            <p class="testimonial-item__desc">The portal helped me discover a perfect apartment
+                                near my workplace in Guagua. It's game-changer for anyone looking for quality rentals in this area.
+                            </p>
                             <ul class="star-rating flx-align justify-content-end">
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
-                                <li class="star-rating__item unabled"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-item__top flx-between">
+                                <div class="testimonial-item__info">
+                                    <h6 class="testimonial-item__name">Reinian Malit</h6>
+                                    <span class="testimonial-item__designation">New User</span>
+                                </div>
+                                <img src="{{ asset('frontend/assets/images/icons/quote.svg') }}"
+                                    alt="">
+                            </div>
+                            <p class="testimonial-item__desc">I highly recommend this website for its comprehensive listings
+                                and easy navigation. The detailed descriptions of each property, coupled with clear photos, gave
+                                me a good insights of what to expect before even visiting the apartments.
+                            </p>
+                            <ul class="star-rating flx-align justify-content-end">
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="testimonial-item">
+                            <div class="testimonial-item__top flx-between">
+                                <div class="testimonial-item__info">
+                                    <h6 class="testimonial-item__name">Emmanuel Josh Velo</h6>
+                                    <span class="testimonial-item__designation">New User</span>
+                                </div>
+                                <img src="{{ asset('frontend/assets/images/icons/quote.svg') }}"
+                                    alt="">
+                            </div>
+                            <p class="testimonial-item__desc">Using this website made my staycation found easily in Guagua
+                                much smoother than i anticipated. I particularly loved the feature that allows tenants to leave reviews
+                                as it gave me idea into the living experience from others.
+                            </p>
+                            <ul class="star-rating flx-align justify-content-end">
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
+                                <li class="star-rating__item"><i class="fas fa-star"></i></li>
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div>         
                 <div class="col-lg-6">
                     <div class="testimonial-thumb">
-                        <img src="{{ asset('frontend/assets/images/thumbs/testimonial-img.png') }}"
+                        <img src="{{ asset('frontend/assets/images/thumbs/guaguadump.png') }}"
                             alt="" class="cover-img">
                     </div>
                 </div>
@@ -487,8 +474,8 @@
         <div class="section-heading style-left style-flex flx-between align-items-end gap-3">
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
-                        Product</span> </span>
-                <h2 class="section-heading__title">Prestige Propert Management property for you</h2>
+                        Apartment</span> </span>
+                <h2 class="section-heading__title">The Perfect Apartment for you</h2>
             </div>
             <a href="{{ route('properties')}}" class="btn btn-outline-main">View More <span class="icon-right"> <i
                         class="fas fa-plus"></i> </span> </a>
@@ -524,7 +511,7 @@
                                 <a href="#" class="blog-item__title-link border-effect">
                                     {{ $property->title}} </a>
                             </h6>
-                            <a href="{{ route('booking', $property->id)}}" class="simple-btn text-heading fw-semibold">Book Now
+                            <a href="{{ route('booking', $property->id)}}" class="simple-btn text-heading fw-semibold">Rent Now
                                 <span class="icon-right text-gradient"> <i class="fas fa-plus"></i> </span>
                             </a>
                         </div>

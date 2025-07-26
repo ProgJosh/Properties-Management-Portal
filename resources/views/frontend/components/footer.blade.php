@@ -5,11 +5,10 @@
                 <div class="footer-item">
                     <div class="footer-item__logo">
                         <a href="index.html"> <img
-                                src="{{ asset('frontend/assets/images/logo/logo-1.jpeg') }}"
+                                src="{{ asset('frontend\assets/images/logo/PMPLOGO-removebg-.png') }}"
                                 alt=""></a>
                     </div>
-                    <p class="footer-item__desc">It is a long established fact that a reader will be
-                        distracted</p>
+                    <p class="footer-item__desc">Discover Trusted Rentals in Guagua, Pampanga. Making Your Apartment Search Effortless</p>
 
                     <h6 class="footer-item__title mt-4 mt-lg-5">Lets Work Together</h6>
                     <div class="row gy-4">
@@ -19,8 +18,7 @@
                                         class="fas fa-map-marker-alt"></i></span>
                                 <div class="contact-info__content">
                                     <span class="contact-info__text text-white">Address</span>
-                                    <span class="contact-info__address text-white">66 Broklyant, New York
-                                        India</span>
+                                    <span class="contact-info__address text-white">XJMC+JV9, Sta. Rita, Guagua, Pampanga</span>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +29,7 @@
                                         class="fas fa-phone"></i></span>
                                 <div class="contact-info__content">
                                     <span class="contact-info__text text-white">Phone Number</span>
-                                    <span class="contact-info__address text-white">012 345 678 9101</span>
+                                    <span class="contact-info__address text-white">09054882023</span>
                                 </div>
                             </div>
                         </div>
@@ -45,24 +43,23 @@
                     <h6 class="footer-item__title">Services</h6>
                     <ul class="footer-menu">
                         <li class="footer-menu__item"><a href="property.html"
-                                class="footer-menu__link">Reliable Rentals </a></li>
+                                class="footer-menu__link">Trusted Landlords and Properties </a></li>
                         <li class="footer-menu__item"><a href="property.html"
-                                class="footer-menu__link">Golden Key Properties </a></li>
+                                class="footer-menu__link">Smart Dashboards with Secure & Reliable Access </a></li>
                         <li class="footer-menu__item"><a href="property.html"
-                                class="footer-menu__link">Swift Home Sales </a></li>
+                                class="footer-menu__link">Experience good transaction with Tenant Easily</a></li>
                         <li class="footer-menu__item"><a href="property.html"
-                                class="footer-menu__link">Elite Realty Services </a></li>
+                                class="footer-menu__link">User-friendly Interface</a></li>
                         <li class="footer-menu__item"><a href="property.html"
-                                class="footer-menu__link">Dream Property Solutions </a></li>
+                                class="footer-menu__link">Good Class Apartments</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-xl-1 d-xl-block d-none"></div>
             <div class="col-xl-3 col-sm-6">
                 <div class="footer-item">
-                    <h6 class="footer-item__title">Our gallery</h6>
-                    <p class="footer-item__desc">It is a long established fact that reader will be Elite
-                        Property </p>
+                    <h6 class="footer-item__title">Have a Question?</h6>
+                    <p class="footer-item__desc">Feel free to contact us anytime! </p>
 
                     <form action="#" class="mt-4 subscribe-box">
                         <div class="input-group">
@@ -76,16 +73,14 @@
                     </form>
 
                     <ul class="social-list">
-                        <li class="social-list__item"><a href="https://www.facebook.com"
+                        <li class="social-list__item"><a href="https://www.facebook.com/profile.php?id=61564230972072"
                                 class="social-list__link flx-center"><i class="fab fa-facebook-f"></i></a>
                         </li>
                         <li class="social-list__item"><a href="https://www.twitter.com"
                                 class="social-list__link flx-center"> <i class="fab fa-twitter"></i></a>
                         </li>
-                        <li class="social-list__item"><a href="https://www.linkedin.com"
-                                class="social-list__link flx-center"> <i class="fab fa-linkedin-in"></i></a>
                         </li>
-                        <li class="social-list__item"><a href="https://www.pinterest.com"
+                        <li class="social-list__item"><a href="https://www.instagram.com/invites/contact/?igsh=1eicshihihbc8&utm_content=vdjglep"
                                 class="social-list__link flx-center"> <i class="fab fa-instagram"></i></a>
                         </li>
                     </ul>
@@ -99,11 +94,11 @@
 <div class="bottom-footer">
     <div class="container container-two">
         <div class="bottom-footer__inner flx-between gap-3">
-            <p class="bottom-footer__text"> &copy; CityScape 2024 | All Rights Reserved.</p>
+            <p class="bottom-footer__text"> &copy; Property Management Portal - 2024 | All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#" class="footer-link">Terms & Condition</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="{{ route('contact') }}" class="footer-link">Contact Us</a>
             </div>
         </div>
     </div>

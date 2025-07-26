@@ -4,7 +4,7 @@
             <!-- Logo Start -->
             <div class="logo">
                 <a href="{{ url('/') }}" class="link">
-                    <img src="{{ asset('frontend/assets/images/logo/logo-1.jpeg') }}" alt="Logo" width="100">
+                    <img src="{{ asset('frontend/assets/images/logo/PMPLOGO-removebg-.png') }}" alt="Logo" width="75">
                 </a>
             </div>
             <!-- Logo End  -->
@@ -18,20 +18,23 @@
                        
                     </li>
                  
-                    <li class="nav-menu__item ">
-                        <a href="#" class="nav-menu__link">Blog</a>
-                         
-                    </li>
+                  
                     <li class="nav-menu__item">
-                        <a href="#" class="nav-menu__link">Contact</a>
+                        <a href="{{route('contact')}}" class="nav-menu__link">Contact</a>
                     </li>
 
 
-                    
-                    <li class="nav-menu__item ">
-                        <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
-                         
-                    </li>
+                   @if (Auth::check())
+                       
+                   @else
+                   <li class="nav-menu__item ">
+                    <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlord Login</a>
+                     
+                </li>
+                   @endif
+                     
+                  
+                  
 
                     <li class="nav-menu__item has-submenu">
                         @if (Auth::check())
@@ -61,13 +64,7 @@
             <!-- Header Right start -->
             <div class="header-right flx-align">
                 <button type="button" class="offcanvas-btn d-lg-block d-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24"
-                        viewBox="0 0 30 24" fill="none">
-                        <line x1="0.0078125" y1="12.293" x2="30.0078" y2="12.293" stroke="#181616"
-                            stroke-width="3" />
-                        <path d="M5.00781 22.293H30.0078" stroke="#181616" stroke-width="3" />
-                        <path d="M10.0078 2.29297H30.0078" stroke="#181616" stroke-width="3" />
-                    </svg>
+                     
                 </button>
                 
                 <button type="button" class="toggle-mobileMenu d-lg-none ms-3"> <i class="las la-bars"></i>
