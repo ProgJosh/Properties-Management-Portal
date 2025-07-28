@@ -24,17 +24,11 @@
                     </li>
 
 
-                   @if (Auth::check())
-                       
-                   @else
-                   <li class="nav-menu__item ">
-                    <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlord Login</a>
-                     
-                </li>
-                   @endif
-                     
-                  
-                  
+                    
+                    <li class="nav-menu__item ">
+                        <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
+                         
+                    </li>
 
                     <li class="nav-menu__item has-submenu">
                         @if (Auth::check())

@@ -46,7 +46,7 @@
                         <div class="row property-item__content" >
                             <div class="col-md-8 ">
                                 <h4>{{ $property->name }} </h4> 
-                                <h4 class="property-item__price text-dark"> Price: ${{ $property->price }}
+                                <h4 class="property-item__price text-dark"> Price: ₱{{ $property->price }}
                                     <span class="day">/per day</span>
                                 </h4>
                                 <p class="text-gray-800">{{ $property->description }}</p>
@@ -214,19 +214,16 @@
                                             <span class="address-content__text font-18">Address</span>
                                             <h6 class="address-content__title font-15 mb-0">{{ $property->address }}</h6>
                                         </div>
-                                    </div>
+                                    {{-- </div>
                                     <div class="col-6">
                                         <div class="address-content d-flex gap-4 align-items-center">
                                             <span class="address-content__text font-18">Code</span>
                                             <h6 class="address-content__title font-15 mb-0">2365</h6>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="address-map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1150112.1628856962!2d44.64619029447154!3d23.086651461779507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sbd!4v1707037970965!5m2!1sen!2sbd"
-                                        allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16012953.819244199!2d111.93887189775869!3d11.522235062297884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x324053215f87de63%3A0x784790ef7a29da57!2sPhilippines!5e0!3m2!1sen!2sus!4v1718996100487!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +290,7 @@
                                             <span class="icon text-gradient"><i class="fas fa-folder-open"></i></span>
                                             {{ $property->type }}</span>
                                         <h6 class="latest-blog__title">
-                                            <a href="blog-details.html"> {{ $property->name }}</a>
+                                            <a href="{{ route('property', $property->id) }}"> {{ $property->name }}</a>
                                         </h6>
                                     </div>
                             @endforeach

@@ -94,12 +94,16 @@ class LoginController extends Controller
                         ->whereIn('property_id', $properyByLanlord->pluck('id'))
                         ->count(); 
 
+            $booking_ids = Booking::query()
+                    ->whereIn('property_id', $properyByLanlord->pluck('id'))
+                    ->pluck('id');
 
 
-        $totalAmount = Payment::query()
-                    ->whereIn('booking_id', $properyByLanlord->pluck('id'))
+            $totalAmount = Payment::query()
+                    ->whereIn('booking_id', $booking_ids)
                     ->sum('amount');
 
+ 
         $revenue = $totalAmount - ($totalAmount * 0.10);
         };
 

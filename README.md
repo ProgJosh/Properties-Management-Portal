@@ -7,7 +7,6 @@
  - Features
  - Installation
  - Configuration
- - Contributing
  - Contact
 
 

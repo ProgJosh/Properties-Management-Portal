@@ -30,7 +30,7 @@
                                     
                                     <div class="text-center w-75 m-auto">
                                         <a href="">
-                                            <span><img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18"></span>
+                                            <span><img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" width="80"></span>
                                         </a>
                                         <h5 class="text-uppercase text-center font-bold mt-4">Landlords Register</h5>
 

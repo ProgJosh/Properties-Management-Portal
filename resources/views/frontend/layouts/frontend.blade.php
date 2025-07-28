@@ -60,7 +60,7 @@
         <button type="button" class="close-button"> <i class="las la-times"></i> </button>
         <div class="mobile-menu__inner">
             <a href="index.html" class="mobile-menu__logo">
-                <img src="{{ asset('frontend\assets/images/logo/PMPLOGO-removebg-.png') }}" alt="Logo" width="75">
+                <img src="{{ asset('frontend/assets/images/logo/logo.png') }}" alt="Logo">
             </a>
             <div class="mobile-menu__menu">
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('amount');
             $table->tinyInteger('status')->default(0)->comment('0 = Pending, 1 = Approved, 2 = Rejected');
             $table->text('comment')->nullable();
-            $table->foreign('landlord_id')->references('id')->on('landlords');
+            $table->foreign('landlord_id')->references('id')->on('admins');
             $table->timestamps();
         });
     }

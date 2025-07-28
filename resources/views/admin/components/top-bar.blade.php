@@ -9,7 +9,12 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="{{ Auth::guard('admin')->user()->image ? asset('storage/' . Auth::guard('admin')->user()->image) : asset('assets/images/users/avatar-2.jpg')  }}" alt="user-image" class="rounded-circle">
+
+                @if (Auth::guard('admin')->user()->image)
+                <img src="{{ asset('storage/' . Auth::guard('admin')->user()->image)  }}" class="rounded-circle">
+                @endif
+              
+
                 <span class="ml-1">{{ Auth::guard('admin')->user()->name }} <i class="mdi mdi-chevron-down"></i> </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -52,14 +57,14 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center">
+        <a href="{{route('admin.dashboard')}}" class="logo text-center">
             <span class="logo-lg">
-                <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="16">
+                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" width="60">
                 <!-- <span class="logo-lg-text-light">UBold</span> -->
             </span>
             <span class="logo-sm">
                 <!-- <span class="logo-sm-text-dark">U</span> -->
-                <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="28">
+                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" height="28">
             </span>
         </a>
     </div>

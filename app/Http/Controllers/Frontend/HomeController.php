@@ -20,8 +20,10 @@ class HomeController extends Controller
     }
 
 
-    public function properties()
+    public function properties(Request $request)
     {
+
+     
         // Validate the request parameters
         request()->validate([
             'location' => 'nullable|string|max:255',

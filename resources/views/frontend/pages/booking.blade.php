@@ -138,13 +138,9 @@
                                         <label for="Country" class="form-label">Country</label>
                                         <div class="select-has-icon icon-black">
                                             <select class="select common-input" name="country" id="Country" required>
-                                                <option value="1" disabled> Country</option>
-                                                <option value="Australia">Australia</option>
-                                                <option value="Canada">Canada</option>
-                                                <option value="Europe">Europe</option>
-                                                <option value="Bangladesh">Bangladesh</option>
-                                                <option value="India">India</option>
-                                                <option value="Pakistan">Pakistan</option>
+                                             
+                                                <option value="Philippines" selected>Philippines</option>
+
                                             </select>
                                         </div>
 
@@ -164,13 +160,13 @@
                                         @enderror
 
                                     </div>
-                                    <div class="col-sm-6 col-xs-6">
+                                    {{-- <div class="col-sm-6 col-xs-6">
                                         <label for="State" class="form-label">State</label>
                                         <input type="text" class="common-input" name="state" id="State" placeholder="State" required>
                                         @error('state')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-6 col-xs-6">
                                         <label for="region" class="form-label">Region</label>
                                         <input type="text" class="common-input" name="region" id="region" placeholder="Region" required>
@@ -209,13 +205,35 @@
                                     </div> --}}
                                     <div class="payment-method">
                                         <div class="common-radio">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal" checked>
+                                            <label class="form-check-label" for="payPal">
+                                                Pay By Card
+                                                <!--<img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">-->
+                                                
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="common-radio">
                                             <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
                                             <label class="form-check-label" for="payPal">
-                                                Stripe
+                                                Pay By GCash
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/GCash_logo.svg" alt="">
+                                                
+                                            </label>
+                                        </div>
+                                        <div class="common-radio">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
+                                            <label class="form-check-label" for="payPal">
+                                                Pay By Bank
                                                 <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">
                                                 
                                             </label>
                                         </div>
+
+                                        @error('payment_method')
+                                            <span class="text-danger">{{$message}}</span>
+                                            
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -227,15 +245,15 @@
                                     <li class="billing-list__item flx-between">
                                         <input type="hidden" name="amount" value="{{ $property->price }}">
                                         <span class="text text-poppins font-15"> {{ substr($property->name, 0, 20) }} </span>
-                                        <span class="amount fw-semibold text-heading text-poppins">${{ $property->price}} </span>
+                                        <span class="amount fw-semibold text-heading text-poppins">₱{{ $property->price}} </span>
                                     </li>
                                     
                                     <li class="billing-list__item flx-between">
                                         <span class="text text-poppins fw-semibold text-heading">Order Total</span>
-                                        <span class="amount fw-semibold text-heading text-poppins"> ${{$property->price}}</span>
+                                        <span class="amount fw-semibold text-heading text-poppins"> ₱{{$property->price}}</span>
                                     </li>
                                 </ul>
-                                <button type="submit" class="btn btn-main w-100 mt-4">Pay Now</button>
+                                <button type="submit" class="btn btn-main w-100 mt-4">Pay By Card</button>
                             </div>
                         </div>
                     </div>

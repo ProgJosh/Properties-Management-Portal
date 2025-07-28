@@ -20,7 +20,7 @@ class BookedController extends Controller
 
     if(Auth::user()->role == '0'){
 
-        $booked = Booking::latest()->paginate(15);
+        $booked = Booking::latest()->get();
     }else{
         $lanlordid = Auth::user()->id;
 
@@ -28,7 +28,7 @@ class BookedController extends Controller
 
         $booked = Booking::query()
     ->whereIn('property_id', $properyByLanlord->pluck('id'))
-    ->paginate(15); // Change 15 to the number of items you want per page
+    ->get(); // Change 15 to the number of items you want per page
     }
 
         return view('admin.pages.booked.index', compact('booked'));

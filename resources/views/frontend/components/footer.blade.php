@@ -98,7 +98,7 @@
             <div class="footer-links">
                 <a href="#" class="footer-link">Terms & Condition</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="{{ route('contact') }}" class="footer-link">Contact Us</a>
+                <a href="contact.html" class="footer-link">Contact Us</a>
             </div>
         </div>
     </div>

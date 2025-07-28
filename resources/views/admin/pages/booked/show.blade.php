@@ -87,7 +87,7 @@
                                         <small>
                                             {{$booked->address}} <br>
                                             Country: {{ $booked->country }},  City: {{ $booked->city }}, <br>
-                                            State: {{ $booked->state }},   Region: {{ $booked->region }},
+                                             Region: {{ $booked->region }},
                                             Zip Code: {{ $booked->zip_code }}
                                         </small>
                                     </div>

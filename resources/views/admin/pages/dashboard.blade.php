@@ -29,7 +29,7 @@
                     <div class="card-box tilebox-one">
                         <i class="fe-tag float-right"></i>
                         <h5 class="text-muted text-uppercase mb-3 mt-0"> Total Selling Amount</h5>
-                        <h3 class="mb-3">$<span data-plugin="counterup"> {{ $totalAmount}}.00</span></h3>
+                        <h3 class="mb-3">₱<span data-plugin="counterup"> {{ $totalAmount}}</span></h3>
                         
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="card-box tilebox-one">
                         <i class="fe-briefcase float-right"></i>
                         <h5 class="text-muted text-uppercase mb-3 mt-0"> Total Revenue</h5>
-                        <h3 class="mb-3">$<span data-plugin="counterup"> {{ round($revenue )}}.00</span></h3>
+                        <h3 class="mb-3">₱<span data-plugin="counterup"> {{ round($revenue )}}</span></h3>
                         <span class="badge badge-primary"> 10% </span> <span class="text-muted ml-2 vertical-middle">  </span>
                     </div>
                 </div>

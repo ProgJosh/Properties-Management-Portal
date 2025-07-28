@@ -20,6 +20,7 @@
                             <th>Checkout</th>   
                             <th>Contact</th>
                             <th>Booking date</th>
+                            <th>Amount</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                             <td>  {{ @$book->phone }} </td>
                             
                             <td> {{ $book->created_at }} </td>
+                            <td> ${{ $book->payments->sum('amount') }}</td>
                             <td>
              
                                 <a href="{{ route('admin.booked.show', $book->id)}}" class="btn btn-primary btn-sm">Details</a>
@@ -60,9 +62,7 @@
                 </table>
 
 
-                <div>
-                    {{ $booked->links() }}
-                </div>
+               
             </div>
         
         </div>
