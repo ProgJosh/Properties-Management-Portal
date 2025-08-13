@@ -59,12 +59,12 @@
     <div class="logo-box">
         <a href="{{route('admin.dashboard')}}" class="logo text-center">
             <span class="logo-lg">
-                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" width="60">
+                <img src="{{asset('frontend/assets/images/logo/system-logo.png')}}" alt="" width="60">
                 <!-- <span class="logo-lg-text-light">UBold</span> -->
             </span>
             <span class="logo-sm">
                 <!-- <span class="logo-sm-text-dark">U</span> -->
-                <img src="{{asset('frontend/assets/images/logo/logo-1.jpeg')}}" alt="" height="28">
+                <img src="{{asset('frontend/assets/images/logo/system-logo.png')}}" alt="" height="28">
             </span>
         </a>
     </div>

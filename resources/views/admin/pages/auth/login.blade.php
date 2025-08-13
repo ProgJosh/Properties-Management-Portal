@@ -9,7 +9,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href= {{asset('assets/images/favicon.ico')}}>
+        <link rel="shortcut icon" href= {{asset('frontend\assets\images\logo\system-logo.png')}}>
 
         <!-- App css -->
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -30,7 +30,7 @@
                                     
                                     <div class="text-center w-75 m-auto">
                                         <a href="index.html">
-                                            <span><img src="assets/images/logo-light.png" alt="" height="18"></span>
+                                            <span><img src="{{ asset('frontend/assets/images/logo/system-logo.png') }}" alt="" width="75"></span>
                                         </a>
                                         <h5 class="text-uppercase text-center font-bold mt-4">Sign In</h5>
 

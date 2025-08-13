@@ -8,7 +8,7 @@
     <!-- Title -->
     <title> @yield('title') </title>
     <!-- Front-End - Home Page Web Icon -->
-    <link rel="shortcut icon" href="{{ asset('frontend\assets/images/logo/PMPLOGO-removebg-.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/system-logo.png') }}">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
@@ -119,7 +119,7 @@
     {{-- <div class="common-offcanvas d-lg-block d-none">
         <div class="flx-between">
             <a href="index.html" class="mobile-menu__logo">
-                <img src="{{ asset('frontend/assets/images/logo/white-logo.png') }}" alt="Logo">
+                <img src="{{ asset('frontend/assets/images/logo/system-logo.png') }}" alt="Logo">
             </a>
             <button type="button" class="close-button d-flex position-relative top-0 end-0"> <i
                     class="las la-times"></i> </button>

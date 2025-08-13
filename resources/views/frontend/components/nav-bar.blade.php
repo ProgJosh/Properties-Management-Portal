@@ -4,7 +4,7 @@
             <!-- Logo Start -->
             <div class="logo">
                 <a href="{{ url('/') }}" class="link">
-                    <img src="{{ asset('frontend/assets/images/logo/PMPLOGO-removebg-.png') }}" alt="Logo" width="75">
+                    <img src="{{ asset('frontend/assets/images/logo/system-logo.png') }}" alt="Logo" width="75">
                 </a>
             </div>
             <!-- Logo End  -->
@@ -26,7 +26,7 @@
 
                     
                     <li class="nav-menu__item ">
-                        <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlor Login</a>
+                        <a href="{{route('admin.login')}}" target="_blank" class="nav-menu__link">Landlord Login</a>
                          
                     </li>
 

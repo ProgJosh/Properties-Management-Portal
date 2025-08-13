@@ -52,15 +52,50 @@
                                                 $types = array_unique($propertyTypes->pluck('type')->toArray());
                 
                                             @endphp
+
+                                            
                                                 <select class="select common-input" name="location">
-                                                    <option value="" disabled>Type</option>
-                                                    <option value="all">All</option>
-                                                    @foreach ($types as $type )
-                                                    <option value="{{ $type }}">{{ $type }}</option>
-                                                    @endforeach
-                                                   
-                                                    
-                                                     
+                                                    <option value="" disabled selected>Location</option>
+                                                    <optgroup label="POBLACION AREA">
+                                                    <option value="Bancal" {{ old('location') == 'Bancal' ? 'selected' : ''}}>Bancal</option>
+                                                    <option value="Plaza Burgos" {{ old('location') == 'Plaza Burgos' ? 'selected' : ''}}>Plaza Burgos</option>
+                                                    <option value="San Nicolas 1st" {{ old('location') == 'San Nicolas 1st' ? 'selected' : ''}}>San Nicolas 1st</option>
+                                                    <option value="San Pedro" {{ old('location') == 'San Pedro' ? 'selected' : ''}}>San Pedro</option>
+                                                    <option value="San Rafael" {{ old('location') == 'San Rafael' ? 'selected' : ''}}>San Rafael</option>
+                                                    <option value="San Roque" {{ old('location') == 'San Roque' ? 'selected' : ''}}>San Roque</option>
+                                                    <option value="Santa Filomena" {{ old('location') == 'Santa Filomena' ? 'selected' : ''}}>Santa Filomena</option>
+                                                    <option value="Santo Cristo" {{ old('location') == 'Santo Cristo' ? 'selected' : ''}}>Santo Cristo</option>
+                                                    <option value="Santo Niño" {{ old('location') == 'Santo Niño' ? 'selected' : ''}}>Santo Niño</option>
+                                                </optgroup>
+                                                <optgroup label="PANGULO AREA">
+                                                    <option value="San Vicente (Ebus)" {{ old('location') == 'San Vicente (Ebus)' ? 'selected' : ''}}>San Vicente (Ebus)</option>
+                                                    <option value="Lambac" {{ old('location') == 'Lambac' ? 'selected' : ''}}>Lambac</option>
+                                                    <option value="Magsaysay" {{ old('location') == 'Magsaysay' ? 'selected' : ''}}>Magsaysay</option>
+                                                    <option value="Maquiapo" {{ old('location') == 'Maquiapo' ? 'selected' : ''}}>Maquiapo</option>
+                                                    <option value="Natividad" {{ old('location') == 'Natividad' ? 'selected' : ''}}>Natividad</option>
+                                                    <option value="Pulungmasle" {{ old('location') == 'Pulungmasle' ? 'selected' : ''}}>Pulungmasle</option>
+                                                    <option value="Rizal" {{ old('location') == 'Rizal' ? 'selected' : ''}}>Rizal</option>
+                                                    <option value="Ascomo" {{ old('location') == 'Ascomo' ? 'selected' : ''}}>Ascomo</option>
+                                                    <option value="Jose Abad Santos (Siran)" {{ old('location') == 'Jose Abad Santos (Siran)' ? 'selected' : ''}}>Jose Abad Santos (Siran)</option>
+                                                </optgroup>
+                                                <optgroup label="LOCION AREA">
+                                                    <option value="San Pablo" {{ old('location') == 'San Pablo' ? 'selected' : ''}}>San Pablo</option>
+                                                    <option value="San Juan 1st" {{ old('location') == 'San Juan 1st' ? 'selected' : ''}}>San Juan 1st</option>
+                                                    <option value="San Jose" {{ old('location') == 'San Jose' ? 'selected' : ''}}>San Jose</option>
+                                                    <option value="San Matias" {{ old('location') == 'San Matias' ? 'selected' : ''}}>San Matias</option>
+                                                    <option value="San Isidro" {{ old('location') == 'San Isidro' ? 'selected' : ''}}>San Isidro</option>
+                                                    <option value="San Antonio" {{ old('location') == 'San Antonio' ? 'selected' : ''}}>San Antonio</option>
+                                                </optgroup>
+                                                <optgroup label="BETIS AREA">
+                                                    <option value="San Agustin" {{ old('location') == 'San Agustin' ? 'selected' : ''}}>San Agustin</option>
+                                                    <option value="San Juan Bautista" {{ old('location') == 'San Juan Bautista' ? 'selected' : ''}}>San Juan Bautista</option>
+                                                    <option value="San Juan Nepomuceno" {{ old('location') == 'San Juan Nepomuceno' ? 'selected' : ''}}>San Juan Nepomuceno</option>
+                                                    <option value="San Miguel" {{ old('location') == 'San Miguel' ? 'selected' : ''}}>San Miguel</option>
+                                                    <option value="San Nicolas 2nd" {{ old('location') == 'San Nicolas 2nd' ? 'selected' : ''}}>San Nicolas 2nd</option>
+                                                    <option value="Santa Ines" {{ old('location') == 'Santa Ines' ? 'selected' : ''}}>Santa Ines</option>
+                                                    <option value="Santa Ursula" {{ old('location') == 'Santa Ursula' ? 'selected' : ''}}>Santa Ursula</option>
+                                                </optgroup>
+                                                         
                                                 </select>
                                             </div>
                                         </div>
@@ -73,92 +108,7 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane fade" id="pills-buy" role="tabpanel"
-                            aria-labelledby="pills-buy-tab" tabindex="0">
-
-                            <div class="filter">
-                                <form action="#">
-                                    <div class="row gy-sm-4 gy-3">
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <input type="text" class="common-input"
-                                                placeholder="Enter Keyword">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Property Type</option>
-                                                    <option value="1">Apartment</option>
-                                                    <option value="1">House</option>
-                                                    <option value="1">Land</option>
-                                                    <option value="1">Single Family</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Location</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="1">Japan</option>
-                                                    <option value="1">Korea</option>
-                                                    <option value="1">Singapore</option>
-                                                    <option value="1">Germany</option>
-                                                    <option value="1">Thailand</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <button type="submit" class="btn btn-main w-100">Find
-                                                Now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                        <div class="tab-pane fade" id="pills-sell" role="tabpanel"
-                            aria-labelledby="pills-sell-tab" tabindex="0">
-
-                            <div class="filter">
-                                <form action="#">
-                                    <div class="row gy-sm-4 gy-3">
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <input type="text" class="common-input"
-                                                placeholder="Enter Keyword">
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Property Type</option>
-                                                    <option value="1">Apartment</option>
-                                                    <option value="1">House</option>
-                                                    <option value="1">Land</option>
-                                                    <option value="1">Single Family</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <div class="select-has-icon icon-black">
-                                                <select class="select common-input">
-                                                    <option value="1" disabled>Location</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="1">Japan</option>
-                                                    <option value="1">Korea</option>
-                                                    <option value="1">Singapore</option>
-                                                    <option value="1">Germany</option>
-                                                    <option value="1">Thailand</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6 col-xs-6">
-                                            <button type="submit" class="btn btn-main w-100">Find
-                                                Now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -190,9 +140,9 @@
                     <div class="section-heading style-left">
                         <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">About
                                 Us</span> </span>
-                        <h2 class="section-heading__title">Discover Your Idental Rental in Guagua, Pampanga
+                        <h2 class="section-heading__title">Discover Your Ideal Rental in Guagua, Pampanga
                         </h2>
-                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga,
+                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga
                             and find your perfect home with ease. Simplify your search and settle into a place you'll love. 
                         </p>
                     </div>
@@ -338,7 +288,7 @@
 <div class="video-popup ">
     <div class="container container-two">
         <div class="video-popup__thumb">
-            <img src="{{ asset('frontend/assets/images/thumbs/apartment-guagua.png') }}" alt=""
+            <img src="{{ asset('frontend/assets/images/thumbs/guagua-apt.png') }}" alt=""
                 class="cover-img">
             <a href="https://www.youtube.com/watch?v=v2VhVDSc-9E"
                 class="popup-video-link video-popup__button">
@@ -542,7 +492,7 @@
                 </div>         
                 <div class="col-lg-6">
                     <div class="testimonial-thumb">
-                        <img src="{{ asset('frontend/assets/images/thumbs/guaguadump.png') }}"
+                        <img src="{{ asset('frontend/assets/images/thumbs/testimonial-img.png') }}"
                             alt="" class="cover-img">
                     </div>
                 </div>
