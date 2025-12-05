@@ -5,7 +5,7 @@
                 <div class="footer-item">
                     <div class="footer-item__logo">
                         <a href="index.html"> <img
-                                src="{{ asset('frontend\assets/images/logo/system-logo.png') }}"
+                                src="{{ asset('frontend/assets/images/logo/system-logo.png') }}"
                                 alt=""></a>
                     </div>
                     <p class="footer-item__desc">Discover Trusted Rentals in Guagua, Pampanga. Making Your Apartment Search Effortless</p>

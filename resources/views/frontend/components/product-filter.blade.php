@@ -1,50 +1,50 @@
 <div class="property-filter">
-    <form action="#" method="GET">
+    <form action="{{ route('properties') }}" method="GET">
         <div class="row gy-4">
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                 <label for="location">Location</label>
                 <div class="select-has-icon">
                     
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="location">
-                                    <option value="" disabled>Location</option>
+                                    <option value="" disabled {{ !request('location') ? 'selected' : '' }}>Select a place to rent</option>
                                     <optgroup label="POBLACION AREA">
-                                    <option value="Bancal" {{ old('location') == 'Bancal' ? 'selected' : ''}}>Bancal</option>
-                                    <option value="Plaza Burgos" {{ old('location') == 'Plaza Burgos' ? 'selected' : ''}}>Plaza Burgos</option>
-                                    <option value="San Nicolas 1st" {{ old('location') == 'San Nicolas 1st' ? 'selected' : ''}}>San Nicolas 1st</option>
-                                    <option value="San Pedro" {{ old('location') == 'San Pedro' ? 'selected' : ''}}>San Pedro</option>
-                                    <option value="San Rafael" {{ old('location') == 'San Rafael' ? 'selected' : ''}}>San Rafael</option>
-                                    <option value="San Roque" {{ old('location') == 'San Roque' ? 'selected' : ''}}>San Roque</option>
-                                    <option value="Santa Filomena" {{ old('location') == 'Santa Filomena' ? 'selected' : ''}}>Santa Filomena</option>
-                                    <option value="Santo Cristo" {{ old('location') == 'Santo Cristo' ? 'selected' : ''}}>Santo Cristo</option>
-                                    <option value="Santo Niño" {{ old('location') == 'Santo Niño' ? 'selected' : ''}}>Santo Niño</option>
+                                    <option value="Bancal" {{ request('location') == 'Bancal' ? 'selected' : ''}}>Bancal</option>
+                                    <option value="Plaza Burgos" {{ request('location') == 'Plaza Burgos' ? 'selected' : ''}}>Plaza Burgos</option>
+                                    <option value="San Nicolas 1st" {{ request('location') == 'San Nicolas 1st' ? 'selected' : ''}}>San Nicolas 1st</option>
+                                    <option value="San Pedro" {{ request('location') == 'San Pedro' ? 'selected' : ''}}>San Pedro</option>
+                                    <option value="San Rafael" {{ request('location') == 'San Rafael' ? 'selected' : ''}}>San Rafael</option>
+                                    <option value="San Roque" {{ request('location') == 'San Roque' ? 'selected' : ''}}>San Roque</option>
+                                    <option value="Santa Filomena" {{ request('location') == 'Santa Filomena' ? 'selected' : ''}}>Santa Filomena</option>
+                                    <option value="Santo Cristo" {{ request('location') == 'Santo Cristo' ? 'selected' : ''}}>Santo Cristo</option>
+                                    <option value="Santo Niño" {{ request('location') == 'Santo Niño' ? 'selected' : ''}}>Santo Niño</option>
                                 </optgroup>
                                 <optgroup label="PANGULO AREA">
-                                    <option value="San Vicente (Ebus)" {{ old('location') == 'San Vicente (Ebus)' ? 'selected' : ''}}>San Vicente (Ebus)</option>
-                                    <option value="Lambac" {{ old('location') == 'Lambac' ? 'selected' : ''}}>Lambac</option>
-                                    <option value="Magsaysay" {{ old('location') == 'Magsaysay' ? 'selected' : ''}}>Magsaysay</option>
-                                    <option value="Maquiapo" {{ old('location') == 'Maquiapo' ? 'selected' : ''}}>Maquiapo</option>
-                                    <option value="Natividad" {{ old('location') == 'Natividad' ? 'selected' : ''}}>Natividad</option>
-                                    <option value="Pulungmasle" {{ old('location') == 'Pulungmasle' ? 'selected' : ''}}>Pulungmasle</option>
-                                    <option value="Rizal" {{ old('location') == 'Rizal' ? 'selected' : ''}}>Rizal</option>
-                                    <option value="Ascomo" {{ old('location') == 'Ascomo' ? 'selected' : ''}}>Ascomo</option>
-                                    <option value="Jose Abad Santos (Siran)" {{ old('location') == 'Jose Abad Santos (Siran)' ? 'selected' : ''}}>Jose Abad Santos (Siran)</option>
+                                    <option value="San Vicente (Ebus)" {{ request('location') == 'San Vicente (Ebus)' ? 'selected' : ''}}>San Vicente (Ebus)</option>
+                                    <option value="Lambac" {{ request('location') == 'Lambac' ? 'selected' : ''}}>Lambac</option>
+                                    <option value="Magsaysay" {{ request('location') == 'Magsaysay' ? 'selected' : ''}}>Magsaysay</option>
+                                    <option value="Maquiapo" {{ request('location') == 'Maquiapo' ? 'selected' : ''}}>Maquiapo</option>
+                                    <option value="Natividad" {{ request('location') == 'Natividad' ? 'selected' : ''}}>Natividad</option>
+                                    <option value="Pulungmasle" {{ request('location') == 'Pulungmasle' ? 'selected' : ''}}>Pulungmasle</option>
+                                    <option value="Rizal" {{ request('location') == 'Rizal' ? 'selected' : ''}}>Rizal</option>
+                                    <option value="Ascomo" {{ request('location') == 'Ascomo' ? 'selected' : ''}}>Ascomo</option>
+                                    <option value="Jose Abad Santos (Siran)" {{ request('location') == 'Jose Abad Santos (Siran)' ? 'selected' : ''}}>Jose Abad Santos (Siran)</option>
                                 </optgroup>
                                 <optgroup label="LOCION AREA">
-                                    <option value="San Pablo" {{ old('location') == 'San Pablo' ? 'selected' : ''}}>San Pablo</option>
-                                    <option value="San Juan 1st" {{ old('location') == 'San Juan 1st' ? 'selected' : ''}}>San Juan 1st</option>
-                                    <option value="San Jose" {{ old('location') == 'San Jose' ? 'selected' : ''}}>San Jose</option>
-                                    <option value="San Matias" {{ old('location') == 'San Matias' ? 'selected' : ''}}>San Matias</option>
-                                    <option value="San Isidro" {{ old('location') == 'San Isidro' ? 'selected' : ''}}>San Isidro</option>
-                                    <option value="San Antonio" {{ old('location') == 'San Antonio' ? 'selected' : ''}}>San Antonio</option>
+                                    <option value="San Pablo" {{ request('location') == 'San Pablo' ? 'selected' : ''}}>San Pablo</option>
+                                    <option value="San Juan 1st" {{ request('location') == 'San Juan 1st' ? 'selected' : ''}}>San Juan 1st</option>
+                                    <option value="San Jose" {{ request('location') == 'San Jose' ? 'selected' : ''}}>San Jose</option>
+                                    <option value="San Matias" {{ request('location') == 'San Matias' ? 'selected' : ''}}>San Matias</option>
+                                    <option value="San Isidro" {{ request('location') == 'San Isidro' ? 'selected' : ''}}>San Isidro</option>
+                                    <option value="San Antonio" {{ request('location') == 'San Antonio' ? 'selected' : ''}}>San Antonio</option>
                                 </optgroup>
                                 <optgroup label="BETIS AREA">
-                                    <option value="San Agustin" {{ old('location') == 'San Agustin' ? 'selected' : ''}}>San Agustin</option>
-                                    <option value="San Juan Bautista" {{ old('location') == 'San Juan Bautista' ? 'selected' : ''}}>San Juan Bautista</option>
-                                    <option value="San Juan Nepomuceno" {{ old('location') == 'San Juan Nepomuceno' ? 'selected' : ''}}>San Juan Nepomuceno</option>
-                                    <option value="San Miguel" {{ old('location') == 'San Miguel' ? 'selected' : ''}}>San Miguel</option>
-                                    <option value="San Nicolas 2nd" {{ old('location') == 'San Nicolas 2nd' ? 'selected' : ''}}>San Nicolas 2nd</option>
-                                    <option value="Santa Ines" {{ old('location') == 'Santa Ines' ? 'selected' : ''}}>Santa Ines</option>
-                                    <option value="Santa Ursula" {{ old('location') == 'Santa Ursula' ? 'selected' : ''}}>Santa Ursula</option>
+                                    <option value="San Agustin" {{ request('location') == 'San Agustin' ? 'selected' : ''}}>San Agustin</option>
+                                    <option value="San Juan Bautista" {{ request('location') == 'San Juan Bautista' ? 'selected' : ''}}>San Juan Bautista</option>
+                                    <option value="San Juan Nepomuceno" {{ request('location') == 'San Juan Nepomuceno' ? 'selected' : ''}}>San Juan Nepomuceno</option>
+                                    <option value="San Miguel" {{ request('location') == 'San Miguel' ? 'selected' : ''}}>San Miguel</option>
+                                    <option value="San Nicolas 2nd" {{ request('location') == 'San Nicolas 2nd' ? 'selected' : ''}}>San Nicolas 2nd</option>
+                                    <option value="Santa Ines" {{ request('location') == 'Santa Ines' ? 'selected' : ''}}>Santa Ines</option>
+                                    <option value="Santa Ursula" {{ request('location') == 'Santa Ursula' ? 'selected' : ''}}>Santa Ursula</option>
                                 </optgroup>
                        
                     </select>
@@ -79,7 +79,7 @@
                 <div class="select-has-icon">
                     
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="accommodation">
-                        <option value="accommodation" selected>Person</option>
+                        <option value="" disabled selected>Person</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>   
@@ -94,7 +94,7 @@
                        
                     </select>
                     <span class="input-icon input-icon--left text-gradient">
-                        <img src="{{ asset('frontend/assets/images/icons/location.svg') }}" alt="">
+                        <img src="{{ asset('frontend/assets/images/icons/user.svg') }}" alt="">
                     </span>
                 </div>
             </div>
@@ -114,8 +114,7 @@
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="type">
                         <option value="Type" disabled selected>Type</option>
                         <option value="apartment">Apartment</option>
-                        <option value="boarding ">Boarding </option>
-                        <option value="house">House</option>
+                        <option value="boarding housee ">Boarding House</option>
                         <option value="dormitory">Dormitory</option>
                         @foreach ($types as $type)
                             <option value="{{ $type }}">{{ $type }}</option>

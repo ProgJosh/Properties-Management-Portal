@@ -4,7 +4,7 @@
             <!-- Logo Start -->
             <div class="logo">
                 <a href="<?php echo e(url('/')); ?>" class="link">
-                    <img src="<?php echo e(asset('frontend/assets/images/logo/PMPLOGO-removebg-.png')); ?>" alt="Logo" width="75">
+                    <img src="<?php echo e(asset('frontend\assets/images/logo/system-logo.png')); ?>" alt="Logo" width="75">
                 </a>
             </div>
             <!-- Logo End  -->
@@ -24,17 +24,11 @@
                     </li>
 
 
-                   <?php if(Auth::check()): ?>
-                       
-                   <?php else: ?>
-                   <li class="nav-menu__item ">
-                    <a href="<?php echo e(route('admin.login')); ?>" target="_blank" class="nav-menu__link">Landlord Login</a>
-                     
-                </li>
-                   <?php endif; ?>
-                     
-                  
-                  
+                    
+                    <li class="nav-menu__item ">
+                        <a href="<?php echo e(route('admin.login')); ?>" target="_blank" class="nav-menu__link">Landlord Login</a>
+                         
+                    </li>
 
                     <li class="nav-menu__item has-submenu">
                         <?php if(Auth::check()): ?>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 
 ### Properties Management Portal
@@ -96,6 +95,3 @@ php artisan serve
 12. Visit http://localhost:8000/admin/login in your browser to login as admin.
 
 
-=======
-# Properties-Management-Portal
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a

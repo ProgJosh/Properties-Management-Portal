@@ -11,7 +11,7 @@
                     <div class="banner-inner position-relative">
                         <div class="banner-content">
                             <span class="banner-content__subtitle text-uppercase font-14">HOME AWAITS!</span>
-                            <h1 class="banner-content__title">Find Your Apartment In <span
+                            <h1 class="banner-content__title">Find Your Apartment In<span
                                     class="text-gradient">Guagua, Pampanga</span> </h1>
                             <p class="banner-content__desc font-18">Discover Trusted Rentals in Guagua, Pampanga, 
                                 Making Your Apartment Search Effortless
@@ -52,18 +52,50 @@
                                                 $types = array_unique($propertyTypes->pluck('type')->toArray());
                 
                                             ?>
-                                                <select class="select common-input" name="type">
-                                                    <option value="Type of Apartment" disabled selected>Type of Apartment</option>
-                                                    <option value="apartment">Apartment</option>
-                                                    <option value="boarding ">Boarding </option>
-                                                    <option value="house">House</option>
-                                                    <option value="dormitory">Dormitory</option>
-                                                    <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($type); ?>"><?php echo e($type); ?></option>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                   
-                                                    
-                                                     
+
+                                            
+                                                <select class="select common-input" name="location">
+                                                    <option value="" disabled <?php echo e(!request('location') ? 'selected' : ''); ?>>Location</option>
+                                                    <optgroup label="POBLACION AREA">
+                                                    <option value="Bancal" <?php echo e(request('location') == 'Bancal' ? 'selected' : ''); ?>>Bancal</option>
+                                                    <option value="Plaza Burgos" <?php echo e(request('location') == 'Plaza Burgos' ? 'selected' : ''); ?>>Plaza Burgos</option>
+                                                    <option value="San Nicolas 1st" <?php echo e(request('location') == 'San Nicolas 1st' ? 'selected' : ''); ?>>San Nicolas 1st</option>
+                                                    <option value="San Pedro" <?php echo e(request('location') == 'San Pedro' ? 'selected' : ''); ?>>San Pedro</option>
+                                                    <option value="San Rafael" <?php echo e(request('location') == 'San Rafael' ? 'selected' : ''); ?>>San Rafael</option>
+                                                    <option value="San Roque" <?php echo e(request('location') == 'San Roque' ? 'selected' : ''); ?>>San Roque</option>
+                                                    <option value="Santa Filomena" <?php echo e(request('location') == 'Santa Filomena' ? 'selected' : ''); ?>>Santa Filomena</option>
+                                                    <option value="Santo Cristo" <?php echo e(request('location') == 'Santo Cristo' ? 'selected' : ''); ?>>Santo Cristo</option>
+                                                    <option value="Santo Niño" <?php echo e(request('location') == 'Santo Niño' ? 'selected' : ''); ?>>Santo Niño</option>
+                                                </optgroup>
+                                                <optgroup label="PANGULO AREA">
+                                                    <option value="San Vicente (Ebus)" <?php echo e(request('location') == 'San Vicente (Ebus)' ? 'selected' : ''); ?>>San Vicente (Ebus)</option>
+                                                    <option value="Lambac" <?php echo e(request('location') == 'Lambac' ? 'selected' : ''); ?>>Lambac</option>
+                                                    <option value="Magsaysay" <?php echo e(request('location') == 'Magsaysay' ? 'selected' : ''); ?>>Magsaysay</option>
+                                                    <option value="Maquiapo" <?php echo e(request('location') == 'Maquiapo' ? 'selected' : ''); ?>>Maquiapo</option>
+                                                    <option value="Natividad" <?php echo e(request('location') == 'Natividad' ? 'selected' : ''); ?>>Natividad</option>
+                                                    <option value="Pulungmasle" <?php echo e(request('location') == 'Pulungmasle' ? 'selected' : ''); ?>>Pulungmasle</option>
+                                                    <option value="Rizal" <?php echo e(request('location') == 'Rizal' ? 'selected' : ''); ?>>Rizal</option>
+                                                    <option value="Ascomo" <?php echo e(request('location') == 'Ascomo' ? 'selected' : ''); ?>>Ascomo</option>
+                                                    <option value="Jose Abad Santos (Siran)" <?php echo e(request('location') == 'Jose Abad Santos (Siran)' ? 'selected' : ''); ?>>Jose Abad Santos (Siran)</option>
+                                                </optgroup>
+                                                <optgroup label="LOCION AREA">
+                                                    <option value="San Pablo" <?php echo e(request('location') == 'San Pablo' ? 'selected' : ''); ?>>San Pablo</option>
+                                                    <option value="San Juan 1st" <?php echo e(request('location') == 'San Juan 1st' ? 'selected' : ''); ?>>San Juan 1st</option>
+                                                    <option value="San Jose" <?php echo e(request('location') == 'San Jose' ? 'selected' : ''); ?>>San Jose</option>
+                                                    <option value="San Matias" <?php echo e(request('location') == 'San Matias' ? 'selected' : ''); ?>>San Matias</option>
+                                                    <option value="San Isidro" <?php echo e(request('location') == 'San Isidro' ? 'selected' : ''); ?>>San Isidro</option>
+                                                    <option value="San Antonio" <?php echo e(request('location') == 'San Antonio' ? 'selected' : ''); ?>>San Antonio</option>
+                                                </optgroup>
+                                                <optgroup label="BETIS AREA">
+                                                    <option value="San Agustin" <?php echo e(request('location') == 'San Agustin' ? 'selected' : ''); ?>>San Agustin</option>
+                                                    <option value="San Juan Bautista" <?php echo e(request('location') == 'San Juan Bautista' ? 'selected' : ''); ?>>San Juan Bautista</option>
+                                                    <option value="San Juan Nepomuceno" <?php echo e(request('location') == 'San Juan Nepomuceno' ? 'selected' : ''); ?>>San Juan Nepomuceno</option>
+                                                    <option value="San Miguel" <?php echo e(request('location') == 'San Miguel' ? 'selected' : ''); ?>>San Miguel</option>
+                                                    <option value="San Nicolas 2nd" <?php echo e(request('location') == 'San Nicolas 2nd' ? 'selected' : ''); ?>>San Nicolas 2nd</option>
+                                                    <option value="Santa Ines" <?php echo e(request('location') == 'Santa Ines' ? 'selected' : ''); ?>>Santa Ines</option>
+                                                    <option value="Santa Ursula" <?php echo e(request('location') == 'Santa Ursula' ? 'selected' : ''); ?>>Santa Ursula</option>
+                                                </optgroup>
+                                                         
                                                 </select>
                                             </div>
                                         </div>
@@ -108,10 +140,10 @@
                     <div class="section-heading style-left">
                         <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">About
                                 Us</span> </span>
-                        <h2 class="section-heading__title">Discover Your Idental Rental in Guagua, Pampanga
+                        <h2 class="section-heading__title">Discover Your Ideal Rental in Guagua, Pampanga
                         </h2>
-                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga,
-                            and find your perfect home with ease. Simplify your search and settle into a place you'll love.
+                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga
+                            and find your perfect home with ease. Simplify your search and settle into a place you'll love. 
                         </p>
                     </div>
                     <div class="about-box d-flex">
@@ -143,7 +175,8 @@
         <div class="section-heading style-left style-dark flx-between align-items-end gap-3">
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
-                        Apartment</span> </span>
+                                                Apartment</span> </span>
+</span> </span>
                 <h2 class="section-heading__title">The Perfect Apartment For You</h2>
             </div>
             <a href="<?php echo e(route('properties')); ?>" class="btn btn-main">View More <span class="icon-right"> <i
@@ -155,12 +188,18 @@
             <?php $__currentLoopData = $properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 col-sm-6">
                 <div class="property-item">
+                    <div class="property-item__thumb">
+                        <a href="<?php echo e(route('property', $property->id)); ?>" class="link">
+                            <img src="<?php echo e(asset('storage/'.$property->thumbnail)); ?>"
+                                alt="" class="cover-img">
+                      
+                            </a>
                         <span class="property-item__badge">
                             <a href="<?php echo e(route('booking', $property->id)); ?>" class="text-light">Rent Now</a>
                         </span>
                     </div>
                     <div class="property-item__content">
-                        <h6 class="property-item__price">₱ <?php echo e($property->price); ?> <span class="day">/per day</span> </h6>
+                        <h6 class="property-item__price">₱ <?php echo e($property->price); ?> <span class="day">/per month</span> </h6>
                         <h6 class="property-item__title"> <a href="<?php echo e(route('property', $property->id)); ?>"
                                 class="link"> <?php echo e($property->name); ?> </a> </h6>
                         <p class="property-item__location d-flex gap-2"> <span class="icon"> <i
@@ -250,7 +289,7 @@
 <div class="video-popup ">
     <div class="container container-two">
         <div class="video-popup__thumb">
-            <img src="<?php echo e(asset('frontend/assets/images/thumbs/apartment-guagua.png')); ?>" alt=""
+            <img src="<?php echo e(asset('frontend/assets/images/thumbs/guagua-apt.png')); ?>" alt=""
                 class="cover-img">
             <a href="https://www.youtube.com/watch?v=v2VhVDSc-9E"
                 class="popup-video-link video-popup__button">
@@ -330,7 +369,7 @@
                             </div>
                             <p class="testimonial-item__desc">Finding an apartment in Guagua was effortless with
                                 this portal. I highly recommend it to anyone searching for quality rentals in Guagua.
-                            </p>
+                                </p>
                             <ul class="star-rating flx-align justify-content-end">
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
@@ -422,13 +461,10 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                    
-                </div>
-                
+                </div>         
                 <div class="col-lg-6">
                     <div class="testimonial-thumb">
-                        <img src="<?php echo e(asset('frontend/assets/images/thumbs/guaguadump.png')); ?>"
+                        <img src="<?php echo e(asset('frontend/assets/images/thumbs/testimonial-img.png')); ?>"
                             alt="" class="cover-img">
                     </div>
                 </div>

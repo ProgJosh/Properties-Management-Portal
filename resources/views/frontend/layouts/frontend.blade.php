@@ -8,7 +8,7 @@
     <!-- Title -->
     <title> @yield('title') </title>
     <!-- Front-End - Home Page Web Icon -->
-    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/system-logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend\assets/images/logo/system-logo.png') }}">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">

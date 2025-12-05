@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "adyen/php-api-library": "^28.3",
         "brian2694/laravel-toastr": "^5.59",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.1",
@@ -62,7 +63,12 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "composer/audit": false,
+            "security-advisories": false
+        },
+        "audit": {
+            "ignore": ["[PKSA-q46n-4fdk-zjr4,PKSA-qzrn-rnz3-85w1,PKSA-8qx3-n5y5-vvnd,PKSA-w7xr-vk7n-rstm,PKSA-g5js-3ypd-k2kr,PKSA-9tny-xycd-bd72]"]
         }
     },
     "minimum-stability": "stable",

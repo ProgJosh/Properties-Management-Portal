@@ -4,7 +4,7 @@
             <!-- Logo Start -->
             <div class="logo">
                 <a href="{{ url('/') }}" class="link">
-                    <img src="{{ asset('frontend/assets/images/logo/system-logo.png') }}" alt="Logo" width="75">
+                    <img src="{{ asset('frontend\assets/images/logo/system-logo.png') }}" alt="Logo" width="75">
                 </a>
             </div>
             <!-- Logo End  -->

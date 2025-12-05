@@ -47,13 +47,13 @@
                             <div class="col-md-8 ">
                                 <h4>{{ $property->name }} </h4> 
                                 <h4 class="property-item__price text-dark"> Price: ₱{{ $property->price }}
-                                    <span class="day">/per day</span>
+                                    <span class="day">/per month</span>
                                 </h4>
                                 <p class="text-gray-800">{{ $property->description }}</p>
                             </div>
 
                             <div class="col-md-4">
-                               <a href="{{route('booking', $property->id)}}" class="btn btn-main text-uppercase float-end"> Book Now</a>
+                               <a href="{{route('booking', $property->id)}}" class="btn btn-main text-uppercase float-end"> Rent Now</a>
                             </div>
                         </div>
 

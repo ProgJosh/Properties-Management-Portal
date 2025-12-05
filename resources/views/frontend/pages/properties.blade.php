@@ -64,14 +64,14 @@
                                             <span class="text"> {{ $property->bathroom }} Baths</span>
                                         </li>
                                     </ul>
-                                    <h6 class="property-item__price"> ${{ $property->price }}
-                                        <span class="day">/per day</span>
+                                    <h6 class="property-item__price"> ₱{{ $property->price }}
+                                        <span class="day">/per month</span>
                                     </h6>
                                     <p class="property-item__location d-flex gap-2">
                                         <span class="icon text-gradient"> <i class="fas fa-map-marker-alt"></i></span>
                                         {{ $property->address }}
                                     </p>
-                                    <a href="{{ route('booking', $property->id)}}" class="simple-btn text-gradient fw-semibold font-14">Book Now
+                                    <a href="{{ route('booking', $property->id)}}" class="simple-btn text-gradient fw-semibold font-14">Rent Now
                                         <span class="icon-right"> <i class="fas fa-arrow-right"></i> </span> </a>
                                 </div>
                             </div>

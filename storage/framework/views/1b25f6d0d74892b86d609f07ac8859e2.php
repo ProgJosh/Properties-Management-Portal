@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 
 <div class="row">
@@ -7,7 +5,6 @@
        
 
         <div class="card-box">
-            <a href="<?php echo e(url()->previous()); ?>" class="btn btn-primary btn-sm float-left p-2 mb-4">Back</a> 
             <a href="<?php echo e(route('admin.create')); ?>" class="btn btn-primary btn-sm float-right p-2 mb-3">Add New Admin</a> 
            
            
@@ -79,4 +76,4 @@
 </script>
     
 <?php $__env->stopPush(); ?>
-<?php echo $__env->make('admin.layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Properties-Management-Portal\resources\views/admin/pages/admin-list.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Properties-Management-Portal\resources\views/admin/pages/admin-list.blade.php ENDPATH**/ ?>

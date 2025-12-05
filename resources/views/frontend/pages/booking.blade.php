@@ -208,7 +208,7 @@
                                             <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal" checked>
                                             <label class="form-check-label" for="payPal">
                                                 Pay By Card
-                                                <!--<img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">-->
+                                                <img src="{{asset('frontend/assets/images/thumbs/cardlogo.png')}}" alt="">
                                                 
                                             </label>
                                         </div>
@@ -253,7 +253,7 @@
                                         <span class="amount fw-semibold text-heading text-poppins"> ₱{{$property->price}}</span>
                                     </li>
                                 </ul>
-                                <button type="submit" class="btn btn-main w-100 mt-4">Pay By Card</button>
+                                <button type="submit" class="btn btn-main w-100 mt-4">Choose paymethod method</button>
                             </div>
                         </div>
                     </div>
