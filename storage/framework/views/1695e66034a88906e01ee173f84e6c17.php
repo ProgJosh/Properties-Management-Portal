@@ -5,11 +5,7 @@
                 <div class="footer-item">
                     <div class="footer-item__logo">
                         <a href="index.html"> <img
-<<<<<<< HEAD
                                 src="<?php echo e(asset('frontend/assets/images/logo/system-logo.png')); ?>"
-=======
-                                src="<?php echo e(asset('frontend\assets/images/logo/PMPLOGO-removebg-.png')); ?>"
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                                 alt=""></a>
                     </div>
                     <p class="footer-item__desc">Discover Trusted Rentals in Guagua, Pampanga. Making Your Apartment Search Effortless</p>
@@ -53,11 +49,7 @@
                         <li class="footer-menu__item"><a href="property.html"
                                 class="footer-menu__link">Experience good transaction with Tenant Easily</a></li>
                         <li class="footer-menu__item"><a href="property.html"
-<<<<<<< HEAD
                                 class="footer-menu__link">Budget-friendlyy</a></li>
-=======
-                                class="footer-menu__link">User-friendly Interface</a></li>
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                         <li class="footer-menu__item"><a href="property.html"
                                 class="footer-menu__link">Good Class Apartments</a></li>
                     </ul>
@@ -73,11 +65,7 @@
                         <div class="input-group">
                             <input type="text"
                                 class="form-control common-input common-input--md text-white"
-<<<<<<< HEAD
                                 placeholder="Your Email Address">
-=======
-                                placeholder="Your mail address">
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                             <button type="submit"
                                 class="px-4 input-group-text bg--gradient border-0 text-white"><i
                                     class="fas fa-paper-plane"></i></button>
@@ -110,11 +98,7 @@
             <div class="footer-links">
                 <a href="#" class="footer-link">Terms & Condition</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
-<<<<<<< HEAD
                 <a href="contact.html" class="footer-link">Contact Us</a>
-=======
-                <a href="<?php echo e(route('contact')); ?>" class="footer-link">Contact Us</a> 
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
             </div>
         </div>
     </div>

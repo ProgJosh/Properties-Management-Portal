@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 namespace App\Providers;
@@ -24,30 +23,3 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
     }
 }
-=======
-<?php
-
-namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
-
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        Paginator::useBootstrap();
-    }
-}
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
