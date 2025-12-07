@@ -8,7 +8,11 @@
     <!-- Title -->
     <title> <?php echo $__env->yieldContent('title'); ?> </title>
     <!-- Front-End - Home Page Web Icon -->
+<<<<<<< HEAD
     <link rel="shortcut icon" href="<?php echo e(asset('frontend\assets/images/logo/system-logo.png')); ?>">
+=======
+    <link rel="shortcut icon" href="<?php echo e(asset('frontend\assets/images/logo/PMPLOGO-removebg-.png')); ?>">
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="<?php echo e(asset('frontend/assets/css/bootstrap.min.css')); ?>">
@@ -60,7 +64,11 @@
         <button type="button" class="close-button"> <i class="las la-times"></i> </button>
         <div class="mobile-menu__inner">
             <a href="index.html" class="mobile-menu__logo">
+<<<<<<< HEAD
                 <img src="<?php echo e(asset('frontend/assets/images/logo/logo.png')); ?>" alt="Logo">
+=======
+                <img src="<?php echo e(asset('frontend\assets/images/logo/PMPLOGO-removebg-.png')); ?>" alt="Logo" width="75">
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
             </a>
             <div class="mobile-menu__menu">
 

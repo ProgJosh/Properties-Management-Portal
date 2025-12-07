@@ -47,14 +47,24 @@
   ),
   'livewire/livewire' => 
   array (
+<<<<<<< HEAD
     'aliases' => 
     array (
       'Livewire' => 'Livewire\\Livewire',
     ),
+=======
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
     'providers' => 
     array (
       0 => 'Livewire\\LivewireServiceProvider',
     ),
+<<<<<<< HEAD
+=======
+    'aliases' => 
+    array (
+      'Livewire' => 'Livewire\\Livewire',
+    ),
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
   ),
   'nesbot/carbon' => 
   array (

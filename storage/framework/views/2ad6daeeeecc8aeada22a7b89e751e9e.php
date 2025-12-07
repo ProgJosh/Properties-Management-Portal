@@ -11,7 +11,11 @@
                     <div class="banner-inner position-relative">
                         <div class="banner-content">
                             <span class="banner-content__subtitle text-uppercase font-14">HOME AWAITS!</span>
+<<<<<<< HEAD
                             <h1 class="banner-content__title">Find Your Apartment In<span
+=======
+                            <h1 class="banner-content__title">Find Your Apartment In <span
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                                     class="text-gradient">Guagua, Pampanga</span> </h1>
                             <p class="banner-content__desc font-18">Discover Trusted Rentals in Guagua, Pampanga, 
                                 Making Your Apartment Search Effortless
@@ -52,6 +56,7 @@
                                                 $types = array_unique($propertyTypes->pluck('type')->toArray());
                 
                                             ?>
+<<<<<<< HEAD
 
                                             
                                                 <select class="select common-input" name="location">
@@ -96,6 +101,20 @@
                                                     <option value="Santa Ursula" <?php echo e(request('location') == 'Santa Ursula' ? 'selected' : ''); ?>>Santa Ursula</option>
                                                 </optgroup>
                                                          
+=======
+                                                <select class="select common-input" name="type">
+                                                    <option value="Type of Apartment" disabled selected>Type of Apartment</option>
+                                                    <option value="apartment">Apartment</option>
+                                                    <option value="boarding ">Boarding </option>
+                                                    <option value="house">House</option>
+                                                    <option value="dormitory">Dormitory</option>
+                                                    <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($type); ?>"><?php echo e($type); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                   
+                                                    
+                                                     
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                                                 </select>
                                             </div>
                                         </div>
@@ -140,10 +159,17 @@
                     <div class="section-heading style-left">
                         <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">About
                                 Us</span> </span>
+<<<<<<< HEAD
                         <h2 class="section-heading__title">Discover Your Ideal Rental in Guagua, Pampanga
                         </h2>
                         <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga
                             and find your perfect home with ease. Simplify your search and settle into a place you'll love. 
+=======
+                        <h2 class="section-heading__title">Discover Your Idental Rental in Guagua, Pampanga
+                        </h2>
+                        <p class="section-heading__desc">Explore trusted apartment rentals in Guagua, Pampanga,
+                            and find your perfect home with ease. Simplify your search and settle into a place you'll love.
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                         </p>
                     </div>
                     <div class="about-box d-flex">
@@ -175,8 +201,12 @@
         <div class="section-heading style-left style-dark flx-between align-items-end gap-3">
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
+<<<<<<< HEAD
                                                 Apartment</span> </span>
 </span> </span>
+=======
+                        Apartment</span> </span>
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                 <h2 class="section-heading__title">The Perfect Apartment For You</h2>
             </div>
             <a href="<?php echo e(route('properties')); ?>" class="btn btn-main">View More <span class="icon-right"> <i
@@ -188,18 +218,25 @@
             <?php $__currentLoopData = $properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 col-sm-6">
                 <div class="property-item">
+<<<<<<< HEAD
                     <div class="property-item__thumb">
                         <a href="<?php echo e(route('property', $property->id)); ?>" class="link">
                             <img src="<?php echo e(asset('storage/'.$property->thumbnail)); ?>"
                                 alt="" class="cover-img">
                       
                             </a>
+=======
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                         <span class="property-item__badge">
                             <a href="<?php echo e(route('booking', $property->id)); ?>" class="text-light">Rent Now</a>
                         </span>
                     </div>
                     <div class="property-item__content">
+<<<<<<< HEAD
                         <h6 class="property-item__price">₱ <?php echo e($property->price); ?> <span class="day">/per month</span> </h6>
+=======
+                        <h6 class="property-item__price">₱ <?php echo e($property->price); ?> <span class="day">/per day</span> </h6>
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                         <h6 class="property-item__title"> <a href="<?php echo e(route('property', $property->id)); ?>"
                                 class="link"> <?php echo e($property->name); ?> </a> </h6>
                         <p class="property-item__location d-flex gap-2"> <span class="icon"> <i
@@ -289,7 +326,11 @@
 <div class="video-popup ">
     <div class="container container-two">
         <div class="video-popup__thumb">
+<<<<<<< HEAD
             <img src="<?php echo e(asset('frontend/assets/images/thumbs/guagua-apt.png')); ?>" alt=""
+=======
+            <img src="<?php echo e(asset('frontend/assets/images/thumbs/apartment-guagua.png')); ?>" alt=""
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                 class="cover-img">
             <a href="https://www.youtube.com/watch?v=v2VhVDSc-9E"
                 class="popup-video-link video-popup__button">
@@ -369,7 +410,11 @@
                             </div>
                             <p class="testimonial-item__desc">Finding an apartment in Guagua was effortless with
                                 this portal. I highly recommend it to anyone searching for quality rentals in Guagua.
+<<<<<<< HEAD
                                 </p>
+=======
+                            </p>
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                             <ul class="star-rating flx-align justify-content-end">
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
                                 <li class="star-rating__item"><i class="fas fa-star"></i></li>
@@ -461,10 +506,20 @@
                             </ul>
                         </div>
                     </div>
+<<<<<<< HEAD
                 </div>         
                 <div class="col-lg-6">
                     <div class="testimonial-thumb">
                         <img src="<?php echo e(asset('frontend/assets/images/thumbs/testimonial-img.png')); ?>"
+=======
+                </div>
+                    
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="testimonial-thumb">
+                        <img src="<?php echo e(asset('frontend/assets/images/thumbs/guaguadump.png')); ?>"
+>>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
                             alt="" class="cover-img">
                     </div>
                 </div>
