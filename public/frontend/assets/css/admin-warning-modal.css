@@ -1,0 +1,439 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.warning-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.warning-modal {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.warning-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.warning-close-btn:hover {
+    color: #333;
+}
+
+.warning-modal-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Illustration Section */
+.warning-illustration {
+    flex: 0 0 300px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+/* Conversation Container */
+.warning-icon-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Avatar Groups */
+.warning-avatar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.warning-label {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.warning-triangle .warning-label {
+    color: #667eea;
+}
+
+.warning-exclamation .warning-label {
+    color: #f5576c;
+}
+
+/* Exchange Icon */
+.warning-exchange {
+    font-size: 24px;
+    animation: shake 1.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Landlord (Left) */
+.warning-triangle {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    animation: float-up 3s ease-in-out infinite;
+    position: relative;
+}
+
+.warning-triangle::before {
+    content: '👨';
+    font-size: 36px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+@keyframes float-up {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Tenant (Right) */
+.warning-exclamation {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+    animation: float-down 3s ease-in-out infinite;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+.warning-exclamation::before {
+    content: '👩';
+}
+
+@keyframes float-down {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(15px);
+    }
+}
+
+/* Chat Bubbles */
+.warning-leaf {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    padding: 8px 14px;
+    height: auto;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #333;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    animation: bubble-pop 3s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.warning-leaf::before {
+    content: '👋 Hello!';
+}
+
+.warning-leaf::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 15px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 8px solid white;
+}
+
+@keyframes bubble-pop {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    40% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+}
+
+/* Person Figure */
+.warning-person {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Content Section */
+.warning-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.warning-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.warning-message {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.warning-message p {
+    margin: 10px 0;
+}
+
+.warning-message strong {
+    color: #d32f2f;
+    font-weight: 600;
+}
+
+.warning-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.warning-cancel-btn,
+.warning-agree-btn {
+    padding: 14px 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex: 1;
+}
+
+.warning-cancel-btn {
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.warning-cancel-btn:hover {
+    background: #eeeeee;
+    border-color: #999;
+}
+
+.warning-agree-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.warning-agree-btn:hover {
+    background: #45a049;
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.3);
+    transform: translateY(-2px);
+}
+
+.warning-agree-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .warning-modal-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .warning-illustration {
+        flex: 0 0 250px;
+        height: 250px;
+    }
+
+    .warning-title {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .warning-message {
+        font-size: 15px;
+    }
+
+    .warning-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .warning-cancel-btn,
+    .warning-agree-btn {
+        width: 100%;
+    }
+
+    .warning-close-btn {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .warning-modal {
+        margin: 20px;
+    }
+
+    .warning-modal-container {
+        padding: 20px;
+    }
+
+    .warning-title {
+        font-size: 22px;
+    }
+
+    .warning-message {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .warning-illustration {
+        flex: 0 0 180px;
+        height: 180px;
+    }
+
+    .warning-triangle {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 85px solid #ff5252;
+    }
+
+    .warning-exclamation {
+        top: -60px;
+        font-size: 50px;
+    }
+}

@@ -20,6 +20,10 @@
 
     <body class="authentication-bg bg-gradient">
 
+            @include('components.admin-warning-notice')
+            @include('components.landlord-terms-modal')
+            @include('components.commission-policy-modal')
+
             <div class="account-pages mt-2 pt-2 mb-5">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -36,7 +40,7 @@
 
                                     </div>
     
-                                    <form action="{{route('admin.register')}}" method="POST" enctype="multipart/form-data">
+                                    <form id="registrationForm" action="{{route('admin.register')}}" method="POST" enctype="multipart/form-data">
 
                                         @csrf
                                         <div class="form-group mb-3">
@@ -126,7 +130,7 @@
                                         
     
                                         <div class="form-group mb-0 text-center">
-                                            <button class="btn btn-gradient btn-block" type="submit"> Log In </button>
+                                            <button class="btn btn-gradient btn-block" type="button" id="registerBtn" onclick="handleRegistration(event)"> Log In </button>
                                         </div>
     
                                     </form>
@@ -154,10 +158,16 @@
 
 
         <!-- Vendor js -->
-        <script src="assets/js/vendor.min.js"></script>
+        <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
+        <!-- Admin warning js -->
+        <script src="{{ asset('assets/js/admin-warning-modal.js') }}"></script>
+        <!-- Landlord terms js -->
+        <script src="{{ asset('assets/js/landlord-terms-modal.js') }}"></script>
+        <!-- Commission policy js -->
+        <script src="{{ asset('assets/js/commission-policy-modal.js') }}"></script>
         <!-- App js -->
-        <script src="assets/js/app.min.js"></script>
+        <script src="{{ asset('assets/js/app.min.js') }}"></script>
         
     </body>
 </html>

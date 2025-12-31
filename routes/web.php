@@ -10,7 +10,9 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\Admin\EarningsController;
+use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\LeaseAgreementController;
 
 require_once __DIR__.'/jetstream.php';
 
@@ -107,4 +109,43 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     
     Route::get('withdraw-approve/{id}', [EarningsController::class, 'withdrawApprove'])->name('withdraw-approve')->middleware(['auth:admin']);
     Route::get('withdraw-reject/{id}', [EarningsController::class, 'withdrawReject'])->name('withdraw-reject')->middleware(['auth:admin']);
+
+    // Commission Routes
+    Route::get('commission/dashboard', [CommissionController::class, 'dashboard'])->name('commission.dashboard')->middleware(['auth:admin']);
+    Route::get('commission/history', [CommissionController::class, 'history'])->name('commission.history')->middleware(['auth:admin']);
+    Route::get('commission/monthly-report', [CommissionController::class, 'monthlyReport'])->name('commission.monthlyReport')->middleware(['auth:admin']);
+    Route::get('commission/yearly-report', [CommissionController::class, 'yearlyReport'])->name('commission.yearlyReport')->middleware(['auth:admin']);
+    Route::get('commission/download-pdf', [CommissionController::class, 'downloadPDF'])->name('commission.downloadPDF')->middleware(['auth:admin']);
+    // Payment Reminder Routes - Admin
+    Route::get('reminders/dashboard', [\App\Http\Controllers\ReminderController::class, 'adminDashboard'])->name('reminders.dashboard')->middleware(['auth:admin']);
+    Route::get('reminders', [\App\Http\Controllers\ReminderController::class, 'adminIndex'])->name('reminders.index')->middleware(['auth:admin']);
+    Route::post('reminders/{reminder}/resend', [\App\Http\Controllers\ReminderController::class, 'resendNotifications'])->name('reminders.resend')->middleware(['auth:admin']);
+    Route::delete('reminders/{reminder}', [\App\Http\Controllers\ReminderController::class, 'destroy'])->name('reminders.destroy')->middleware(['auth:admin']);
+
+    // Lease Agreement Routes - Admin
+    Route::get('lease-agreements/dashboard', [LeaseAgreementController::class, 'adminDashboard'])->name('lease-agreements.dashboard')->middleware(['auth:admin']);
+    Route::get('lease-agreements', [LeaseAgreementController::class, 'adminList'])->name('lease-agreements.list')->middleware(['auth:admin']);
+    Route::get('/lease-agreements/{id}', [LeaseAgreementController::class, 'show'])->name('lease-agreements.show');
+    Route::get('lease-agreements/{agreement}/view', [LeaseAgreementController::class, 'adminShow'])->name('lease-agreements.show')->middleware(['auth:admin']);
+    Route::post('lease-agreements/{agreement}/sign', [LeaseAgreementController::class, 'signByLandlord'])->name('lease-agreements.sign-landlord')->middleware(['auth:admin']);
+    Route::post('lease-agreements/{agreement}/send', [LeaseAgreementController::class, 'sendToTenant'])->name('lease-agreements.send')->middleware(['auth:admin']);
+    Route::post('lease-agreements/{agreement}/cancel', [LeaseAgreementController::class, 'cancel'])->name('lease-agreements.cancel')->middleware(['auth:admin']);
+    Route::delete('lease-agreements/{agreement}', [LeaseAgreementController::class, 'destroy'])->name('lease-agreements.destroy')->middleware(['auth:admin']);
+});
+
+// Tenant/User Payment Reminder Routes
+    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('reminders', [\App\Http\Controllers\ReminderController::class, 'index'])->name('tenant.reminders.index');
+    Route::get('reminders/pending', [\App\Http\Controllers\ReminderController::class, 'pending'])->name('tenant.reminders.pending');
+    Route::get('reminders/overdue', [\App\Http\Controllers\ReminderController::class, 'overdue'])->name('tenant.reminders.overdue');
+    Route::get('reminders/{reminder}', [\App\Http\Controllers\ReminderController::class, 'show'])->name('tenant.reminders.show');
+    Route::post('reminders/{reminder}/acknowledge', [\App\Http\Controllers\ReminderController::class, 'acknowledge'])->name('tenant.reminders.acknowledge');
+    Route::get('api/reminders/statistics', [\App\Http\Controllers\ReminderController::class, 'statistics'])->name('tenant.reminders.statistics');
+
+    // Lease Agreement Routes - Tenant
+    Route::get('lease-agreements', [LeaseAgreementController::class, 'tenantList'])->name('tenant.lease-agreements.list');
+    Route::get('lease-agreements/{agreement}', [LeaseAgreementController::class, 'show'])->name('lease-agreements.show');
+    Route::post('lease-agreements/{agreement}/sign', [LeaseAgreementController::class, 'signByTenant'])->name('lease-agreements.sign-tenant');
+    Route::get('lease-agreements/{agreement}/download', [LeaseAgreementController::class, 'download'])->name('lease-agreements.download');
+    Route::post('lease-agreements/{agreement}/acknowledge', [LeaseAgreementController::class, 'acknowledge'])->name('lease-agreements.acknowledge');
 });

@@ -1,0 +1,586 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.commission-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+    animation: fadeInOverlay 0.4s ease-out;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.commission-modal-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 950px;
+    height: auto;
+}
+
+/* Gradient Background */
+.commission-modal-bg {
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    background: linear-gradient(135deg, #a668d8 0%, #d975b3 50%, #f292b3 100%);
+    border-radius: 20px;
+    z-index: -1;
+    animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.1);
+    }
+}
+
+.commission-modal {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.commission-modal-container {
+    display: flex;
+    gap: 0;
+    min-height: 500px;
+}
+
+/* ===== ILLUSTRATION SECTION ===== */
+.commission-illustration {
+    flex: 0 0 45%;
+    background: linear-gradient(135deg, #9b6fb8 0%, #c77fa3 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Person Figure */
+.person-figure {
+    position: relative;
+    width: 120px;
+    height: 180px;
+}
+
+/* Head */
+.person-head {
+    position: absolute;
+    width: 45px;
+    height: 50px;
+    background: #f4a460;
+    border-radius: 50% 50% 45% 45%;
+    top: 0;
+    left: 37.5px;
+    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.person-head::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 40px;
+    background: #2c3e50;
+    border-radius: 50% 50% 40% 40%;
+    top: 8px;
+    left: 5px;
+}
+
+.person-head::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 20px;
+    left: 18px;
+}
+
+/* Body */
+.person-body {
+    position: absolute;
+    width: 50px;
+    height: 65px;
+    background: #2c3e50;
+    border-radius: 5px;
+    top: 52px;
+    left: 35px;
+}
+
+/* Left Arm */
+.person-arm-left {
+    position: absolute;
+    width: 40px;
+    height: 12px;
+    background: #2c3e50;
+    border-radius: 6px;
+    top: 65px;
+    left: 10px;
+    transform-origin: right center;
+    animation: armSwingLeft 2.5s ease-in-out infinite;
+}
+
+@keyframes armSwingLeft {
+    0%, 100% {
+        transform: rotate(-15deg);
+    }
+    50% {
+        transform: rotate(-45deg);
+    }
+}
+
+/* Right Arm */
+.person-arm-right {
+    position: absolute;
+    width: 40px;
+    height: 12px;
+    background: #2c3e50;
+    border-radius: 6px;
+    top: 65px;
+    right: 10px;
+    transform-origin: left center;
+    animation: armSwingRight 2.5s ease-in-out infinite;
+}
+
+@keyframes armSwingRight {
+    0%, 100% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+}
+
+/* Hand with Document */
+.person-hand-left {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #f4a460;
+    border-radius: 50%;
+    top: 68px;
+    left: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.person-document {
+    position: absolute;
+    width: 35px;
+    height: 45px;
+    background: white;
+    border-radius: 3px;
+    top: 75px;
+    right: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    animation: documentBounce 2.5s ease-in-out infinite;
+}
+
+.person-document::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #ddd;
+    top: 8px;
+    left: 5px;
+    border-radius: 2px;
+}
+
+.person-document::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #ddd;
+    top: 15px;
+    left: 5px;
+    border-radius: 2px;
+}
+
+@keyframes documentBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-5px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+/* Green Money Coin with $ */
+.money-coin-green {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    border-radius: 50%;
+    top: 40px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35), inset -2px -2px 5px rgba(0, 0, 0, 0.1);
+    animation: floatGreen 3s ease-in-out infinite;
+}
+
+@keyframes floatGreen {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+.coin-symbol {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+/* Orange Coin with Chart */
+.money-coin-orange {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+    border-radius: 50%;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(255, 167, 38, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.1);
+    animation: floatOrange 3s ease-in-out infinite 0.3s;
+}
+
+@keyframes floatOrange {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-25px) scale(1.08) rotate(5deg);
+    }
+}
+
+/* Chart Bars */
+.coin-chart {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.chart-bar {
+    width: 12px;
+    background: white;
+    border-radius: 3px;
+    animation: chartGrow 2s ease-in-out infinite;
+}
+
+.chart-bar:nth-child(1) {
+    height: 15px;
+    animation-delay: 0s;
+}
+
+.chart-bar:nth-child(2) {
+    height: 25px;
+    animation-delay: 0.2s;
+}
+
+.chart-bar:nth-child(3) {
+    height: 20px;
+    animation-delay: 0.4s;
+}
+
+@keyframes chartGrow {
+    0%, 100% {
+        height: 15px;
+        opacity: 0.7;
+    }
+    50% {
+        height: 25px;
+        opacity: 1;
+    }
+}
+
+/* ===== CONTENT SECTION ===== */
+.commission-content {
+    flex: 1;
+    padding: 45px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.commission-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.commission-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.commission-content::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 3px;
+}
+
+.commission-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.commission-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.commission-intro {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.commission-section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.section-text {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.section-text strong {
+    color: #2196f3;
+    font-weight: 600;
+}
+
+.commission-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.commission-list li {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.commission-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.commission-checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 6px;
+}
+
+.commission-checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #4caf50;
+}
+
+.commission-checkbox-container label {
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+}
+
+.commission-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.commission-cancel-btn,
+.commission-proceed-btn {
+    padding: 12px 32px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.commission-cancel-btn {
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    flex: 1;
+}
+
+.commission-cancel-btn:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+.commission-proceed-btn {
+    background: #4caf50;
+    color: white;
+    flex: 1;
+}
+
+.commission-proceed-btn:hover:not(:disabled) {
+    background: #45a049;
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.35);
+    transform: translateY(-2px);
+}
+
+.commission-proceed-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.commission-proceed-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .commission-modal-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .commission-illustration {
+        flex: 0 0 250px;
+        height: 250px;
+    }
+
+    .commission-content {
+        padding: 30px 25px;
+        max-height: none;
+    }
+
+    .commission-title {
+        font-size: 26px;
+    }
+
+    .commission-buttons {
+        flex-direction: column;
+    }
+
+    .commission-cancel-btn,
+    .commission-proceed-btn {
+        width: 100%;
+    }
+
+    .person-figure {
+        transform: scale(0.85);
+    }
+}
+
+@media (max-width: 480px) {
+    .commission-modal-bg {
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+    }
+
+    .commission-content {
+        padding: 25px 20px;
+    }
+
+    .commission-title {
+        font-size: 22px;
+    }
+
+    .commission-intro,
+    .section-text,
+    .commission-list li {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .commission-illustration {
+        flex: 0 0 200px;
+        height: 200px;
+    }
+
+    .person-figure {
+        transform: scale(0.7);
+    }
+}
+
+.commission-illustration {
+    background-image: url("<?php echo e(asset('frontend/assets/images/commission-illustration.gif')); ?>");
+    background-size: cover;
+    background-position: center;
+}

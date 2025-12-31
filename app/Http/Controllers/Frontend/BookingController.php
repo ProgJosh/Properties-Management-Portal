@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\LeaseAgreement;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Booking;
 use App\Models\Payment;
@@ -156,6 +157,8 @@ class BookingController extends Controller
 
         $booking = Booking::create($bookingData);
         
+        // Create lease agreement automatically
+        $leaseAgreement = LeaseAgreement::createFromBooking($booking);
         
         $payment = new Payment();
         $payment->booking_id = $booking->id;
@@ -170,6 +173,6 @@ class BookingController extends Controller
         Session::forget('session');
 
         Toastr::success('Renting Successful');
-        return redirect()->route('dashboard');
+        return redirect()->route('lease-agreements.show', $leaseAgreement->id);
     }
 }

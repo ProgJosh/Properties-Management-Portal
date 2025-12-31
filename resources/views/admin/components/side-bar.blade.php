@@ -54,9 +54,7 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('admin.earnings')}}"> Earning</a></li>
-                        
-                    
-                         
+                        <li><a href="/admin/commission/dashboard"> Commission Dashboard</a></li>
                     </ul>
                 </li>
 
