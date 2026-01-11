@@ -24,8 +24,8 @@
                         <img src="{{asset('frontend/assets/images/thumbs/banner-img.png')}}" alt="">
                         <img src="{{asset('frontend/assets/images/shapes/shape-triangle.png')}}" alt=""
                             class="shape-element one">
-                        <img src="{{asset('frontend/assets/images/shapes/shape-circle.png')}}" alt=""
-                            class="shape-element two">
+                        {{-- <img src="{{asset('frontend/assets/images/shapes/shape-circle.png')}}" alt=""
+                            class="shape-element two"> --}}
                         <img src="{{asset('frontend/assets/images/shapes/shape-moon.png')}}" alt=""
                             class="shape-element three">
                     </div>
