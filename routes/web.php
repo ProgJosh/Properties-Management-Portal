@@ -126,7 +126,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('lease-agreements/dashboard', [LeaseAgreementController::class, 'adminDashboard'])->name('lease-agreements.dashboard')->middleware(['auth:admin']);
     Route::get('lease-agreements', [LeaseAgreementController::class, 'adminList'])->name('lease-agreements.list')->middleware(['auth:admin']);
     Route::get('/lease-agreements/{id}', [LeaseAgreementController::class, 'show'])->name('lease-agreements.show');
-    Route::get('lease-agreements/{agreement}/view', [LeaseAgreementController::class, 'adminShow'])->name('lease-agreements.show')->middleware(['auth:admin']);
+    Route::get('lease-agreements/{agreement}/view', [LeaseAgreementController::class, 'adminShow'])->name('lease-agreements.admin-view')->middleware(['auth:admin']);
     Route::post('lease-agreements/{agreement}/sign', [LeaseAgreementController::class, 'signByLandlord'])->name('lease-agreements.sign-landlord')->middleware(['auth:admin']);
     Route::post('lease-agreements/{agreement}/send', [LeaseAgreementController::class, 'sendToTenant'])->name('lease-agreements.send')->middleware(['auth:admin']);
     Route::post('lease-agreements/{agreement}/cancel', [LeaseAgreementController::class, 'cancel'])->name('lease-agreements.cancel')->middleware(['auth:admin']);
