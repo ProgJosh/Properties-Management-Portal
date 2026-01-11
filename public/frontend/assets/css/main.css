@@ -4723,6 +4723,7 @@ button.slick-next {
     top: 134px;
     left: 150px;
     animation: rotationScale 8s linear infinite;
+    display: none;
 }
 
 .shape-element.three {
