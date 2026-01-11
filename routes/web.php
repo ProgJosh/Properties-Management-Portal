@@ -100,7 +100,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //Booking Routes
 
     Route::get('/booked', [BookedController::class, 'booked'])->name('booked')->middleware(['auth:admin']);
-    route::get('booked/{id}', [BookedController::class, 'show'])->name('booked.show')->middleware(['auth:admin']);
+    Route::get('booked/{id}', [BookedController::class, 'show'])->name('booked.show')->middleware(['auth:admin']);
 
     Route::get('earnings', [EarningsController::class, 'index'])->name('earnings')->middleware(['auth:admin']);
     Route::post('withdraw', [EarningsController::class, 'withdraw'])->name('withdraw')->middleware(['auth:admin']);
