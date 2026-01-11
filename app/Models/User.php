@@ -75,4 +75,117 @@ class User extends Authenticatable
     public function userDetails(){
         return $this->hasOne(UserDetail::class);
     }
+
+    /**
+     * Check if user has submitted ID for verification
+     */
+    public function hasSubmittedId(): bool
+    {
+        return $this->id_submitted_at !== null;
+    }
+
+    /**
+     * Check if user's ID is verified and approved
+     */
+    public function isIdVerified(): bool
+    {
+        return $this->id_verified === true;
+    }
+
+    /**
+     * Check if user's ID verification is pending
+     */
+    public function isIdPending(): bool
+    {
+        $userDetails = $this->userDetails;
+        return $userDetails && $userDetails->id_verification_status === 'pending';
+    }
+
+    /**
+     * Check if user's ID was rejected
+     */
+    public function isIdRejected(): bool
+    {
+        $userDetails = $this->userDetails;
+        return $userDetails && $userDetails->id_verification_status === 'rejected';
+    }
+
+    /**
+     * Get reason why ID was rejected
+     */
+    public function getIdRejectionReason(): ?string
+    {
+        $userDetails = $this->userDetails;
+        return $userDetails ? $userDetails->verification_notes : null;
+    }
+
+    /**
+     * Check if ID is expired
+     */
+    public function isIdExpired(): bool
+    {
+        $userDetails = $this->userDetails;
+        if (!$userDetails || !$userDetails->id_expiry_date) {
+            return true;
+        }
+        return $userDetails->id_expiry_date < now()->toDateString();
+    }
+
+    /**
+     * Get days until ID expires
+     */
+    public function getDaysUntilIdExpiry(): ?int
+    {
+        $userDetails = $this->userDetails;
+        if (!$userDetails || !$userDetails->id_expiry_date) {
+            return null;
+        }
+        return now()->diffInDays($userDetails->id_expiry_date);
+    }
+
+    /**
+     * Check if user can perform actions that require ID verification
+     * (e.g., sign lease agreement as tenant, publish as landlord)
+     */
+    public function canPerformIdRequiredActions(): bool
+    {
+        return $this->isIdVerified() && !$this->isIdExpired();
+    }
+
+    /**
+     * Get ID verification status badge
+     */
+    public function getIdStatusBadge(): string
+    {
+        if ($this->isIdVerified()) {
+            return '<span class="badge badge-success">✓ ID Verified</span>';
+        }
+        if ($this->isIdPending()) {
+            return '<span class="badge badge-warning">⏳ Pending</span>';
+        }
+        if ($this->isIdRejected()) {
+            return '<span class="badge badge-danger">✗ Rejected</span>';
+        }
+        return '<span class="badge badge-secondary">Not Submitted</span>';
+    }
+
+    /**
+     * Get ID verification status for display
+     */
+    public function getIdVerificationStatus(): string
+    {
+        if (!$this->hasSubmittedId()) {
+            return 'not_submitted';
+        }
+        if ($this->isIdRejected()) {
+            return 'rejected';
+        }
+        if ($this->isIdPending()) {
+            return 'pending';
+        }
+        if ($this->isIdVerified()) {
+            return $this->isIdExpired() ? 'expired' : 'approved';
+        }
+        return 'unknown';
+    }
 }
