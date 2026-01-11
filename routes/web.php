@@ -47,10 +47,10 @@ Route::middleware([
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/register', [LoginController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [LoginController::class, 'register'])->name('register');
+    Route::post('/register', [LoginController::class, 'register'])->name('register.store');
     
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.store');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('profile', [LoginController::class, 'profile'])->name('profile')->middleware(['auth:admin']);
