@@ -4,7 +4,7 @@
             <div class="col-xl-4 col-lg-6">
                 <div class="footer-item">
                     <div class="footer-item__logo">
-                        <a href="index.html"> <img
+                        <a href="{{ route('home') }}"> <img
                                 src="{{ asset('frontend/assets/images/logo/system-logo.png') }}"
                                 alt=""></a>
                     </div>
@@ -42,15 +42,15 @@
                 <div class="footer-item">
                     <h6 class="footer-item__title">Services</h6>
                     <ul class="footer-menu">
-                        <li class="footer-menu__item"><a href="property.html"
+                        <li class="footer-menu__item"><a href="{{ route('properties') }}"
                                 class="footer-menu__link">Trusted Landlords and Properties </a></li>
-                        <li class="footer-menu__item"><a href="property.html"
+                        <li class="footer-menu__item"><a href="{{ route('dashboard') }}"
                                 class="footer-menu__link">Smart Dashboards with Secure & Reliable Access </a></li>
-                        <li class="footer-menu__item"><a href="property.html"
+                        <li class="footer-menu__item"><a href="{{ route('properties') }}"
                                 class="footer-menu__link">Experience good transaction with Tenant Easily</a></li>
-                        <li class="footer-menu__item"><a href="property.html"
+                        <li class="footer-menu__item"><a href="{{ route('properties') }}"
                                 class="footer-menu__link">Budget-friendlyy</a></li>
-                        <li class="footer-menu__item"><a href="property.html"
+                        <li class="footer-menu__item"><a href="{{ route('properties') }}"
                                 class="footer-menu__link">Good Class Apartments</a></li>
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
             <div class="footer-links">
                 <a href="#" class="footer-link">Terms & Condition</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="contact.html" class="footer-link">Contact Us</a>
+                <a href="{{ route('contact') }}" class="footer-link">Contact Us</a>
             </div>
         </div>
     </div>

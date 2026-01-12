@@ -16,7 +16,7 @@ use App\Http\Controllers\LeaseAgreementController;
 
 require_once __DIR__.'/jetstream.php';
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/properties', [HomeController::class, 'properties'])->name('properties');
 Route::get('/property/{id}', [HomeController::class, 'property'])->name('property');
