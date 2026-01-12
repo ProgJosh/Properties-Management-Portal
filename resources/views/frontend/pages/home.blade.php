@@ -123,7 +123,7 @@
         <div class="row gy-4 align-items-center">
             <div class="col-lg-6">
                 <div class="about-thumb">
-                    <img src="assets/images/thumbs/about-img.png" alt="">
+                    <img src="{{ asset('frontend/assets/images/thumbs/about-img.png') }}" alt="">
                     <div class="client-statistics flx-align">
                         <span class="client-statistics__icon">
                             <i class="fas fa-users text-gradient"></i>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="about-box d-flex">
                         <div class="about-box__icon">
-                            <img src="assets/images/icons/about-icon.svg" alt="">
+                            <img src="{{ asset('frontend/assets/images/icons/about-icon.svg') }}" alt="">
                         </div>
                         <div class="about-box__content">
                             <h6 class="about-box__title">Your Dream Home Awaits</h6>
