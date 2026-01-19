@@ -54,46 +54,46 @@
                                             @endphp
 
                                             
-                                                <select class="select common-input" name="location">
-                                                    <option value="" disabled {{ !request('location') ? 'selected' : '' }}>Location</option>
+                                                <select class="select common-input" name="barangay">
+                                                    <option value="" disabled {{ !request('barangay') ? 'selected' : '' }}>Barangay</option>
                                                     <optgroup label="POBLACION AREA">
-                                                    <option value="Bancal" {{ request('location') == 'Bancal' ? 'selected' : ''}}>Bancal</option>
-                                                    <option value="Plaza Burgos" {{ request('location') == 'Plaza Burgos' ? 'selected' : ''}}>Plaza Burgos</option>
-                                                    <option value="San Nicolas 1st" {{ request('location') == 'San Nicolas 1st' ? 'selected' : ''}}>San Nicolas 1st</option>
-                                                    <option value="San Pedro" {{ request('location') == 'San Pedro' ? 'selected' : ''}}>San Pedro</option>
-                                                    <option value="San Rafael" {{ request('location') == 'San Rafael' ? 'selected' : ''}}>San Rafael</option>
-                                                    <option value="San Roque" {{ request('location') == 'San Roque' ? 'selected' : ''}}>San Roque</option>
-                                                    <option value="Santa Filomena" {{ request('location') == 'Santa Filomena' ? 'selected' : ''}}>Santa Filomena</option>
-                                                    <option value="Santo Cristo" {{ request('location') == 'Santo Cristo' ? 'selected' : ''}}>Santo Cristo</option>
-                                                    <option value="Santo Niño" {{ request('location') == 'Santo Niño' ? 'selected' : ''}}>Santo Niño</option>
+                                                    <option value="Bancal" {{ request('barangay') == 'Bancal' ? 'selected' : ''}}>Bancal</option>
+                                                    <option value="Plaza Burgos" {{ request('barangay') == 'Plaza Burgos' ? 'selected' : ''}}>Plaza Burgos</option>
+                                                    <option value="San Nicolas 1st" {{ request('barangay') == 'San Nicolas 1st' ? 'selected' : ''}}>San Nicolas 1st</option>
+                                                    <option value="San Pedro" {{ request('barangay') == 'San Pedro' ? 'selected' : ''}}>San Pedro</option>
+                                                    <option value="San Rafael" {{ request('barangay') == 'San Rafael' ? 'selected' : ''}}>San Rafael</option>
+                                                    <option value="San Roque" {{ request('barangay') == 'San Roque' ? 'selected' : ''}}>San Roque</option>
+                                                    <option value="Santa Filomena" {{ request('barangay') == 'Santa Filomena' ? 'selected' : ''}}>Santa Filomena</option>
+                                                    <option value="Santo Cristo" {{ request('barangay') == 'Santo Cristo' ? 'selected' : ''}}>Santo Cristo</option>
+                                                    <option value="Santo Niño" {{ request('barangay') == 'Santo Niño' ? 'selected' : ''}}>Santo Niño</option>
                                                 </optgroup>
                                                 <optgroup label="PANGULO AREA">
-                                                    <option value="San Vicente (Ebus)" {{ request('location') == 'San Vicente (Ebus)' ? 'selected' : ''}}>San Vicente (Ebus)</option>
-                                                    <option value="Lambac" {{ request('location') == 'Lambac' ? 'selected' : ''}}>Lambac</option>
-                                                    <option value="Magsaysay" {{ request('location') == 'Magsaysay' ? 'selected' : ''}}>Magsaysay</option>
-                                                    <option value="Maquiapo" {{ request('location') == 'Maquiapo' ? 'selected' : ''}}>Maquiapo</option>
-                                                    <option value="Natividad" {{ request('location') == 'Natividad' ? 'selected' : ''}}>Natividad</option>
-                                                    <option value="Pulungmasle" {{ request('location') == 'Pulungmasle' ? 'selected' : ''}}>Pulungmasle</option>
-                                                    <option value="Rizal" {{ request('location') == 'Rizal' ? 'selected' : ''}}>Rizal</option>
-                                                    <option value="Ascomo" {{ request('location') == 'Ascomo' ? 'selected' : ''}}>Ascomo</option>
-                                                    <option value="Jose Abad Santos (Siran)" {{ request('location') == 'Jose Abad Santos (Siran)' ? 'selected' : ''}}>Jose Abad Santos (Siran)</option>
+                                                    <option value="San Vicente (Ebus)" {{ request('barangay') == 'San Vicente (Ebus)' ? 'selected' : ''}}>San Vicente (Ebus)</option>
+                                                    <option value="Lambac" {{ request('barangay') == 'Lambac' ? 'selected' : ''}}>Lambac</option>
+                                                    <option value="Magsaysay" {{ request('barangay') == 'Magsaysay' ? 'selected' : ''}}>Magsaysay</option>
+                                                    <option value="Maquiapo" {{ request('barangay') == 'Maquiapo' ? 'selected' : ''}}>Maquiapo</option>
+                                                    <option value="Natividad" {{ request('barangay') == 'Natividad' ? 'selected' : ''}}>Natividad</option>
+                                                    <option value="Pulungmasle" {{ request('barangay') == 'Pulungmasle' ? 'selected' : ''}}>Pulungmasle</option>
+                                                    <option value="Rizal" {{ request('barangay') == 'Rizal' ? 'selected' : ''}}>Rizal</option>
+                                                    <option value="Ascomo" {{ request('barangay') == 'Ascomo' ? 'selected' : ''}}>Ascomo</option>
+                                                    <option value="Jose Abad Santos (Siran)" {{ request('barangay') == 'Jose Abad Santos (Siran)' ? 'selected' : ''}}>Jose Abad Santos (Siran)</option>
                                                 </optgroup>
                                                 <optgroup label="LOCION AREA">
-                                                    <option value="San Pablo" {{ request('location') == 'San Pablo' ? 'selected' : ''}}>San Pablo</option>
-                                                    <option value="San Juan 1st" {{ request('location') == 'San Juan 1st' ? 'selected' : ''}}>San Juan 1st</option>
-                                                    <option value="San Jose" {{ request('location') == 'San Jose' ? 'selected' : ''}}>San Jose</option>
-                                                    <option value="San Matias" {{ request('location') == 'San Matias' ? 'selected' : ''}}>San Matias</option>
-                                                    <option value="San Isidro" {{ request('location') == 'San Isidro' ? 'selected' : ''}}>San Isidro</option>
-                                                    <option value="San Antonio" {{ request('location') == 'San Antonio' ? 'selected' : ''}}>San Antonio</option>
+                                                    <option value="San Pablo" {{ request('barangay') == 'San Pablo' ? 'selected' : ''}}>San Pablo</option>
+                                                    <option value="San Juan 1st" {{ request('barangay') == 'San Juan 1st' ? 'selected' : ''}}>San Juan 1st</option>
+                                                    <option value="San Jose" {{ request('barangay') == 'San Jose' ? 'selected' : ''}}>San Jose</option>
+                                                    <option value="San Matias" {{ request('barangay') == 'San Matias' ? 'selected' : ''}}>San Matias</option>
+                                                    <option value="San Isidro" {{ request('barangay') == 'San Isidro' ? 'selected' : ''}}>San Isidro</option>
+                                                    <option value="San Antonio" {{ request('barangay') == 'San Antonio' ? 'selected' : ''}}>San Antonio</option>
                                                 </optgroup>
                                                 <optgroup label="BETIS AREA">
-                                                    <option value="San Agustin" {{ request('location') == 'San Agustin' ? 'selected' : ''}}>San Agustin</option>
-                                                    <option value="San Juan Bautista" {{ request('location') == 'San Juan Bautista' ? 'selected' : ''}}>San Juan Bautista</option>
-                                                    <option value="San Juan Nepomuceno" {{ request('location') == 'San Juan Nepomuceno' ? 'selected' : ''}}>San Juan Nepomuceno</option>
-                                                    <option value="San Miguel" {{ request('location') == 'San Miguel' ? 'selected' : ''}}>San Miguel</option>
-                                                    <option value="San Nicolas 2nd" {{ request('location') == 'San Nicolas 2nd' ? 'selected' : ''}}>San Nicolas 2nd</option>
-                                                    <option value="Santa Ines" {{ request('location') == 'Santa Ines' ? 'selected' : ''}}>Santa Ines</option>
-                                                    <option value="Santa Ursula" {{ request('location') == 'Santa Ursula' ? 'selected' : ''}}>Santa Ursula</option>
+                                                    <option value="San Agustin" {{ request('barangay') == 'San Agustin' ? 'selected' : ''}}>San Agustin</option>
+                                                    <option value="San Juan Bautista" {{ request('barangay') == 'San Juan Bautista' ? 'selected' : ''}}>San Juan Bautista</option>
+                                                    <option value="San Juan Nepomuceno" {{ request('barangay') == 'San Juan Nepomuceno' ? 'selected' : ''}}>San Juan Nepomuceno</option>
+                                                    <option value="San Miguel" {{ request('barangay') == 'San Miguel' ? 'selected' : ''}}>San Miguel</option>
+                                                    <option value="San Nicolas 2nd" {{ request('barangay') == 'San Nicolas 2nd' ? 'selected' : ''}}>San Nicolas 2nd</option>
+                                                    <option value="Santa Ines" {{ request('barangay') == 'Santa Ines' ? 'selected' : ''}}>Santa Ines</option>
+                                                    <option value="Santa Ursula" {{ request('barangay') == 'Santa Ursula' ? 'selected' : ''}}>Santa Ursula</option>
                                                 </optgroup>
                                                          
                                                 </select>

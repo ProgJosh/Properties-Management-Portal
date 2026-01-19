@@ -14,8 +14,15 @@
             <h4 class="header-title mb-3">Title : {{ $property->name }}</h4>
 
             <p class="mb-1">Address : {{ $property->address }}</p>
-
-            <p>Location : {{ $property->location }}</p>
+            @if($property->street)
+                <p class="mb-1">Street : {{ $property->street }}</p>
+            @endif
+            @if($property->purok)
+                <p class="mb-1">Purok/Subdivision : {{ $property->purok }}</p>
+            @endif
+            @if($property->barangay)
+                <p class="mb-1">Barangay : {{ $property->barangay }}</p>
+            @endif
         </div>
 
         <div class="col-md-6">

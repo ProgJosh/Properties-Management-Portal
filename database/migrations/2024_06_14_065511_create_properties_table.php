@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('address');
+            $table->string('street')->nullable();
+            $table->string('purok')->nullable();
+            $table->string('barangay')->nullable();
             $table->string('price');
             $table->tinyInteger('status')->default(1)->comment('0 = Inactive, 1 = Active');
-            $table->string('location');
             $table->string('bedroom');
             $table->string('bathroom');
             $table->tinyInteger('garage')->default(0)->comment('0 = no, 1 = yes');

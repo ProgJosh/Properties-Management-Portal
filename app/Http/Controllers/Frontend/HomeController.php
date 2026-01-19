@@ -26,7 +26,7 @@ class HomeController extends Controller
      
         // Validate the request parameters
         request()->validate([
-            'location' => 'nullable|string|max:255',
+            'barangay' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255',
             'accommodation' => 'nullable|integer|min:0',
         ]);
@@ -39,29 +39,32 @@ class HomeController extends Controller
         // Apply filters if they already booked for checkin date
      
     
-        // Apply location filter if it exists
-        if (request()->has('location') && request('location') !== 'all') {
-            $location = trim(request('location'));
-            // Log the location being searched for debugging
-            \Illuminate\Support\Facades\Log::info('Searching location: ' . $location);
+        // Apply barangay filter if it exists
+        if (request()->has('barangay') && request('barangay') !== 'all') {
+            $barangay = trim(request('barangay'));
+            // Log the barangay being searched for debugging
+            \Illuminate\Support\Facades\Log::info('Searching barangay: ' . $barangay);
             
-            // Get all properties first to check their locations
-            $allLocations = Property::pluck('location')->unique();
-            \Illuminate\Support\Facades\Log::info('Available locations: ' . implode(', ', $allLocations->toArray()));
+            // Get all properties first to check their barangays
+            $allBarangays = Property::pluck('barangay')->unique();
+            \Illuminate\Support\Facades\Log::info('Available barangays: ' . implode(', ', $allBarangays->toArray()));
             
             // Case-insensitive exact match for mixed case values
-            $query->whereRaw('LOWER(location) = LOWER(?)', [$location]);
+            $query->whereRaw('LOWER(barangay) = LOWER(?)', [$barangay]);
             
             // Log both the search term and how it looks in lowercase for debugging
-            \Illuminate\Support\Facades\Log::info('Original location search term: ' . $location);
-            \Illuminate\Support\Facades\Log::info('Lowercase comparison: ' . strtolower($location));
+            \Illuminate\Support\Facades\Log::info('Original barangay search term: ' . $barangay);
+            \Illuminate\Support\Facades\Log::info('Lowercase comparison: ' . strtolower($barangay));
         }
 
         if(request()->has('keyword') && !empty(request('keyword'))){
             $keyword = request('keyword');
             $query->where(function($q) use ($keyword) {
                 $q->where('name', 'like', '%' . $keyword . '%')
-                  ->orWhere('location', 'like', '%' . $keyword . '%');
+                  ->orWhere('address', 'like', '%' . $keyword . '%')
+                  ->orWhere('barangay', 'like', '%' . $keyword . '%')
+                  ->orWhere('street', 'like', '%' . $keyword . '%')
+                  ->orWhere('purok', 'like', '%' . $keyword . '%');
             });
         }
 
