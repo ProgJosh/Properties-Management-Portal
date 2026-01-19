@@ -2,11 +2,14 @@
 
 
 ### Properties Management Portal
+
+> **🚀 Deploying to Railway?** See [RAILWAY_INDEX.md](RAILWAY_INDEX.md) for complete deployment guides and admin login fixes.
  
 ## Table of Contents
  - Introduction
  - Features
  - Installation
+ - Railway Deployment
  - Configuration
  - Contact
 
@@ -95,7 +98,27 @@ php artisan serve
 11. Visit http://localhost:8000 in your browser.
 12. Visit http://localhost:8000/admin/login in your browser to login as admin.
 
+## Railway Deployment 🚀
 
-=======
-# Properties-Management-Portal
->>>>>>> 4d626894314be39286e444578073dd7e4c5bad0a
+Deploy your Properties Management Portal to Railway with ease!
+
+### Quick Deployment Fix
+
+If your admin login is not working on Railway, see:
+- **[QUICK_FIX_RAILWAY_LOGIN.md](QUICK_FIX_RAILWAY_LOGIN.md)** - 5-minute quick fix
+
+### Comprehensive Deployment Guides
+
+- **[RAILWAY_CHECKLIST.md](RAILWAY_CHECKLIST.md)** - Step-by-step deployment checklist
+- **[RAILWAY_DEPLOYMENT_FIX.md](RAILWAY_DEPLOYMENT_FIX.md)** - Complete deployment guide
+- **[RAILWAY_ENV_SETUP.md](RAILWAY_ENV_SETUP.md)** - Environment variables configuration
+
+### Common Railway Issues
+
+**Admin login not working?**
+- Most likely cause: Missing `SESSION_SECURE_COOKIE=true` environment variable
+- See [QUICK_FIX_RAILWAY_LOGIN.md](QUICK_FIX_RAILWAY_LOGIN.md) for immediate solution
+
+**Session not persisting?**
+- Check your `APP_URL` environment variable matches your Railway domain
+- Ensure `SESSION_DOMAIN=null` in environment variables
