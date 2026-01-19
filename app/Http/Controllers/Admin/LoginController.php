@@ -59,13 +59,21 @@ class LoginController extends Controller
       
         $data = $request->only('email', 'password');
 
+        // Debug: Check if admin exists
+        $admin = Admin::where('email', $data['email'])->first();
+        if (!$admin) {
+            Toastr::error('Email not found');
+            return redirect()->back();
+        }
 
         if(Auth::guard('admin')->attempt($data)){
-            return redirect()->route('admin.dashboard');
+            $request->session()->regenerate();
+            Toastr::success('Login successful!');
+            return redirect()->intended(route('admin.dashboard'));
         }
 
     
-        Toastr::error('Invalid Credentials');
+        Toastr::error('Invalid password');
         return redirect()->back();
     }
 
