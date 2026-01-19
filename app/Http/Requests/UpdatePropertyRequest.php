@@ -29,7 +29,7 @@ class UpdatePropertyRequest extends FormRequest
             'street' => ['nullable', 'string', 'max:255'],
             'purok' => ['nullable', 'string', 'max:255'],
             'barangay' => ['nullable', 'string', 'max:255'],
-            'thumbnail' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'thumbnail' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:25600'],
             'price' => ['required', 'numeric', 'min:0'],
             'bedroom' => ['required', 'numeric', 'min:0'],
             'bathroom' => ['required', 'numeric', 'min:0'],
@@ -37,7 +37,7 @@ class UpdatePropertyRequest extends FormRequest
             'floor' => ['required', 'numeric', 'min:0'],
             'type' => ['required', 'string', 'max:255'],
             'facility' => ['nullable'],
-            'images' => ['nullable'],
+            'images.*' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:25600'],
             'accommodation' => ['required', 'numeric', 'min:0'],
             'pet_friendly' => ['nullable', 'numeric',],
         ];

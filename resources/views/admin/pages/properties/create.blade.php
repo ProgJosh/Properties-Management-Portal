@@ -237,10 +237,12 @@
         
                         <div class="form-group mb-3">
                             <label for="thumbnail">Thumbnail image</label>
-                            <input class="form-control" type="file" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}" required="" >
+                            <input class="form-control" type="file" id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}" required="" accept="image/jpeg,image/jpg,image/png,image/webp" onchange="previewThumbnail(event)">
+                            <small class="text-muted">Supported formats: JPG, PNG, WEBP. Max size: 25MB</small>
                             @error('thumbnail')
                                 <span class="text-danger">{{ $message }}</span>
-                            @enderror   
+                            @enderror
+                            <div id="thumbnail-preview" class="mt-2"></div>
                         </div>
         
                     </div>
@@ -253,10 +255,12 @@
                 
                 <div class="form-group mb-3">
                     <label for="images">Gallery images</label>
-                    <input class="form-control" type="file" id="images" name="images[]" value="{{ old('images') }}"  multiple>
+                    <input class="form-control" type="file" id="images" name="images[]" value="{{ old('images') }}" multiple accept="image/jpeg,image/jpg,image/png,image/webp" onchange="previewGallery(event)">
+                    <small class="text-muted">Supported formats: JPG, PNG, WEBP. Max size per image: 25MB</small>
                     @error('images')
                         <span class="text-danger">{{ $message }}</span>
-                    @enderror   
+                    @enderror
+                    <div id="gallery-preview" class="mt-2 d-flex flex-wrap gap-2"></div>
                 </div>  
 
                
@@ -284,5 +288,108 @@
 
 @push('js')
 <script src="{{asset('assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+
+<script>
+    // Preview thumbnail image
+    function previewThumbnail(event) {
+        const container = document.getElementById('thumbnail-preview');
+        container.innerHTML = '';
+        
+        const file = event.target.files[0];
+        if (file) {
+            // Check file size (25MB = 25 * 1024 * 1024 bytes)
+            if (file.size > 25 * 1024 * 1024) {
+                alert('File size exceeds 25MB limit. Please choose a smaller file.');
+                event.target.value = '';
+                return;
+            }
+            
+            // Check file type
+            const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                alert('Invalid file type. Please upload JPG, PNG, or WEBP files only.');
+                event.target.value = '';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '200px';
+                img.style.maxHeight = '200px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '5px';
+                img.style.border = '2px solid #ddd';
+                container.appendChild(img);
+                
+                // Show file size
+                const sizeInfo = document.createElement('p');
+                sizeInfo.className = 'text-muted mt-1 mb-0';
+                sizeInfo.textContent = `Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+                container.appendChild(sizeInfo);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    
+    // Preview gallery images
+    function previewGallery(event) {
+        const container = document.getElementById('gallery-preview');
+        container.innerHTML = '';
+        
+        const files = event.target.files;
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+        let hasError = false;
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            
+            // Check file size
+            if (file.size > 25 * 1024 * 1024) {
+                alert(`File "${file.name}" exceeds 25MB limit and will be skipped.`);
+                hasError = true;
+                continue;
+            }
+            
+            // Check file type
+            if (!validTypes.includes(file.type)) {
+                alert(`File "${file.name}" is not a valid image format and will be skipped.`);
+                hasError = true;
+                continue;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgWrapper = document.createElement('div');
+                imgWrapper.style.position = 'relative';
+                imgWrapper.style.display = 'inline-block';
+                
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '120px';
+                img.style.height = '120px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '5px';
+                img.style.border = '2px solid #ddd';
+                img.style.margin = '5px';
+                
+                const fileName = document.createElement('small');
+                fileName.className = 'd-block text-center text-muted';
+                fileName.textContent = file.name.length > 15 ? file.name.substring(0, 12) + '...' : file.name;
+                fileName.style.maxWidth = '120px';
+                
+                imgWrapper.appendChild(img);
+                imgWrapper.appendChild(fileName);
+                container.appendChild(imgWrapper);
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        if (hasError) {
+            event.target.value = '';
+        }
+    }
+</script>
     
 @endpush
