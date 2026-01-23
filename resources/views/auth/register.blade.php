@@ -3,6 +3,10 @@
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
+        
+        <div class="text-center w-75 m-auto mb-4">
+            <h5 class="text-uppercase text-center font-bold">Tenant's Register</h5>
+        </div>
 
         <x-validation-errors class="mb-4" />
 
@@ -11,22 +15,32 @@
 
             <div>
                 <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Enter your name" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Enter your email" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <div class="password-wrapper mt-1">
+                    <x-input id="password" class="block w-full pr-10" type="password" name="password" required autocomplete="new-password" placeholder="Enter your password" />
+                    <button type="button" class="password-toggle" id="togglePassword">
+                        <i class="fas fa-eye" id="toggleIcon"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <div class="password-wrapper mt-1">
+                    <x-input id="password_confirmation" class="block w-full pr-10" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password" />
+                    <button type="button" class="password-toggle" id="togglePasswordConfirm">
+                        <i class="fas fa-eye" id="toggleIconConfirm"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Government-Issued ID Upload (Required for Registration) -->
@@ -35,14 +49,18 @@
                 
                 <!-- ID Type Selection -->
                 <div class="mt-4">
-                    <x-label for="id_type" value="{{ __('Type of ID') }}" />
-                    <select id="id_type" name="id_type" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
-                        <option value="">-- {{ __('Select ID Type') }} --</option>
-                        <option value="passport" {{ old('id_type') === 'passport' ? 'selected' : '' }}>{{ __('Passport') }}</option>
-                        <option value="drivers_license" {{ old('id_type') === 'drivers_license' ? 'selected' : '' }}>{{ __("Driver's License") }}</option>
-                        <option value="national_id" {{ old('id_type') === 'national_id' ? 'selected' : '' }}>{{ __('National ID Card') }}</option>
-                        <option value="residence_permit" {{ old('id_type') === 'residence_permit' ? 'selected' : '' }}>{{ __('Residence Permit') }}</option>
-                    </select>
+                    <x-label for="id_type" value="{{ __('Type of ID') }}" class="font-semibold text-gray-700" />
+                    <div class="relative mt-2">
+                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                        </span>
+                        <select id="id_type" name="id_type" class="block mt-1 w-full pl-10 border-gray-300 focus:border-purple-500 focus:ring-purple-500 rounded-lg shadow-sm form-input" required>
+                            <option value="">-- {{ __('Select ID Type') }} --</option>
+                            <option value="passport" {{ old('id_type') === 'passport' ? 'selected' : '' }}>🛂 {{ __('Passport') }}</option>
+                            <option value="drivers_license" {{ old('id_type') === 'drivers_license' ? 'selected' : '' }}>🚗 {{ __("Driver's License") }}</option>
+                            <option value="national_id" {{ old('id_type') === 'national_id' ? 'selected' : '' }}>📋 {{ __('National ID Card') }}</option>
+                            <option value="residence_permit" {{ old('id_type') === 'residence_permit' ? 'selected' : '' }}>🏠 {{ __('Residence Permit') }}</option>
+                        </select>
+                    </div>
                     @error('id_type')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -69,7 +87,7 @@
                 <!-- ID Expiry Date -->
                 <div class="mt-4">
                     <x-label for="id_expiry_date" value="{{ __('ID Expiry Date') }}" />
-                    <x-input id="id_expiry_date" class="block mt-1 w-full" type="date" name="id_expiry_date" :value="old('id_expiry_date')" required />
+                    <x-input id="id_expiry_date" class="block mt-1 w-full form-input" type="date" name="id_expiry_date" :value="old('id_expiry_date')" required />
                     @error('id_expiry_date')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -77,19 +95,22 @@
 
                 <!-- ID Document Upload -->
                 <div class="mt-4">
-                    <x-label for="id_document" value="{{ __('Upload ID Document') }}" />
-                    <input id="id_document" type="file" name="id_document" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" accept=".pdf,.jpg,.jpeg,.png" required />
-                    <p class="text-gray-600 text-sm mt-2">{{ __('Accepted formats: PDF, JPG, PNG (Max 5MB)') }}</p>
+                    <x-label for="id_document" value="{{ __('Upload ID Document') }}" class="font-semibold text-gray-700" />
+                    <input id="id_document" type="file" name="id_document" class="block mt-2 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" accept=".pdf,.jpg,.jpeg,.png" required />
+                    <p class="text-gray-500 text-xs mt-2 flex items-center">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        {{ __('Accepted formats: PDF, JPG, PNG (Max 5MB)') }}
+                    </p>
                     @error('id_document')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <!-- Confirmation Checkbox -->
-                <div class="mt-4">
-                    <label for="confirm_id_details" class="flex items-center">
-                        <input id="confirm_id_details" type="checkbox" name="confirm_id_details" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required />
-                        <span class="ms-2 text-sm text-gray-600">{{ __('I confirm that the information provided is accurate and the ID document is valid') }}</span>
+                <div class="mt-4 bg-purple-50 p-4 rounded-lg">
+                    <label for="confirm_id_details" class="flex items-start cursor-pointer">
+                        <input id="confirm_id_details" type="checkbox" name="confirm_id_details" class="mt-1 rounded border-gray-300 text-purple-600 shadow-sm focus:border-purple-500 focus:ring-purple-500" required />
+                        <span class="ms-3 text-sm text-gray-700">{{ __('I confirm that the information provided is accurate and the ID document is valid') }}</span>
                     </label>
                     @error('confirm_id_details')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -97,11 +118,16 @@
                 </div>
 
                 <!-- Privacy Notice -->
-                <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
-                    <p class="text-sm text-blue-800">
-                        <strong>{{ __('Your Privacy is Protected') }}</strong><br>
-                        {{ __('Your ID document is securely stored and only visible to our verification team. It will never be shared with other users.') }}
-                    </p>
+                <div class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                    <div class="flex items-start">
+                        <i class="fas fa-lock text-blue-600 mt-1 mr-3"></i>
+                        <div>
+                            <p class="text-sm font-semibold text-blue-900">{{ __('Your Privacy is Protected') }}</p>
+                            <p class="text-sm text-blue-800 mt-1">
+                                {{ __('Your ID document is securely stored and only visible to our verification team. It will never be shared with other users.') }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -113,8 +139,8 @@
 
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-blue-400 hover:text-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-blue-400 hover:text-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -123,14 +149,57 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                <a class="underline text-sm text-blue-400 hover:text-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ms-4">
+                <x-button class="ms-4" style="background: #5a9fd4; color: white;">
                     {{ __('Register') }}
                 </x-button>
             </div>
         </form>
+
+        <script>
+            // Password Toggle Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                // Toggle for password field
+                const togglePassword = document.getElementById('togglePassword');
+                const passwordInput = document.getElementById('password');
+                const toggleIcon = document.getElementById('toggleIcon');
+                
+                if (togglePassword && passwordInput && toggleIcon) {
+                    togglePassword.addEventListener('click', function() {
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            toggleIcon.classList.remove('fa-eye');
+                            toggleIcon.classList.add('fa-eye-slash');
+                        } else {
+                            passwordInput.type = 'password';
+                            toggleIcon.classList.remove('fa-eye-slash');
+                            toggleIcon.classList.add('fa-eye');
+                        }
+                    });
+                }
+
+                // Toggle for password confirmation field
+                const togglePasswordConfirm = document.getElementById('togglePasswordConfirm');
+                const passwordConfirmInput = document.getElementById('password_confirmation');
+                const toggleIconConfirm = document.getElementById('toggleIconConfirm');
+                
+                if (togglePasswordConfirm && passwordConfirmInput && toggleIconConfirm) {
+                    togglePasswordConfirm.addEventListener('click', function() {
+                        if (passwordConfirmInput.type === 'password') {
+                            passwordConfirmInput.type = 'text';
+                            toggleIconConfirm.classList.remove('fa-eye');
+                            toggleIconConfirm.classList.add('fa-eye-slash');
+                        } else {
+                            passwordConfirmInput.type = 'password';
+                            toggleIconConfirm.classList.remove('fa-eye-slash');
+                            toggleIconConfirm.classList.add('fa-eye');
+                        }
+                    });
+                }
+            });
+        </script>
     </x-authentication-card>
 </x-guest-layout>

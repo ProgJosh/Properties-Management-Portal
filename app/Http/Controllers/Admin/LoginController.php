@@ -41,6 +41,16 @@ class LoginController extends Controller
         
         $data = $request->all();
 
+        // Convert checkbox value to boolean
+        $data['confirm_id_details'] = $request->has('confirm_id_details') ? 1 : 0;
+        
+        // Handle file upload for ID document
+        if ($request->hasFile('id_document')) {
+            $file = $request->file('id_document');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/id_documents'), $filename);
+            $data['id_document'] = 'uploads/id_documents/' . $filename;
+        }
        
         $data['password'] = bcrypt($data['password']);
         $admin = Admin::create($data);

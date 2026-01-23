@@ -16,6 +16,42 @@
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+        
+        <!-- Font Awesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        
+        <style>
+            /* Password Toggle Styling */
+            .password-wrapper {
+                position: relative;
+            }
+
+            .password-toggle {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: #6b7280;
+                cursor: pointer;
+                padding: 5px;
+                font-size: 18px;
+                transition: color 0.3s ease;
+            }
+
+            .password-toggle:hover {
+                color: #374151;
+            }
+
+            .password-toggle:focus {
+                outline: none;
+            }
+
+            .password-wrapper .form-control {
+                padding-right: 45px;
+            }
+        </style>
     </head>
 
     <body class="authentication-bg bg-gradient">
@@ -52,7 +88,12 @@
                                                 <a href="#" class="text-muted float-right"><small>Forgot your password?</small></a>
 
                                             <label for="password">Password</label>
-                                            <input class="form-control" type="password" name="password" required="" id="password" placeholder="Enter your password">
+                                            <div class="password-wrapper">
+                                                <input class="form-control" type="password" name="password" required="" id="password" placeholder="Enter your password">
+                                                <button type="button" class="password-toggle" id="togglePassword">
+                                                    <i class="fas fa-eye" id="toggleIcon"></i>
+                                                </button>
+                                            </div>
                                         </div>
     
                                         <div class="form-group mb-3">
@@ -97,5 +138,29 @@
         <script src="assets/js/app.min.js"></script>
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
+        
+        <script>
+            // Password Toggle Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                var togglePassword = document.getElementById('togglePassword');
+                var passwordInput = document.getElementById('password');
+                var toggleIcon = document.getElementById('toggleIcon');
+                
+                if (togglePassword && passwordInput && toggleIcon) {
+                    togglePassword.addEventListener('click', function() {
+                        // Toggle password visibility
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            toggleIcon.classList.remove('fa-eye');
+                            toggleIcon.classList.add('fa-eye-slash');
+                        } else {
+                            passwordInput.type = 'password';
+                            toggleIcon.classList.remove('fa-eye-slash');
+                            toggleIcon.classList.add('fa-eye');
+                        }
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

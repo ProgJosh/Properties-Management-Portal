@@ -22,8 +22,8 @@
         <style>
             /* Form Styling */
             .form-group label {
-                font-weight: 600;
-                color: #333;
+                font-weight: 500;
+                color: #4a5568;
                 margin-bottom: 8px;
                 display: flex;
                 align-items: center;
@@ -31,46 +31,51 @@
             }
 
             .form-control {
-                border: 1px solid #e0e0e0;
-                border-radius: 6px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
                 padding: 12px 15px;
                 font-size: 14px;
                 transition: all 0.3s ease;
-                background-color: #f9f9f9;
+                background-color: #ffffff;
+                color: #1f2937;
             }
 
             .form-control:focus {
-                border-color: #007bff;
+                border-color: #6b7280;
                 background-color: #fff;
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+                box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+                outline: none;
+                color: #111827;
             }
 
             .form-control::placeholder {
-                color: #999;
+                color: #9ca3af;
+                opacity: 1;
             }
 
             /* ID Verification Section */
             .id-verification-section {
-                background: linear-gradient(135deg, #f5f7fa 0%, #f9fbff 100%);
-                border: 2px solid #e8eef5;
-                border-radius: 10px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
                 padding: 25px;
                 margin-top: 30px;
                 margin-bottom: 20px;
             }
 
             .id-verification-section h5 {
-                color: #0066cc;
-                font-weight: 700;
+                color: #374151;
+                font-weight: 600;
                 margin-bottom: 20px;
-                font-size: 18px;
+                font-size: 17px;
                 display: flex;
                 align-items: center;
                 gap: 10px;
             }
 
             .id-verification-section h5 i {
-                font-size: 24px;
+                font-size: 22px;
+                color: #6b7280;
             }
 
             /* File Upload Styling */
@@ -89,19 +94,20 @@
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
-                background-color: #fff;
-                border: 2px dashed #0066cc;
-                border-radius: 6px;
+                background-color: #ffffff;
+                border: 2px dashed #9ca3af;
+                border-radius: 8px;
                 padding: 20px;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                color: #0066cc;
+                color: #6b7280;
                 font-weight: 500;
             }
 
             .file-upload-label:hover {
-                background-color: #f0f6ff;
-                border-color: #004399;
+                background-color: #f9fafb;
+                border-color: #6b7280;
+                color: #4b5563;
             }
 
             .file-upload-label i {
@@ -121,43 +127,43 @@
                 cursor: pointer;
                 width: 18px;
                 height: 18px;
-                accent-color: #0066cc;
+                accent-color: #6b7280;
             }
 
             .custom-checkbox label {
                 margin: 0;
                 font-weight: 400;
-                color: #555;
+                color: #4b5563;
                 cursor: pointer;
                 font-size: 14px;
             }
 
             /* Privacy Notice */
             .privacy-notice {
-                background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-                border-left: 4px solid #0066cc;
+                background: #f0f9ff;
+                border-left: 3px solid #6b7280;
                 border-radius: 6px;
                 padding: 15px 20px;
                 margin-top: 20px;
-                color: #333;
+                color: #374151;
                 font-size: 13px;
             }
 
             .privacy-notice i {
-                color: #0066cc;
+                color: #6b7280;
                 margin-right: 8px;
                 font-size: 16px;
             }
 
             .privacy-notice strong {
-                color: #0066cc;
+                color: #374151;
                 display: block;
                 margin-bottom: 5px;
             }
 
             /* Error Messages */
             .text-danger {
-                color: #dc3545 !important;
+                color: #dc2626 !important;
                 font-size: 13px;
                 margin-top: 5px;
                 display: flex;
@@ -172,20 +178,21 @@
 
             /* Button Styling */
             .btn-gradient {
-                background: linear-gradient(135deg, #0066cc 0%, #004399 100%);
+                background: #4b5563;
                 border: none;
-                font-weight: 600;
+                font-weight: 500;
                 padding: 12px 30px;
-                border-radius: 6px;
+                border-radius: 8px;
                 transition: all 0.3s ease;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
+                color: #ffffff;
             }
 
             .btn-gradient:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
-                background: linear-gradient(135deg, #004399 0%, #003366 100%);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(75, 85, 99, 0.3);
+                background: #374151;
                 color: #fff;
             }
 
@@ -195,11 +202,11 @@
 
             /* Input Focus States */
             .form-control:invalid {
-                border-color: #dc3545;
+                border-color: #ef4444;
             }
 
             .form-control:valid {
-                border-color: #28a745;
+                border-color: #10b981;
             }
 
             /* Select Dropdown */
@@ -209,6 +216,27 @@
                 background-repeat: no-repeat;
                 background-position: right 12px center;
                 padding-right: 35px;
+                line-height: 1.5;
+                height: auto;
+                min-height: 46px;
+            }
+
+            select.form-control option {
+                color: #1f2937;
+                padding: 10px;
+                line-height: normal;
+            }
+
+            select.form-control option:first-child {
+                color: #9ca3af;
+            }
+
+            select.form-control:invalid {
+                color: #9ca3af;
+            }
+
+            select.form-control:valid {
+                color: #1f2937;
             }
 
             /* Date Input */
@@ -218,6 +246,37 @@
 
             input[type="date"]::-webkit-calendar-picker-indicator {
                 cursor: pointer;
+            }
+
+            /* Password Toggle */
+            .password-wrapper {
+                position: relative;
+            }
+
+            .password-toggle {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: #6b7280;
+                cursor: pointer;
+                padding: 5px;
+                font-size: 18px;
+                transition: color 0.3s ease;
+            }
+
+            .password-toggle:hover {
+                color: #374151;
+            }
+
+            .password-toggle:focus {
+                outline: none;
+            }
+
+            .password-wrapper .form-control {
+                padding-right: 45px;
             }
 
             /* Responsive */
@@ -238,15 +297,15 @@
 
             /* Form Section Divider */
             .form-section-divider {
-                height: 2px;
-                background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+                height: 1px;
+                background: #e5e7eb;
                 margin: 25px 0;
             }
 
             /* Success State */
             .form-control.is-valid {
-                border-color: #28a745;
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4.6 5.05c-.5.5-1.2.5-1.8-.1z'/%3E%3C/svg%3E");
+                border-color: #10b981;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%2310b981' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4.6 5.05c-.5.5-1.2.5-1.8-.1z'/%3E%3C/svg%3E");
                 background-repeat: no-repeat;
                 background-position: right 12px center;
                 background-size: 16px 16px;
@@ -255,7 +314,7 @@
 
             /* Loading State */
             .btn-gradient:disabled {
-                opacity: 0.7;
+                opacity: 0.6;
                 cursor: not-allowed;
             }
 
@@ -269,9 +328,9 @@
                 display: none !important;
                 margin-top: 15px;
                 padding: 15px;
-                background-color: #f0f8f5;
-                border: 1px solid #28a745;
-                border-radius: 6px;
+                background-color: #f0fdf4;
+                border: 1px solid #86efac;
+                border-radius: 8px;
                 align-items: center;
                 justify-content: space-between;
                 gap: 10px;
@@ -290,28 +349,28 @@
             }
 
             .file-info i {
-                color: #28a745;
+                color: #10b981;
                 font-size: 20px;
             }
 
             .file-name {
-                color: #333;
+                color: #374151;
                 font-weight: 500;
                 word-break: break-all;
                 max-width: 100%;
             }
 
             .file-size {
-                color: #666;
+                color: #6b7280;
                 font-size: 12px;
                 margin-top: 4px;
             }
 
             .btn-remove-file {
-                background-color: #dc3545 !important;
+                background-color: #ef4444 !important;
                 color: white !important;
                 border: none !important;
-                border-radius: 4px !important;
+                border-radius: 6px !important;
                 padding: 8px 12px !important;
                 cursor: pointer !important;
                 font-size: 14px !important;
@@ -330,17 +389,17 @@
             }
 
             .btn-remove-file:hover {
-                background-color: #c82333 !important;
-                transform: scale(1.05) !important;
+                background-color: #dc2626 !important;
+                transform: scale(1.02) !important;
             }
 
             .btn-remove-file:focus {
                 outline: none !important;
-                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5) !important;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
             }
 
             .btn-remove-file:active {
-                background-color: #a71d2a !important;
+                background-color: #b91c1c !important;
             }
 
             .btn-remove-file i {
@@ -397,6 +456,7 @@
                 var selectedFileName = document.getElementById('selectedFileName');
                 var selectedFileSize = document.getElementById('selectedFileSize');
                 var removeFileBtn = document.getElementById('removeFileBtn');
+                var fileLabel = document.getElementById('fileLabel');
                 
                 function formatFileSize(bytes) {
                     if (bytes === 0) return '0 Bytes';
@@ -406,24 +466,49 @@
                     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
                 }
                 
-                fileInput.addEventListener('change', function() {
-                    console.log('FILE CHANGED - Files count:', this.files.length);
-                    if (this.files && this.files.length > 0) {
-                        var file = this.files[0];
-                        console.log('Setting display for:', file.name);
+                function handleFileSelect() {
+                    console.log('FILE CHANGED - Files count:', fileInput.files.length);
+                    if (fileInput.files && fileInput.files.length > 0) {
+                        var file = fileInput.files[0];
+                        console.log('File selected:', file.name, 'Size:', file.size, 'Type:', file.type);
+                        
+                        // Validate file type
+                        var validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+                        if (!validTypes.includes(file.type)) {
+                            alert('Please select a valid file format (PDF, JPG, JPEG, or PNG)');
+                            fileInput.value = '';
+                            return;
+                        }
+                        
+                        // Validate file size (5MB = 5242880 bytes)
+                        if (file.size > 5242880) {
+                            alert('File size must not exceed 5MB');
+                            fileInput.value = '';
+                            return;
+                        }
+                        
                         selectedFileName.textContent = file.name;
                         selectedFileSize.textContent = formatFileSize(file.size);
                         fileUploadDisplay.style.display = 'flex';
-                        console.log('Display set to:', fileUploadDisplay.style.display);
+                        fileUploadDisplay.classList.add('show');
+                        console.log('Display updated successfully');
+                    } else {
+                        console.log('No files selected');
                     }
-                });
+                }
                 
+                // Add change event listener
+                fileInput.addEventListener('change', handleFileSelect);
+                
+                // Add click handler for remove button
                 if (removeFileBtn) {
                     removeFileBtn.addEventListener('click', function(e) {
                         e.preventDefault();
+                        e.stopPropagation();
                         console.log('REMOVE CLICKED');
                         fileInput.value = '';
                         fileUploadDisplay.style.display = 'none';
+                        fileUploadDisplay.classList.remove('show');
                     });
                 }
                 
@@ -431,6 +516,53 @@
             }
             
             trySetup();
+
+            // Password Toggle Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                var togglePassword = document.getElementById('togglePassword');
+                var passwordInput = document.getElementById('password');
+                var toggleIcon = document.getElementById('toggleIcon');
+                
+                if (togglePassword && passwordInput && toggleIcon) {
+                    togglePassword.addEventListener('click', function() {
+                        // Toggle password visibility
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            toggleIcon.classList.remove('fa-eye');
+                            toggleIcon.classList.add('fa-eye-slash');
+                        } else {
+                            passwordInput.type = 'password';
+                            toggleIcon.classList.remove('fa-eye-slash');
+                            toggleIcon.classList.add('fa-eye');
+                        }
+                    });
+                }
+
+                // Auto-refresh CSRF token every 10 minutes to prevent expiration
+                setInterval(function() {
+                    fetch('{{ route("admin.register") }}', {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }).then(function(response) {
+                        return response.text();
+                    }).then(function(html) {
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(html, 'text/html');
+                        var newToken = doc.querySelector('input[name="_token"]');
+                        if (newToken) {
+                            var currentToken = document.querySelector('input[name="_token"]');
+                            if (currentToken) {
+                                currentToken.value = newToken.value;
+                                console.log('CSRF token refreshed successfully');
+                            }
+                        }
+                    }).catch(function(error) {
+                        console.error('Failed to refresh CSRF token:', error);
+                    });
+                }, 600000); // Refresh every 10 minutes (600000 ms)
+            });
         </script>
             @include('components.landlord-terms-modal')
             @include('components.commission-policy-modal')
@@ -459,6 +591,18 @@
                                             <input class="form-control" type="text" id="name" name="name" value="{{old('name')}}" required="" placeholder="Enter your Name">
 
                                             @error('name')
+                                                <span class="text-danger">{{$message}}</span>
+                                                
+                                            @enderror
+
+
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="business_name"><i class="fas fa-building"></i>Name of Business</label>
+                                            <input class="form-control" type="text" id="business_name" name="business_name" value="{{old('business_name')}}" placeholder="Enter your Business Name (Optional)">
+
+                                            @error('business_name')
                                                 <span class="text-danger">{{$message}}</span>
                                                 
                                             @enderror
@@ -622,8 +766,12 @@
 
                                         <div class="form-group mb-3">
                                             <label for="password"><i class="fas fa-lock"></i>Password</label>
-                                            <input class="form-control" type="password" required="" id="password" name="password" placeholder="Enter your password">
-
+                                            <div class="password-wrapper">
+                                                <input class="form-control" type="password" required="" id="password" name="password" placeholder="Enter your password">
+                                                <button type="button" class="password-toggle" id="togglePassword">
+                                                    <i class="fas fa-eye" id="toggleIcon"></i>
+                                                </button>
+                                            </div>
 
                                             @error('password')
                                                 <span class="text-danger">{{$message}}</span>
@@ -637,7 +785,7 @@
                                         
     
                                         <div class="form-group mb-0 text-center">
-                                            <button class="btn btn-gradient btn-block" type="button" id="registerBtn" onclick="handleRegistration(event)"> Log In </button>
+                                            <button class="btn btn-gradient btn-block" type="submit" id="registerBtn"> Register </button>
                                         </div>
     
                                     </form>
