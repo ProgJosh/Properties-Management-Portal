@@ -29,3 +29,8 @@ yarn-error.log
 /storage/framework/cache/*
 /storage/framework/sessions/*
 /storage/framework/testing/*
+RAILWAY_VISUAL_SUMMARY.md
+RAILWAY_ENV_SETUP.md
+railway-setup.sh
+app/Http/Middleware/TrustProxies.php
+railway-diagnose.sh
