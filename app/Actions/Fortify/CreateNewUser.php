@@ -30,6 +30,12 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'date_of_birth' => [
+                'required', 
+                'date', 
+                'before:' . now()->subYears(18)->format('Y-m-d'),
+                'date_format:Y-m-d'
+            ],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             // ID Validation Rules
@@ -39,13 +45,25 @@ class CreateNewUser implements CreatesNewUsers
             'full_name_on_id' => ['required', 'string', 'min:3', 'max:100'],
             'id_expiry_date' => ['required', 'date', 'after:today', 'date_format:Y-m-d'],
             'confirm_id_details' => ['accepted'],
+            // Rental Policy Rules
+            'rental_policy_accepted' => ['required', 'accepted'],
+            'rental_policy_accepted_at' => ['required', 'date'],
+        ], [
+            'date_of_birth.required' => 'Date of birth is required.',
+            'date_of_birth.before' => 'You must be at least 18 years old to register.',
+            'rental_policy_accepted.required' => 'You must accept the Tenant Rental Policy to register.',
+            'rental_policy_accepted.accepted' => 'You must accept the Tenant Rental Policy to register.',
+            'rental_policy_accepted_at.required' => 'Policy acceptance timestamp is required.',
         ])->validate();
 
         // Create user
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'date_of_birth' => $input['date_of_birth'],
             'password' => Hash::make($input['password']),
+            'rental_policy_accepted' => true,
+            'rental_policy_accepted_at' => $input['rental_policy_accepted_at'],
         ]);
 
         // Process ID upload

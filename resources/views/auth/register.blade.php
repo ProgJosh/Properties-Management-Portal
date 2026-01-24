@@ -24,6 +24,18 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="date_of_birth" value="{{ __('Date of Birth') }}" />
+                <x-input id="date_of_birth" class="block mt-1 w-full form-input" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
+                <p class="text-gray-500 text-xs mt-1">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    {{ __('You must be at least 18 years old to register') }}
+                </p>
+                @error('date_of_birth')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <div class="password-wrapper mt-1">
                     <x-input id="password" class="block w-full pr-10" type="password" name="password" required autocomplete="new-password" placeholder="Enter your password" />
@@ -158,6 +170,12 @@
                 </x-button>
             </div>
         </form>
+
+        <!-- Tenant Rental Policy Modal -->
+        <x-tenant-rental-policy-modal />
+
+        <!-- Tenant Rental Policy Script -->
+        <script src="{{ asset('assets/js/tenant-rental-policy-modal.js') }}"></script>
 
         <script>
             // Password Toggle Functionality

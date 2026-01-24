@@ -28,6 +28,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'date_of_birth',
+        'rental_policy_accepted',
+        'rental_policy_accepted_at',
     ];
 
     /**
@@ -61,6 +64,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'date_of_birth' => 'date',
+            'rental_policy_accepted' => 'boolean',
+            'rental_policy_accepted_at' => 'datetime',
         ];
     }
 
