@@ -9,17 +9,71 @@
         </div>
 
         @error('date_of_birth')
-            <div class="mb-4 p-4 bg-red-100 border border-red-500 rounded-lg shadow-lg">
+            <div id="ageErrorAlert" class="mb-4 p-5 bg-red-100 border-2 border-red-600 rounded-lg shadow-2xl animate-pulse-slow">
                 <div class="flex items-start">
-                    <i class="fas fa-exclamation-triangle text-red-600 text-2xl mt-1 mr-3"></i>
-                    <div>
-                        <p class="text-lg font-bold text-red-900">Registration Not Allowed</p>
-                        <p class="text-red-800 mt-1 font-semibold">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-3xl mt-1 mr-4 animate-bounce-slow"></i>
+                    <div class="flex-1">
+                        <p class="text-xl font-bold text-red-900 mb-2">⚠️ Registration Not Allowed</p>
+                        <p class="text-red-800 mt-2 font-semibold text-base leading-relaxed">
                             {{ $message }}
+                        </p>
+                        <p class="text-red-700 mt-3 text-sm italic">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Please ensure you meet the age requirement before attempting to register.
                         </p>
                     </div>
                 </div>
             </div>
+            <style>
+                @keyframes pulse-slow {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.85; }
+                }
+                @keyframes bounce-slow {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                .animate-pulse-slow {
+                    animation: pulse-slow 3s ease-in-out infinite;
+                }
+                .animate-bounce-slow {
+                    animation: bounce-slow 2s ease-in-out infinite;
+                }
+                #ageErrorAlert {
+                    position: sticky;
+                    top: 20px;
+                    z-index: 1000;
+                    backdrop-filter: blur(10px);
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const ageError = document.getElementById('ageErrorAlert');
+                    if (ageError) {
+                        // Scroll to error smoothly
+                        ageError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Keep the error visible and prevent form submission
+                        const form = document.querySelector('form');
+                        const registerBtn = form.querySelector('button[type="submit"], x-button');
+                        
+                        if (registerBtn) {
+                            registerBtn.addEventListener('click', function(e) {
+                                if (document.getElementById('ageErrorAlert')) {
+                                    e.preventDefault();
+                                    ageError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    
+                                    // Flash the error
+                                    ageError.style.transform = 'scale(1.02)';
+                                    setTimeout(() => {
+                                        ageError.style.transform = 'scale(1)';
+                                    }, 300);
+                                }
+                            });
+                        }
+                    }
+                });
+            </script>
         @enderror
 
         <x-validation-errors class="mb-4" />
