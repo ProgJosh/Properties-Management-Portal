@@ -8,6 +8,20 @@
             <h5 class="text-uppercase text-center font-bold">Tenant's Register</h5>
         </div>
 
+        @error('date_of_birth')
+            <div class="mb-4 p-4 bg-red-100 border border-red-500 rounded-lg shadow-lg">
+                <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-2xl mt-1 mr-3"></i>
+                    <div>
+                        <p class="text-lg font-bold text-red-900">Registration Not Allowed</p>
+                        <p class="text-red-800 mt-1 font-semibold">
+                            {{ $message }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @enderror
+
         <x-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -25,13 +39,18 @@
 
             <div class="mt-4">
                 <x-label for="date_of_birth" value="{{ __('Date of Birth') }}" />
-                <x-input id="date_of_birth" class="block mt-1 w-full form-input" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
+                <x-input id="date_of_birth" class="block mt-1 w-full form-input {{ $errors->has('date_of_birth') ? 'border-red-500 border-2' : '' }}" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
                 <p class="text-gray-500 text-xs mt-1">
                     <i class="fas fa-info-circle mr-1"></i>
                     {{ __('You must be at least 18 years old to register') }}
                 </p>
                 @error('date_of_birth')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <div class="mt-3 p-4 bg-red-100 border-2 border-red-600 rounded-lg shadow-md">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-circle text-red-700 text-xl mt-0.5 mr-3"></i>
+                            <p class="text-red-900 text-base font-bold">{{ $message }}</p>
+                        </div>
+                    </div>
                 @enderror
             </div>
 

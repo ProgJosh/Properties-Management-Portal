@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'date_of_birth' => [
@@ -50,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
             'rental_policy_accepted_at' => ['required', 'date'],
         ], [
             'date_of_birth.required' => 'Date of birth is required.',
-            'date_of_birth.before' => 'You must be at least 18 years old to register.',
+            'date_of_birth.before' => "Sorry, you can't create an account because you are below 18 years old. You must be at least 18 years of age to register as a tenant on our platform.",
             'rental_policy_accepted.required' => 'You must accept the Tenant Rental Policy to register.',
             'rental_policy_accepted.accepted' => 'You must accept the Tenant Rental Policy to register.',
             'rental_policy_accepted_at.required' => 'Policy acceptance timestamp is required.',
