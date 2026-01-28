@@ -10,11 +10,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelBtn = document.getElementById('rentalCancelBtn');
     const registerForm = document.querySelector('form[action*="register"]');
 
-    // Show modal on page load (for tenant registration) with small delay
+    // Function to check if age error timer is active
+    function checkAgeErrorTimer() {
+        // Check if age error timer is active
+        if (window.ageErrorTimerActive === true) {
+            console.log('Age error timer is active. Waiting for completion...');
+            return true;
+        }
+        return false;
+    }
+
+    // Show modal on page load (for tenant registration) with delay
     if (modal && registerForm) {
+        // Check if there's an age error first
+        if (checkAgeErrorTimer()) {
+            console.log('Age error detected. Delaying modal display until timer completes.');
+            
+            // Wait for age error timer to complete (30 seconds + 3 second buffer)
+            const checkInterval = setInterval(function() {
+                if (!window.ageErrorTimerActive && window.ageErrorCompleted) {
+                    clearInterval(checkInterval);
+                    console.log('Age error timer completed. Showing rental policy modal with delay...');
+                    
+                    // Show modal with a smooth delay after error timer expires
+                    setTimeout(function() {
+                        showModalSlowly();
+                    }, 3000); // 3 seconds after error timer completes
+                }
+            }, 1000); // Check every second
+        } else {
+            // No age error, show modal normally with small delay
+            setTimeout(function() {
+                showModal();
+            }, 300);
+        }
+    }
+
+    // Function to show the modal with slow fade-in effect
+    function showModalSlowly() {
+        modal.style.display = 'flex';
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 2s ease-in';
+        document.body.style.overflow = 'hidden';
+        
+        // Trigger fade-in
         setTimeout(function() {
-            showModal();
-        }, 300);
+            modal.style.opacity = '1';
+        }, 50);
+        
+        console.log('Modal displayed with slow fade-in effect');
     }
 
     // Function to show the modal

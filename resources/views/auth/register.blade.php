@@ -13,7 +13,13 @@
                 <div class="flex items-start">
                     <i class="fas fa-exclamation-triangle text-red-600 text-3xl mt-1 mr-4 animate-bounce-slow"></i>
                     <div class="flex-1">
-                        <p class="text-xl font-bold text-red-900 mb-2">⚠️ Registration Not Allowed</p>
+                        <div class="flex justify-between items-start mb-2">
+                            <p class="text-xl font-bold text-red-900">⚠️ Registration Not Allowed</p>
+                            <div class="flex items-center bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span id="errorTimer">30</span>s
+                            </div>
+                        </div>
                         <p class="text-red-800 mt-2 font-semibold text-base leading-relaxed">
                             {{ $message }}
                         </p>
@@ -21,6 +27,9 @@
                             <i class="fas fa-info-circle mr-1"></i>
                             Please ensure you meet the age requirement before attempting to register.
                         </p>
+                        <div class="mt-3 bg-red-200 rounded-full h-2 overflow-hidden">
+                            <div id="timerProgress" class="bg-red-600 h-full transition-all duration-1000" style="width: 100%;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,11 +56,47 @@
                 }
             </style>
             <script>
+                // Global flag to control rental policy modal
+                window.ageErrorTimerActive = false;
+                window.ageErrorCompleted = false;
+                
                 document.addEventListener('DOMContentLoaded', function() {
                     const ageError = document.getElementById('ageErrorAlert');
                     if (ageError) {
+                        // Set flag that age error timer is active
+                        window.ageErrorTimerActive = true;
+                        
                         // Scroll to error smoothly
                         ageError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Timer countdown
+                        let timeLeft = 30;
+                        const timerDisplay = document.getElementById('errorTimer');
+                        const progressBar = document.getElementById('timerProgress');
+                        
+                        const countdown = setInterval(function() {
+                            timeLeft--;
+                            if (timerDisplay) timerDisplay.textContent = timeLeft;
+                            
+                            // Update progress bar
+                            if (progressBar) {
+                                const percentage = (timeLeft / 30) * 100;
+                                progressBar.style.width = percentage + '%';
+                            }
+                            
+                            if (timeLeft <= 0) {
+                                clearInterval(countdown);
+                                if (timerDisplay) timerDisplay.textContent = '0';
+                                
+                                // Mark timer as completed
+                                window.ageErrorTimerActive = false;
+                                window.ageErrorCompleted = true;
+                                
+                                // Fade out the error message slowly
+                                ageError.style.transition = 'opacity 2s ease-out';
+                                ageError.style.opacity = '0.3';
+                            }
+                        }, 1000);
                         
                         // Keep the error visible and prevent form submission
                         const form = document.querySelector('form');
@@ -59,15 +104,23 @@
                         
                         if (registerBtn) {
                             registerBtn.addEventListener('click', function(e) {
-                                if (document.getElementById('ageErrorAlert')) {
+                                if (document.getElementById('ageErrorAlert') && window.ageErrorTimerActive) {
                                     e.preventDefault();
                                     ageError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                     
-                                    // Flash the error
+                                    // Flash the error and reset timer
                                     ageError.style.transform = 'scale(1.02)';
                                     setTimeout(() => {
                                         ageError.style.transform = 'scale(1)';
                                     }, 300);
+                                    
+                                    // Reset timer if clicked during active timer
+                                    if (window.ageErrorTimerActive) {
+                                        timeLeft = 30;
+                                        if (timerDisplay) timerDisplay.textContent = timeLeft;
+                                        if (progressBar) progressBar.style.width = '100%';
+                                        ageError.style.opacity = '1';
+                                    }
                                 }
                             });
                         }
