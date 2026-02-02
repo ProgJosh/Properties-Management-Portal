@@ -136,15 +136,13 @@ function proceedWithSignup() {
     setTimeout(function() {
         closeModal();
         
-        // Open commission policy modal next
-        if (typeof openCommissionModal === 'function') {
-            openCommissionModal();
-        } else {
-            console.error('openCommissionModal is not available');
-            proceedBtn.disabled = false;
-            proceedBtn.textContent = originalText;
-        }
-    }, 500);
+        // Dispatch event that terms were accepted
+        document.dispatchEvent(new CustomEvent('termsAccepted'));
+        
+        // Reset button state
+        proceedBtn.disabled = false;
+        proceedBtn.textContent = originalText;
+    }, 300);
 }
 
 /**

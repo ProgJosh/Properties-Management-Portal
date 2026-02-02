@@ -95,16 +95,13 @@ function proceedWithCommissionAgreement() {
         // Close modal
         closeCommissionModal();
 
-        // Submit the form
-        const registrationForm = document.getElementById('registrationForm');
-        if (registrationForm) {
-            registrationForm.submit();
-        } else {
-            console.error('Registration form not found');
-            proceedBtn.disabled = false;
-            proceedBtn.textContent = originalText;
-        }
-    }, 500);
+        // Dispatch event that commission was accepted
+        document.dispatchEvent(new CustomEvent('commissionAccepted'));
+        
+        // Reset button state
+        proceedBtn.disabled = false;
+        proceedBtn.textContent = originalText;
+    }, 300);
 }
 
 /**

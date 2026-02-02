@@ -37,7 +37,7 @@ class StoreAdminRequest extends FormRequest
             'id_expiry_date' => ['required', 'date', 'after:today'],
             'id_document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
             'confirm_id_details' => ['required', 'accepted'],
-
+            'accept_terms' => ['required', 'accepted'],
         ];
     }
 

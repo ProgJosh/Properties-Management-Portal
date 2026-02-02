@@ -56,3 +56,5 @@
 </div>
 
 <script src="{{ asset('assets/js/commission-policy-modal.js') }}"></script>
+
+<script src="{{ asset('assets/js/commission-policy-modal.js') }}"></script>

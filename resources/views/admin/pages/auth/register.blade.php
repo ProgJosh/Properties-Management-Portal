@@ -562,13 +562,98 @@
                         console.error('Failed to refresh CSRF token:', error);
                     });
                 }, 600000); // Refresh every 10 minutes (600000 ms)
+                
+                // REGISTRATION FLOW: Register Button → Terms Modal → Commission Modal → Submit
+                var registerBtn = document.getElementById('registerBtn');
+                var registrationForm = document.getElementById('registrationForm');
+                var termsModalShown = false;
+                var commissionModalShown = false;
+                
+                if (registerBtn && registrationForm) {
+                    registerBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Register button clicked - starting modal flow');
+                        
+                        // Validate form first
+                        if (!registrationForm.checkValidity()) {
+                            registrationForm.reportValidity();
+                            return false;
+                        }
+                        
+                        // Show Terms Modal first
+                        if (typeof openTermsModal === 'function') {
+                            openTermsModal();
+                        } else {
+                            var modal = document.getElementById('landlordTermsModal');
+                            if (modal) {
+                                modal.style.display = 'flex';
+                            }
+                        }
+                    });
+                }
+                
+                // Override the modal proceed buttons to chain them
+                document.addEventListener('termsAccepted', function() {
+                    console.log('Terms accepted, showing commission modal');
+                    if (typeof openCommissionModal === 'function') {
+                        openCommissionModal();
+                    } else {
+                        var modal = document.getElementById('commissionPolicyModal');
+                        if (modal) {
+                            modal.style.display = 'flex';
+                        }
+                    }
+                });
+                
+                document.addEventListener('commissionAccepted', function() {
+                    console.log('Commission accepted, submitting form');
+                    // Mark checkboxes as checked
+                    var acceptTerms = document.getElementById('acceptTerms');
+                    var confirmIdDetails = document.getElementById('confirm_id_details');
+                    if (acceptTerms) acceptTerms.checked = true;
+                    if (confirmIdDetails) confirmIdDetails.checked = true;
+                    
+                    // Submit the form
+                    registrationForm.submit();
+                });
+                
+                // Open Terms Modal when link is clicked (view only)
+                var viewTermsLink = document.getElementById('viewTermsLink');
+                if (viewTermsLink) {
+                    viewTermsLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (typeof openTermsModal === 'function') {
+                            openTermsModal();
+                        } else {
+                            var modal = document.getElementById('landlordTermsModal');
+                            if (modal) {
+                                modal.style.display = 'flex';
+                            }
+                        }
+                    });
+                }
+                
+                // Open Commission Modal when link is clicked (view only)
+                var viewCommissionLink = document.getElementById('viewCommissionLink');
+                if (viewCommissionLink) {
+                    viewCommissionLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (typeof openCommissionModal === 'function') {
+                            openCommissionModal();
+                        } else {
+                            var modal = document.getElementById('commissionPolicyModal');
+                            if (modal) {
+                                modal.style.display = 'flex';
+                            }
+                        }
+                    });
+                }
             });
         </script>
             @include('components.landlord-terms-modal')
             @include('components.commission-policy-modal')
 
             <div class="account-pages mt-2 pt-2 mb-5">
-                <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8 col-lg-8 col-xl-8">
                             <div class="card bg-pattern">
@@ -779,10 +864,20 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-section-divider"></div>
 
-                                         
-    
-                                        
+                                        <!-- Terms and Conditions Acceptance -->
+                                        <div class="form-group mb-3" style="display: none;">
+                                            <div class="custom-checkbox">
+                                                <input type="checkbox" id="acceptTerms" name="accept_terms" value="1">
+                                                <label for="acceptTerms">
+                                                    I agree to the Terms of Use and Commission Policy
+                                                </label>
+                                            </div>
+                                            @error('accept_terms')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
     
                                         <div class="form-group mb-0 text-center">
                                             <button class="btn btn-gradient btn-block" type="submit" id="registerBtn"> Register </button>
@@ -812,17 +907,24 @@
             <!-- end page -->
 
 
+        <!-- Admin Warning Notice Modal -->
+        <x-admin-warning-notice />
+
         <!-- Vendor js -->
         <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
-        <!-- Admin warning js -->
-        <script src="{{ asset('assets/js/admin-warning-modal.js') }}"></script>
-        <!-- Landlord terms js -->
-        <script src="{{ asset('assets/js/landlord-terms-modal.js') }}"></script>
-        <!-- Commission policy js -->
-        <script src="{{ asset('assets/js/commission-policy-modal.js') }}"></script>
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
+
+        <!-- Trigger Warning Modal on Page Load -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Show the warning modal when the page loads
+                if (typeof openWarningModal === 'function') {
+                    openWarningModal();
+                }
+            });
+        </script>
         
     </body>
 </html>

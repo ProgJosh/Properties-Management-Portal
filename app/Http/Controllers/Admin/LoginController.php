@@ -39,30 +39,44 @@ class LoginController extends Controller
 
     public function register(StoreAdminRequest $request){
         
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        // Convert checkbox value to boolean
-        $data['confirm_id_details'] = $request->has('confirm_id_details') ? 1 : 0;
-        
-        // Handle file upload for ID document
-        if ($request->hasFile('id_document')) {
-            $file = $request->file('id_document');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/id_documents'), $filename);
-            $data['id_document'] = 'uploads/id_documents/' . $filename;
+            // Convert checkbox values to boolean
+            $data['confirm_id_details'] = $request->has('confirm_id_details') ? 1 : 0;
+            $data['accept_terms'] = $request->has('accept_terms') ? 1 : 0;
+            
+            // Handle file upload for ID document
+            if ($request->hasFile('id_document') && $request->file('id_document')->isValid()) {
+                $file = $request->file('id_document');
+                
+                // Create directory if it doesn't exist
+                $uploadPath = public_path('uploads/id_documents');
+                if (!file_exists($uploadPath)) {
+                    mkdir($uploadPath, 0777, true);
+                }
+                
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move($uploadPath, $filename);
+                $data['id_document'] = 'uploads/id_documents/' . $filename;
+            } else {
+                Toastr::error('Invalid or missing ID document file');
+                return redirect()->back()->withInput($request->except('id_document', 'password'));
+            }
+           
+            $data['password'] = bcrypt($data['password']);
+            $admin = Admin::create($data);
+          
+            Auth::guard('admin')->login($admin);
+          
+            Toastr::success('Registration Successful! Welcome to the platform.');
+            return redirect()->route('admin.dashboard');
+            
+        } catch (\Exception $e) {
+            \Log::error('Registration Error: ' . $e->getMessage());
+            Toastr::error('Registration failed. Please try again.');
+            return redirect()->back()->withInput($request->except('id_document', 'password'));
         }
-       
-        $data['password'] = bcrypt($data['password']);
-        $admin = Admin::create($data);
-      
-        Auth::guard('admin')->login($admin);
-      
-     
-
-        Toastr::success('Registration Successfull');
-
-
-        return redirect()->route('admin.dashboard');
     }
 
     public function login(Request $request){
