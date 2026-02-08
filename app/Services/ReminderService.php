@@ -139,7 +139,7 @@ class ReminderService
     {
         try {
             $user = $reminder->user;
-            $userDetail = $user->userDetail;
+            $userDetail = $user->userDetails;
 
             if (!$userDetail || !$userDetail->phone) {
                 throw new \Exception("User phone number not found");

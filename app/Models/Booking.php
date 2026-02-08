@@ -11,6 +11,14 @@ class Booking extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'checkin' => 'date',
+        'checkout' => 'date',
+        'rent_due_date' => 'date',
+        'next_payment_date' => 'date',
+        'monthly_rent' => 'decimal:2',
+    ];
+
 
     public function property()
     {
@@ -31,5 +39,10 @@ class Booking extends Model
     public function leaseAgreement()
     {
         return $this->hasOne(LeaseAgreement::class);
+    }
+
+    public function paymentReminders()
+    {
+        return $this->hasMany(PaymentReminder::class);
     }
 }

@@ -105,7 +105,7 @@ class BookingController extends Controller
                             'product_data' => [
                                 "name" => $property->name,
                             ],
-                            'unit_amount'  => $request->amount,
+                            'unit_amount'  => $request->amount * 100, // Convert to centavos for Stripe
                         ],
                         'quantity'   => 1,
                     ],

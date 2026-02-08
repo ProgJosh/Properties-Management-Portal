@@ -40,8 +40,16 @@ class LeaseAgreementController extends Controller
      */
     public function signByTenant(Request $request, LeaseAgreement $agreement)
     {
+        \Log::info('Sign attempt by tenant', [
+            'user_id' => Auth::id(),
+            'agreement_id' => $agreement->id,
+            'tenant_id' => $agreement->tenant_id,
+            'current_status' => $agreement->status,
+        ]);
+
         // Validate user is the tenant
         if (Auth::id() !== $agreement->tenant_id) {
+            \Log::warning('Unauthorized sign attempt', ['user_id' => Auth::id(), 'tenant_id' => $agreement->tenant_id]);
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized: You are not the tenant of this agreement'
@@ -49,14 +57,39 @@ class LeaseAgreementController extends Controller
         }
 
         try {
-            $agreement->signByTenant();
+            $result = $agreement->signByTenant();
 
-            // Send notification to landlord
-            $this->leaseService->notifyLandlordOfSignature($agreement);
+            if (!$result) {
+                \Log::warning('Sign failed - invalid status', ['status' => $agreement->status]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Cannot sign agreement in current status: ' . $agreement->status,
+                ], 400);
+            }
+
+            // Refresh the model to get updated values
+            $agreement->refresh();
+
+            \Log::info('Agreement signed successfully', [
+                'agreement_id' => $agreement->id,
+                'new_status' => $agreement->status,
+                'is_fully_signed' => $agreement->is_fully_signed
+            ]);
+
+            // Send notification to landlord (don't let errors here break the signing)
+            try {
+                $this->leaseService->notifyLandlordOfSignature($agreement);
+            } catch (\Exception $e) {
+                \Log::error('Failed to send notification', ['error' => $e->getMessage()]);
+            }
 
             // Check if both signed
             if ($agreement->is_fully_signed) {
-                $this->leaseService->generateAgreementDocument($agreement);
+                try {
+                    $this->leaseService->generateAgreementDocument($agreement);
+                } catch (\Exception $e) {
+                    \Log::error('Failed to generate document', ['error' => $e->getMessage()]);
+                }
                 
                 return response()->json([
                     'success' => true,
@@ -71,6 +104,10 @@ class LeaseAgreementController extends Controller
                 'status' => $agreement->status,
             ]);
         } catch (\Exception $e) {
+            \Log::error('Error signing agreement', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             return response()->json([
                 'success' => false,
                 'message' => 'Error signing agreement: ' . $e->getMessage(),
@@ -139,6 +176,18 @@ class LeaseAgreementController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Error downloading agreement: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Print lease agreement view
+     */
+    public function print(LeaseAgreement $agreement)
+    {
+        // Load relationships
+        $lease = $agreement->load(['tenant', 'landlord', 'property']);
+        
+        // Return print-friendly view
+        return view('lease-agreements.print', compact('lease'));
     }
 
     /**
