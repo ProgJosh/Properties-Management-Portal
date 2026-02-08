@@ -92,9 +92,9 @@
                                 window.ageErrorTimerActive = false;
                                 window.ageErrorCompleted = true;
                                 
-                                // Fade out the error message slowly
-                                ageError.style.transition = 'opacity 2s ease-out';
-                                ageError.style.opacity = '0.3';
+                                // Keep error message visible longer with slight fade
+                                ageError.style.transition = 'opacity 3s ease-out';
+                                ageError.style.opacity = '0.8';
                             }
                         }, 1000);
                         
@@ -301,7 +301,7 @@
         <x-tenant-rental-policy-modal />
 
         <!-- Tenant Rental Policy Script -->
-        <script src="{{ asset('assets/js/tenant-rental-policy-modal.js') }}"></script>
+        <script src="{{ asset('assets/js/tenant-rental-policy-modal.js') }}?v={{ now()->timestamp }}"></script>
 
         <script>
             // Password Toggle Functionality

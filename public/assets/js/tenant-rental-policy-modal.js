@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if age error timer is active
     function checkAgeErrorTimer() {
-        // Check if age error timer is active
         if (window.ageErrorTimerActive === true) {
             console.log('Age error timer is active. Waiting for completion...');
             return true;
@@ -26,34 +25,33 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkAgeErrorTimer()) {
             console.log('Age error detected. Delaying modal display until timer completes.');
             
-            // Wait for age error timer to complete (30 seconds + 3 second buffer)
+            // Wait for age error timer to complete
             const checkInterval = setInterval(function() {
                 if (!window.ageErrorTimerActive && window.ageErrorCompleted) {
                     clearInterval(checkInterval);
-                    console.log('Age error timer completed. Showing rental policy modal with delay...');
+                    console.log('Age error timer completed. Waiting 10 seconds before showing modal...');
                     
-                    // Show modal with a smooth delay after error timer expires
+                    // Show modal with a 10-second delay after error timer expires
                     setTimeout(function() {
                         showModalSlowly();
-                    }, 3000); // 3 seconds after error timer completes
+                    }, 10000); // 10 seconds to ensure user reads the error message properly
                 }
-            }, 1000); // Check every second
+            }, 1000);
         } else {
-            // No age error, show modal normally with small delay
+            // No age error, show modal normally
             setTimeout(function() {
                 showModal();
-            }, 300);
+            }, 500);
         }
     }
 
-    // Function to show the modal with slow fade-in effect
+    // Function to show the modal with slow fade-in
     function showModalSlowly() {
         modal.style.display = 'flex';
         modal.style.opacity = '0';
-        modal.style.transition = 'opacity 2s ease-in';
+        modal.style.transition = 'opacity 2.5s ease-in';
         document.body.style.overflow = 'hidden';
         
-        // Trigger fade-in
         setTimeout(function() {
             modal.style.opacity = '1';
         }, 50);

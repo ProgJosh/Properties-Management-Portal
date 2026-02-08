@@ -21,6 +21,7 @@
                             <th>Contact</th>
                             <th>Booking date</th>
                             <th>Amount</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,7 +48,14 @@
                             <td>  {{ @$book->phone }} </td>
                             
                             <td> {{ $book->created_at }} </td>
-                            <td> ${{ $book->payments->sum('amount') }}</td>
+                            <td> ₱{{ number_format($book->payments->sum('amount'), 2) }}</td>
+                            <td>
+                                @if($book->status === 'accepted')
+                                    <span class="badge badge-success">Accepted</span>
+                                @else
+                                    <span class="badge badge-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>
              
                                 <a href="{{ route('admin.booked.show', $book->id)}}" class="btn btn-primary btn-sm">Details</a>

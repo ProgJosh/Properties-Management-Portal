@@ -68,8 +68,8 @@
                                                  {{ $booked->property->name }}
                                                 </td>
                                                 <td> {{  $booked->payments[0]->payment_method}} </td>
-                                                <td> ${{ $booked->payments[0]->amount }}.00 </td>
-                                                <td class="text-right">$ {{  $booked->payments[0]->amount }}.00</td>
+                                                <td> ₱{{ number_format($booked->payments[0]->amount, 2) }} </td>
+                                                <td class="text-right">₱{{ number_format($booked->payments[0]->amount, 2) }}</td>
                                             </tr>
                                              
                                             
@@ -96,7 +96,7 @@
                                 <div class="col-6">
                                     <div class="float-right">
                                          
-                                        <h4>Paid Amount:  ${{$booked->payments[0]->amount}}.00</h4>
+                                        <h4>Paid Amount:  ₱{{ number_format($booked->payments[0]->amount, 2) }}</h4>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -104,6 +104,16 @@
 
                             <div class="hidden-print mt-4 mb-4">
                                 <div class="text-right d-print-none">
+                                    @if(!isset($booked->status) || $booked->status === 'pending' || $booked->status === null)
+                                    <form action="{{ route('admin.booked.accept', $booked->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to accept this booking request?');">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">
+                                            <i class="fa fa-check mr-1"></i> Accept Booking
+                                        </button>
+                                    </form>
+                                    @elseif($booked->status === 'accepted')
+                                    <span class="badge badge-success" style="font-size: 1rem; padding: 0.5rem 1rem; margin-right: 1rem;">✓ Booking Accepted</span>
+                                    @endif
                                     <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print mr-1"></i> Print</a>
                                     
                                 </div>

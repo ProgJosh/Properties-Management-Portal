@@ -101,6 +101,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/booked', [BookedController::class, 'booked'])->name('booked')->middleware(['auth:admin']);
     Route::get('booked/{id}', [BookedController::class, 'show'])->name('booked.show')->middleware(['auth:admin']);
+    Route::post('booked/{id}/accept', [BookedController::class, 'accept'])->name('booked.accept')->middleware(['auth:admin']);
 
     Route::get('earnings', [EarningsController::class, 'index'])->name('earnings')->middleware(['auth:admin']);
     Route::post('withdraw', [EarningsController::class, 'withdraw'])->name('withdraw')->middleware(['auth:admin']);
@@ -146,6 +147,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('lease-agreements', [LeaseAgreementController::class, 'tenantList'])->name('tenant.lease-agreements.list');
     Route::get('lease-agreements/{agreement}', [LeaseAgreementController::class, 'show'])->name('lease-agreements.show');
     Route::post('lease-agreements/{agreement}/sign', [LeaseAgreementController::class, 'signByTenant'])->name('lease-agreements.sign-tenant');
+    Route::get('lease-agreements/{agreement}/print', [LeaseAgreementController::class, 'print'])->name('lease-agreements.print');
     Route::get('lease-agreements/{agreement}/download', [LeaseAgreementController::class, 'download'])->name('lease-agreements.download');
     Route::post('lease-agreements/{agreement}/acknowledge', [LeaseAgreementController::class, 'acknowledge'])->name('lease-agreements.acknowledge');
 });

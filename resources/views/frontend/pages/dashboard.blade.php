@@ -69,7 +69,7 @@
                                                     <th scope="col"  >#</th>
                                                     <th scope="col"   style="text-align: left !important">Property details</th>
                                                     <th scope="col"   style="text-align: left !important">Booking details</th>
-                                                  
+                                                    <th scope="col"   style="text-align: center !important">Status</th>
                                                    
                                                 </tr>
                                             </thead>
@@ -98,17 +98,26 @@
 
                                                         Adults : {{ $booking->adults }} <br>
                                                         Kids : {{ $booking->kids }} <br>
-                                                    <td>
-
-                                                     
-                                             
-                                                    
-                                                     
-                                                  
+                                                    </td>
+                                                    <td style="text-align: center !important">
+                                                        @if($booking->status === 'accepted')
+                                                            <span class="badge badge-success" style="padding: 8px 15px; font-size: 13px; background-color: #28a745;">
+                                                                <i class="fas fa-check-circle"></i> Accepted
+                                                            </span>
+                                                        @elseif($booking->status === 'pending')
+                                                            <span class="badge badge-warning" style="padding: 8px 15px; font-size: 13px; background-color: #ffc107; color: #000;">
+                                                                <i class="fas fa-clock"></i> Pending
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-secondary" style="padding: 8px 15px; font-size: 13px;">
+                                                                <i class="fas fa-question-circle"></i> Unknown
+                                                            </span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @empty
                                                 <tr>
-                                                    <td colspan="9" class="text-center">No bookings available.</td>
+                                                    <td colspan="4" class="text-center">No bookings available.</td>
                                                 </tr>
                                                 @endforelse
                                             </tbody>
@@ -241,7 +250,7 @@
                                             <div class="col-sm-6 col-xs-6">
                                                 <label for="Email" class="form-label">Email</label>
                                                 <input type="email" class="common-input" placeholder="Enter Your Email"
-                                                    value="{{ Auth::user()->email }}" readonly>
+                                                    name="email" value="{{ Auth::user()->email }}" id="email" required>
                                             </div>
                                             <div class="col-sm-6 col-xs-6">
                                                 <label for="phone" class="form-label">Phone</label>

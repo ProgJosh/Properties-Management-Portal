@@ -225,7 +225,7 @@
 
             <!-- CTA Button -->
             <div style="text-align: center;">
-                <a href="{{ route('tenant.payments.index') }}" class="cta-button">Make Payment Now</a>
+                <a href="{{ route('dashboard') }}" class="cta-button">View My Dashboard</a>
             </div>
 
             <!-- Additional Message -->

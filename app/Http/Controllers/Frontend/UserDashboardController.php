@@ -13,7 +13,7 @@ class UserDashboardController extends Controller
 {
     public function index()
     {   
-        $user = User::find(auth()->user()->id)->load('userDetails');
+        $user = User::find(auth()->user()->id)->load(['userDetails', 'booking.property.landlord', 'booking.payments']);
        
         return view('frontend.pages.dashboard' , compact('user'));
     }
@@ -24,6 +24,7 @@ class UserDashboardController extends Controller
         // Validate the request data
         $validated = $request->validate([
             'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
             'phone' => 'required',
             'address' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
@@ -44,6 +45,7 @@ class UserDashboardController extends Controller
         // Update user basic info
         $user = User::find(Auth::id());
         $user->name = $request->name;
+        $user->email = $request->email;
         $user->save();
 
         // Update user details
