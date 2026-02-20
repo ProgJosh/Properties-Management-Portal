@@ -27,11 +27,7 @@ The Properties Management Portal is a comprehensive platform designed for managi
  -  Informing of commission cost during land lord sign up/registration
  -  Monthly payment reminder
  -  Lease agreement
-<<<<<<< HEAD
-lease or existing contract on the tenant and landlord side should not be deleted until the end of agreement
-=======
 * lease or existing contract on the tenant and landlord side should not be deleted until the end of agreement
->>>>>>> bfc1bd71665fc15cb81dabdefbc72ce341d40975
  -  USER VALIDATION- valid ID requirements for sign up (included in the process of lease contract)
  -  Localized Address (Street, Purok, Barangay Level)
  - Uploading Thumbnail/Gallery photo for landlord the picture size must be 25 mb (file size or dimensional)
