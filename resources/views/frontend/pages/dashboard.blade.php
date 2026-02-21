@@ -70,6 +70,7 @@
                                                     <th scope="col"   style="text-align: left !important">Property details</th>
                                                     <th scope="col"   style="text-align: left !important">Booking details</th>
                                                     <th scope="col"   style="text-align: center !important">Status</th>
+                                                    <th scope="col"   style="text-align: center !important">Action</th>
                                                    
                                                 </tr>
                                             </thead>
@@ -114,6 +115,21 @@
                                                             </span>
                                                         @endif
                                                     </td>
+                                                    <td style="text-align:center !important; vertical-align: middle;">
+                                                       @php $checkout = \Carbon\Carbon::parse($booking->checkout); @endphp
+                                                       @if($checkout->isFuture())
+                                                           <button class="btn btn-secondary" disabled
+                                                               title="Lease/contract active until {{ $checkout->format('Y-m-d') }}">
+                                                               Cannot delete
+                                                           </button>
+                                                       @else
+                                                           <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" onsubmit="return confirm('Delete booking?')">
+                                                               @csrf
+                                                               @method('DELETE')
+                                                               <button class="btn btn-danger">Delete</button>
+                                                           </form>
+                                                       @endif
+                                                   </td>
                                                 </tr>
                                                 @empty
                                                 <tr>
