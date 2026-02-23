@@ -27,6 +27,9 @@ Route::get('booking/{id}', [BookingController::class, 'index'])->name('booking')
 Route::post('/checkout', [BookingController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::get('/thankyou', [BookingController::class, 'thankyou'])->name('thankyou');
 
+// add the delete route for user bookings
+Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('booking.destroy')->middleware('auth');
+
 Route::post('user/profile/update', [UserDashboardController::class, 'updateProfile'])->name('user.profile.update')->middleware('auth');
 Route::post('user/password/update', [UserDashboardController::class, 'updatePassword'])->name('user.password.update')->middleware('auth');
 Route::get('user/logout', [UserDashboardController::class, 'logout'])->name('user.logout');
@@ -52,6 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.store');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login');
 
     Route::get('profile', [LoginController::class, 'profile'])->name('profile')->middleware(['auth:admin']);
     Route::get('profile/personal-info', [LoginController::class, 'profilePersonalInfo'])->name('profile.personal-info')->middleware(['auth:admin']);
