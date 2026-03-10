@@ -82,7 +82,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/property/delete/{id}', [PropertiesController::class, 'delete'])->name('property.delete')->middleware(['auth:admin']);
     Route::get('/property/{id}', [PropertiesController::class, 'show'])->name('property.show')->middleware(['auth:admin']);
     Route::post('/property/status', [PropertiesController::class, 'ajaxStatusUpdate'])->name('property.status');
-    Route::resource('properties', PropertyController::class);
 
 
 
