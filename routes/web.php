@@ -21,6 +21,7 @@ require_once __DIR__.'/jetstream.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/footer-inquiry', [ContactController::class, 'sendFooterInquiry'])->name('footer.inquiry');
 Route::get('/listings', [HomeController::class, 'properties'])->name('properties');
 Route::get('/properties', function (\Illuminate\Http\Request $request) {
     $queryString = $request->getQueryString();

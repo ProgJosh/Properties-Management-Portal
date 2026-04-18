@@ -45,6 +45,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{ route('admin.messages.index') }}">
+                        <i class="fe-message-square"></i>
+                        <span> Messages </span>
+                    </a>
+                </li>
+
 
                 <li>
                     <a href="javascript: void(0);">

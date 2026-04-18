@@ -82,6 +82,16 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
+    public function conversations()
+    {
+        return $this->hasMany(Conversation::class, 'tenant_id');
+    }
+
+    public function chatbotInquiries()
+    {
+        return $this->hasMany(ChatbotInquiry::class);
+    }
+
     /**
      * Check if user has submitted ID for verification
      */
