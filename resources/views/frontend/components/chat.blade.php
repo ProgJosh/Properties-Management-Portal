@@ -61,13 +61,16 @@
         position: fixed;
         right: 24px;
         bottom: 178px;
-        width: min(360px, calc(100vw - 32px));
-        max-height: min(560px, calc(100vh - 120px));
+        width: min(520px, calc(100vw - 48px));
+        height: min(720px, calc(100vh - 210px));
+        max-height: min(720px, calc(100vh - 210px));
         background: #fff;
         border-radius: 20px;
         box-shadow: 0 24px 60px rgba(17, 24, 39, 0.18);
         overflow: hidden;
         z-index: 10001;
+        display: flex;
+        flex-direction: column;
     }
 
     .inquiry-chatbot__panel[hidden] {
@@ -91,21 +94,22 @@
     }
 
     .inquiry-chatbot__messages {
-        max-height: 320px;
+        flex: 1 1 auto;
+        min-height: 0;
         overflow-y: auto;
-        padding: 16px;
+        padding: 18px;
         background: #fff8f2;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 14px;
     }
 
     .inquiry-chatbot__bubble {
-        max-width: 85%;
-        padding: 12px 14px;
-        border-radius: 16px;
+        max-width: 88%;
+        padding: 14px 16px;
+        border-radius: 18px;
         line-height: 1.5;
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .inquiry-chatbot__bubble--bot {
@@ -124,7 +128,7 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 10px;
-        padding: 14px;
+        padding: 16px;
         background: #fff;
         border-top: 1px solid #f1f1f1;
         align-items: stretch;
@@ -132,10 +136,11 @@
 
     .inquiry-chatbot__form input {
         min-width: 0;
+        min-height: 58px;
     }
 
     .inquiry-chatbot__form .btn {
-        min-width: 96px;
+        min-width: 112px;
         white-space: nowrap;
         display: inline-flex;
         align-items: center;
@@ -161,7 +166,8 @@
             left: 12px;
             bottom: 168px;
             width: auto;
-            max-height: min(70vh, calc(100vh - 110px));
+            height: min(72vh, calc(100vh - 190px));
+            max-height: min(72vh, calc(100vh - 190px));
             border-radius: 18px;
         }
 
