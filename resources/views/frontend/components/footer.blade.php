@@ -61,15 +61,41 @@
                     <h6 class="footer-item__title">Have a Question?</h6>
                     <p class="footer-item__desc">Feel free to contact us anytime! </p>
 
-                    <form action="#" class="mt-4 subscribe-box">
-                        <div class="input-group">
+                    <form action="{{ route('footer.inquiry') }}" method="POST" class="mt-4 subscribe-box footer-subscribe-box">
+                        @csrf
+                        <div class="footer-inquiry-grid">
                             <input type="text"
-                                class="form-control common-input common-input--md text-white"
-                                placeholder="Your Email Address">
+                                class="form-control common-input common-input--md text-white footer-subscribe-input"
+                                placeholder="Your Name"
+                                name="name"
+                                value="{{ old('name') }}"
+                                required>
+                            <input type="email"
+                                class="form-control common-input common-input--md text-white footer-subscribe-input"
+                                placeholder="Your Email Address"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required>
+                            <textarea
+                                class="form-control common-input common-input--md text-white footer-subscribe-input footer-subscribe-textarea"
+                                placeholder="How can we help you?"
+                                name="message"
+                                rows="4"
+                                required>{{ old('message') }}</textarea>
                             <button type="submit"
-                                class="px-4 input-group-text bg--gradient border-0 text-white"><i
-                                    class="fas fa-paper-plane"></i></button>
+                                class="px-4 input-group-text bg--gradient border-0 text-white footer-subscribe-button">
+                                <i class="fas fa-paper-plane me-2"></i>Send Inquiry
+                            </button>
                         </div>
+                        @error('name')
+                            <span class="text-warning d-block mt-2">{{ $message }}</span>
+                        @enderror
+                        @error('email')
+                            <span class="text-warning d-block mt-2">{{ $message }}</span>
+                        @enderror
+                        @error('message')
+                            <span class="text-warning d-block mt-2">{{ $message }}</span>
+                        @enderror
                     </form>
 
                     <ul class="social-list">
@@ -103,3 +129,57 @@
         </div>
     </div>
 </div>
+
+@push('css')
+    <style>
+        .footer-subscribe-group {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .footer-inquiry-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .footer-subscribe-input {
+            min-width: 0;
+            width: 100%;
+        }
+
+        .footer-subscribe-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .footer-subscribe-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            width: 100%;
+            min-height: 54px;
+            border-radius: 12px !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .footer-subscribe-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-subscribe-input {
+                border-radius: 12px !important;
+            }
+
+            .footer-subscribe-button {
+                width: 100%;
+                min-height: 52px;
+                border-radius: 12px !important;
+            }
+        }
+    </style>
+@endpush
