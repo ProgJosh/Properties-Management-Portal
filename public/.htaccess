@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Let the frontend /properties route reach Laravel even if a physical
+    # public/properties directory exists on disk.
+    RewriteRule ^properties$ index.php [L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

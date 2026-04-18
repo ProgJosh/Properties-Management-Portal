@@ -47,6 +47,9 @@
                                 aria-controls="v-pills-changePassword" aria-selected="false"> <span class="icon"> <i
                                         class="fas fa-lock"></i></span> Change Password</button>
 
+                            <a href="{{ route('messages.index') }}" class="nav-link"> <span class="icon"> <i
+                                        class="fas fa-comments"></i></span> Messages</a>
+
 
                             <a href="{{ route('user.logout') }}" class="nav-link"> <span class="icon"> <i
                                         class="fas fa-sign-out-alt"></i></span> Logout</a>
@@ -129,6 +132,10 @@
                                                                <button class="btn btn-danger">Delete</button>
                                                            </form>
                                                        @endif
+                                                       <form action="{{ route('messages.start', $booking->property) }}" method="POST" class="mt-2">
+                                                           @csrf
+                                                           <button class="btn btn-outline-primary">Message Landlord</button>
+                                                       </form>
                                                    </td>
                                                 </tr>
                                                 @empty

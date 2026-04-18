@@ -27,6 +27,7 @@ class HomeController extends Controller
         // Validate the request parameters
         request()->validate([
             'barangay' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255',
             'accommodation' => 'nullable|integer|min:0',
         ]);
@@ -40,8 +41,9 @@ class HomeController extends Controller
      
     
         // Apply barangay filter if it exists
-        if (request()->has('barangay') && request('barangay') !== 'all') {
-            $barangay = trim(request('barangay'));
+        $barangay = trim((string) ($request->input('barangay') ?? $request->input('location', '')));
+
+        if ($barangay !== '' && $barangay !== 'all') {
             // Log the barangay being searched for debugging
             \Illuminate\Support\Facades\Log::info('Searching barangay: ' . $barangay);
             
@@ -70,20 +72,20 @@ class HomeController extends Controller
 
         
         // Apply type filter if it exists
-        if (request()->has('type') && request('type') !== 'all') {
-            $query->where('type', request('type'));
+        if ($request->filled('type') && $request->input('type') !== 'all') {
+            $query->where('type', $request->input('type'));
         }
     
         // Apply accommodation filter if it exists
-        if (request()->has('accommodation')) {
-            $query->where('accommodation', '>', request('accommodation'));
+        if ($request->filled('accommodation')) {
+            $query->where('accommodation', '>', (int) $request->input('accommodation'));
         }
 
 
-        if (request()->has('checkin') && request()->has('checkout')) {
+        if ($request->filled('checkin') && $request->filled('checkout')) {
     
-            $checkin = request('checkin');
-            $checkout = request('checkout');
+            $checkin = $request->input('checkin');
+            $checkout = $request->input('checkout');
             
             // Ensure checkin and checkout are valid dates
             if (strtotime($checkin) && strtotime($checkout)) {
@@ -99,7 +101,7 @@ class HomeController extends Controller
         }
     
         // Paginate the results
-        $properties = $query->latest()->paginate(10); // Adjust the number as needed
+        $properties = $query->latest()->paginate(10)->withQueryString(); // Adjust the number as needed
        
         // Return the view with the properties
         return view('frontend.pages.properties', compact('properties'));

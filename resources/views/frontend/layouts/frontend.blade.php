@@ -98,6 +98,9 @@
                                 <a href="{{route('dashboard')}}" class="nav-submenu__link"> Profile</a>
                             </li>
                             <li class="nav-submenu__item">
+                                <a href="{{route('messages.index')}}" class="nav-submenu__link"> Messages</a>
+                            </li>
+                            <li class="nav-submenu__item">
                                 <a href="{{route('user.logout')}}" class="nav-submenu__link"> Logout</a>
                             </li>
                         </ul>
@@ -197,6 +200,8 @@
         <!-- ==================== Footer Two End Here ==================== -->
 
     </main>
+
+    @include('frontend.components.chat')
 
     <!-- Jquery js -->
     <script src="{{ asset('frontend/assets/js/jquery-3.7.1.min.js') }}"></script>

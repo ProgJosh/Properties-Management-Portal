@@ -41,6 +41,9 @@
                                 <li class="nav-submenu__item">
                                     <a href="{{route('dashboard')}}" class="nav-submenu__link"> Profile </a>
                                 </li>
+                                <li class="nav-submenu__item">
+                                    <a href="{{route('messages.index')}}" class="nav-submenu__link"> Messages </a>
+                                </li>
                                 <li class="nav-submenu__item ">
                                     <a href="{{route('user.logout')}}" class="nav-submenu__link">Logout</a>
                              

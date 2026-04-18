@@ -13,19 +13,35 @@ use App\Http\Controllers\Admin\EarningsController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\LeaseAgreementController;
+use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\Frontend\ConversationController as FrontendConversationController;
+use App\Http\Controllers\Admin\ConversationController as AdminConversationController;
 
 require_once __DIR__.'/jetstream.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/properties', [HomeController::class, 'properties'])->name('properties');
+Route::get('/listings', [HomeController::class, 'properties'])->name('properties');
+Route::get('/properties', function (\Illuminate\Http\Request $request) {
+    $queryString = $request->getQueryString();
+    $target = '/listings' . ($queryString ? '?' . $queryString : '');
+
+    return redirect($target, 301);
+})->name('properties.legacy');
 Route::get('/property/{id}', [HomeController::class, 'property'])->name('property');
 
-Route::get('properties/{type}', [HomeController::class, 'propertyByType'])->name('propertyByType');
+Route::get('listings/{type}', [HomeController::class, 'propertyByType'])->name('propertyByType');
+Route::get('properties/{type}', function (string $type, \Illuminate\Http\Request $request) {
+    $queryString = $request->getQueryString();
+    $target = '/listings/' . $type . ($queryString ? '?' . $queryString : '');
+
+    return redirect($target, 301);
+})->name('propertyByType.legacy');
 Route::get('booking/{id}', [BookingController::class, 'index'])->name('booking')->middleware('auth');
 
 Route::post('/checkout', [BookingController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::get('/thankyou', [BookingController::class, 'thankyou'])->name('thankyou');
+Route::post('/chatbot/message', [ChatbotController::class, 'reply'])->name('chatbot.reply');
 
 // add the delete route for user bookings
 Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('booking.destroy')->middleware('auth');
@@ -33,6 +49,10 @@ Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->nam
 Route::post('user/profile/update', [UserDashboardController::class, 'updateProfile'])->name('user.profile.update')->middleware('auth');
 Route::post('user/password/update', [UserDashboardController::class, 'updatePassword'])->name('user.password.update')->middleware('auth');
 Route::get('user/logout', [UserDashboardController::class, 'logout'])->name('user.logout');
+Route::get('/messages', [FrontendConversationController::class, 'index'])->name('messages.index')->middleware('auth');
+Route::post('/messages/start/{property}', [FrontendConversationController::class, 'start'])->name('messages.start')->middleware('auth');
+Route::get('/messages/{conversation}', [FrontendConversationController::class, 'show'])->name('messages.show')->middleware('auth');
+Route::post('/messages/{conversation}', [FrontendConversationController::class, 'store'])->name('messages.store')->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
@@ -82,6 +102,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/property/delete/{id}', [PropertiesController::class, 'delete'])->name('property.delete')->middleware(['auth:admin']);
     Route::get('/property/{id}', [PropertiesController::class, 'show'])->name('property.show')->middleware(['auth:admin']);
     Route::post('/property/status', [PropertiesController::class, 'ajaxStatusUpdate'])->name('property.status');
+    Route::get('/messages', [AdminConversationController::class, 'index'])->name('messages.index')->middleware(['auth:admin']);
+    Route::get('/messages/{conversation}', [AdminConversationController::class, 'show'])->name('messages.show')->middleware(['auth:admin']);
+    Route::post('/messages/{conversation}', [AdminConversationController::class, 'store'])->name('messages.store')->middleware(['auth:admin']);
 
 
 

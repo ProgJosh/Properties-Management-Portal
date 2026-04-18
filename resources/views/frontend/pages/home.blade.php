@@ -37,7 +37,8 @@
                             aria-labelledby="pills-rent-tab" tabindex="0">
 
                             <div class="filter">
-                                <form action="{{ route('properties') }}" method="GET">
+                                <form action="{{ route('properties') }}" method="GET"
+                                    onsubmit="this.querySelectorAll('input[name], select[name]').forEach(function(field){ if ((field.value || '').trim() === '') { field.removeAttribute('name'); } });">
                                     <div class="row gy-sm-4 gy-3">
                                         <div class="col-lg-6 col-sm-6 col-xs-6">
                                             <input type="text" name="keyword" class="common-input"

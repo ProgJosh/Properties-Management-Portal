@@ -53,7 +53,17 @@
                             </div>
 
                             <div class="col-md-4">
-                               <a href="{{route('booking', $property->id)}}" class="btn btn-main text-uppercase float-end"> Rent Now</a>
+                               <div class="d-flex flex-column gap-2">
+                                   <a href="{{route('booking', $property->id)}}" class="btn btn-main text-uppercase float-end"> Rent Now</a>
+                                   @auth
+                                       <form action="{{ route('messages.start', $property) }}" method="POST" class="float-end">
+                                           @csrf
+                                           <button type="submit" class="btn btn-outline-main text-uppercase w-100">Message Landlord</button>
+                                       </form>
+                                   @else
+                                       <a href="{{ route('login') }}" class="btn btn-outline-main text-uppercase float-end">Login to Message</a>
+                                   @endauth
+                               </div>
                             </div>
                         </div>
 
