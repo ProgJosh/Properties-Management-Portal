@@ -39,11 +39,18 @@ COPY . .
 # Copy frontend build
 COPY --from=frontend /app/public/build ./public/build
 
+# Create required Laravel folders first
+RUN mkdir -p bootstrap/cache storage/framework \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache
+
+# Set proper permissions BEFORE composer install
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
-
-# Set permissions
-RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Clear cache
 RUN php artisan config:clear && \
