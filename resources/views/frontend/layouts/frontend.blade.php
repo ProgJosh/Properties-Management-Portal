@@ -8,7 +8,7 @@
     <!-- Title -->
     <title> @yield('title') </title>
     <!-- Front-End - Home Page Web Icon -->
-    <link rel="shortcut icon" href="{{ asset('frontend\assets/images/logo/system-logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/system-logo.png') }}">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery-ui.css') }}">
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     @stack('css')
 
 </head>
@@ -203,6 +203,15 @@
 
     @include('frontend.components.chat')
 
+    <script>
+        window.addEventListener('load', function () {
+            var preloader = document.querySelector('.preloader');
+            if (preloader) {
+                preloader.style.display = 'none';
+            }
+        });
+    </script>
+
     <!-- Jquery js -->
     <script src="{{ asset('frontend/assets/js/jquery-3.7.1.min.js') }}"></script>
 
@@ -219,14 +228,14 @@
     <!-- Image Uploader -->
     <script src="{{ asset('frontend/assets/js/image-uploader.min.js') }}"></script>
     <!-- jQuery Ui Css -->
-    <script src="{{ asset('frontend/frontend/assets/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}"></script>
     <!-- ApexChart Js -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- main js -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
 
