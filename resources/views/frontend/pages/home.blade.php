@@ -117,7 +117,7 @@
         <div class="row gy-4 align-items-center">
             <div class="col-lg-6">
                 <div class="about-thumb">
-                    <img src="{{ asset('frontend\assets/images/thumbs/guagua.jfif') }}" alt="">
+                    <img src="{{ asset('frontend/assets/images/thumbs/guagua.jfif') }}" alt="">
                     <div class="client-statistics flx-align">
                         <span class="client-statistics__icon">
                             <i class="fas fa-users text-gradient"></i>
@@ -170,7 +170,6 @@
             <div class="section-heading__inner">
                 <span class="section-heading__subtitle"> <span class="text-gradient fw-semibold">Latest
                                                 Apartment</span> </span>
-</span> </span>
                 <h2 class="section-heading__title">The Perfect Apartment For You</h2>
             </div>
             <a href="{{ route('properties')}}" class="btn btn-main">View More <span class="icon-right"> <i
@@ -178,6 +177,13 @@
         </div>
 
         <div class="row gy-4">
+            @if ($properties->isEmpty())
+            <div class="col-12">
+                <div class="alert alert-light border text-center mb-0">
+                    Listings are temporarily unavailable. Please check again in a moment.
+                </div>
+            </div>
+            @endif
 
             @foreach ($properties as $property)
             <div class="col-lg-4 col-sm-6">
@@ -220,10 +226,12 @@
            
             
         </div>
+        @if ($properties->isNotEmpty())
         <div class="text-center property__btn">
             <a href="{{ route('properties')}}" class="btn btn-main"> Sell All Listing <span class="icon-right"> <i
                         class="fas fa-arrow-right"></i> </span> </a>
         </div>
+        @endif
     </div>
 </section>
 <!-- ============================ property End ==================== -->
@@ -334,6 +342,7 @@
                 Portfolio</span> </span>
         <h2 class="section-heading__title">Optimum Apartments Experts</h2>
     </div>
+    @if ($portfolios->isNotEmpty())
     <div class="portfolio-wrapper">
         
         @foreach ($portfolios as $portfolio)
@@ -358,6 +367,13 @@
         </div>
         @endforeach
     </div>
+    @else
+    <div class="container container-two">
+        <div class="alert alert-light border text-center mb-0">
+            No portfolio listings available right now.
+        </div>
+    </div>
+    @endif
 </section>
 <!-- ========================= Portfolio Section End ==================== -->
 <!-- ==================== Testimonials Section Start ==================== -->
@@ -504,7 +520,14 @@
                         class="fas fa-plus"></i> </span> </a>
         </div>
         <div class="row gy-4">
-
+            @if ($newProperties->isEmpty())
+            <div class="col-12">
+                <div class="alert alert-light border text-center mb-0">
+                    No latest listings to show yet.
+                </div>
+            </div>
+            @endif
+            
             @foreach ($newProperties as  $property)
                 
             
