@@ -163,6 +163,7 @@
 </section>
 <!-- ======================== About Section End ========================== -->
 <!-- ============================ property Start ==================== -->
+@if ($properties->isNotEmpty())
 <section class="property padding-y-120">
     <div class="container container-two">
 
@@ -177,13 +178,6 @@
         </div>
 
         <div class="row gy-4">
-            @if ($properties->isEmpty())
-            <div class="col-12">
-                <div class="alert alert-light border text-center mb-0">
-                    Listings are temporarily unavailable. Please check again in a moment.
-                </div>
-            </div>
-            @endif
 
             @foreach ($properties as $property)
             <div class="col-lg-4 col-sm-6">
@@ -226,14 +220,21 @@
            
             
         </div>
-        @if ($properties->isNotEmpty())
         <div class="text-center property__btn">
             <a href="{{ route('properties')}}" class="btn btn-main"> Sell All Listing <span class="icon-right"> <i
                         class="fas fa-arrow-right"></i> </span> </a>
         </div>
-        @endif
     </div>
 </section>
+@else
+<section class="property padding-y-60">
+    <div class="container container-two">
+        <div class="alert alert-light border text-center mb-0">
+            Listings are temporarily unavailable. Please check again in a moment.
+        </div>
+    </div>
+</section>
+@endif
 <!-- ============================ property End ==================== -->
 <!-- ======================= Property Section Start ================================== -->
 <section class="property-type padding-y-120">
