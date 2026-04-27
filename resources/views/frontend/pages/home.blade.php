@@ -48,13 +48,6 @@
                                         <div class="col-lg-3 col-sm-6 col-xs-6">
                                             <div class="select-has-icon icon-black">
 
-                                                @php
-                                                $propertyTypes = App\Models\Property::all();
-                                                $types = array_unique($propertyTypes->pluck('type')->toArray());
-                
-                                            @endphp
-
-                                            
                                                 <select class="select common-input" name="barangay">
                                                     <option value="" disabled {{ !request('barangay') ? 'selected' : '' }}>Barangay</option>
                                                     <optgroup label="POBLACION AREA">
@@ -343,10 +336,6 @@
     </div>
     <div class="portfolio-wrapper">
         
-        @php
-            $portfolios = App\Models\Property::latest()->where('status', 1)->skip(6)->take(5)->get();
-        @endphp
-        
         @foreach ($portfolios as $portfolio)
         <div class="portfolio-item">
             <div class="portfolio-item__thumb">
@@ -515,10 +504,6 @@
                         class="fas fa-plus"></i> </span> </a>
         </div>
         <div class="row gy-4">
-
-            @php
-            $newProperties = \App\Models\Property::oldest()->where('status', 1)->take(3)->get();
-            @endphp
 
             @foreach ($newProperties as  $property)
                 

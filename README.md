@@ -93,3 +93,41 @@ php artisan serve
 ```
 10. Visit http://localhost:8000 in your browser.
 11. Visit http://localhost:8000/admin/login in your browser to login as admin.
+
+## Render Deployment (Docker)
+
+If you see `SQLSTATE[HY000] [2002] Connection refused`, your app is running but Laravel is trying to connect to a database host that is not reachable (often `127.0.0.1` inside Render).
+
+1. Create a Render Web Service from this repository (Docker deploy).
+2. Set these required environment variables in Render:
+```bash
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://<your-service>.onrender.com
+APP_KEY=<your-generated-app-key>
+SESSION_DRIVER=file
+CACHE_STORE=file
+QUEUE_CONNECTION=sync
+```
+3. Configure one database option:
+```bash
+# Option A: MySQL/MariaDB
+DB_CONNECTION=mysql
+DB_HOST=<mysql-host>
+DB_PORT=3306
+DB_DATABASE=<db-name>
+DB_USERNAME=<db-user>
+DB_PASSWORD=<db-password>
+
+# Option B: URL-based database config (supported in this project)
+DATABASE_URL=<your-db-url>
+# Example: postgres://... or mysql://...
+```
+4. Run migrations after deploy:
+```bash
+php artisan migrate --force
+```
+5. If config was cached from old values, clear it once:
+```bash
+php artisan optimize:clear
+```

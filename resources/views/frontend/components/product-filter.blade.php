@@ -103,21 +103,12 @@
 
             
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-
-                @php
-                    $propertyTypes = App\Models\Property::all();
-                    $types = array_unique($propertyTypes->pluck('type')->toArray());
-
-                @endphp
                 <label for="type"> Type </label>
                 <div class="select-has-icon">
                     
                     <select class="form-select common-input common-input--withLeftIcon pill text-gray-800" name="type">
                         <option value="" {{ !request('type') ? 'selected' : '' }}>Type</option>
-                        <option value="apartment" {{ request('type') == 'apartment' ? 'selected' : '' }}>Apartment</option>
-                        <option value="boarding housee " {{ request('type') == 'boarding housee ' ? 'selected' : '' }}>Boarding House</option>
-                        <option value="dormitory" {{ request('type') == 'dormitory' ? 'selected' : '' }}>Dormitory</option>
-                        @foreach ($types as $type)
+                        @foreach (($types ?? []) as $type)
                             <option value="{{ $type }}" {{ request('type') == $type ? 'selected' : '' }}>{{ $type }}</option>
                         @endforeach
                     </select>
@@ -138,8 +129,12 @@
         </div>
     </form>
     <div class="property-filter__bottom flx-between gap-2">
-        <span class="property-filter__text font-18 text-gray-800">Showing {{ $properties->firstItem() }} -
-            {{ $properties->lastItem() }} of {{ $properties->total() }} results</span>
+        @if ($properties->total() > 0)
+            <span class="property-filter__text font-18 text-gray-800">Showing {{ $properties->firstItem() }} -
+                {{ $properties->lastItem() }} of {{ $properties->total() }} results</span>
+        @else
+            <span class="property-filter__text font-18 text-gray-800">Showing 0 results</span>
+        @endif
         <div class="d-flex align-items-center gap-2">
             <div class="list-grid d-flex align-items-center gap-2 me-4">
                 <button class="list-grid__button grid-button active text-body"><i
