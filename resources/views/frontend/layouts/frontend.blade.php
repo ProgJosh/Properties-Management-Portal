@@ -105,7 +105,7 @@
                             </li>
                         </ul>
                         @else
-                        <a href="javascript:void(0)" class="nav-menu__link">Login</a>
+                        <a href="{{ route('login') }}" class="nav-menu__link">Login</a>
                         @endif
                     </li>
                  
