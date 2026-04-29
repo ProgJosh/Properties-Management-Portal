@@ -52,6 +52,38 @@
     color: hsl(var(--heading-color));
 }
 
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--gray-100);
+    color: hsl(var(--heading-color));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 0 0 42px;
+    transition: .2s linear;
+
+    &:hover {
+        border-color: hsl(var(--main));
+        color: hsl(var(--main));
+    }
+
+    &__icon {
+        position: absolute;
+        font-size: 22px;
+        line-height: 1;
+        transition: .2s linear;
+    }
+
+    &__icon--sun {
+        opacity: 0;
+        transform: rotate(-90deg) scale(.7);
+    }
+}
+
 .contact-number {
     padding-right: clampCal(12, 32);
     margin-right: clampCal(12, 32);

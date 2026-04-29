@@ -1,10 +1,45 @@
 (function ($) {
   "use strict";
+
+  var themeStorageKey = 'pmp-theme';
+
+  function currentThemeIsDark() {
+    return document.documentElement.getAttribute('data-theme') === 'dark';
+  }
+
+  function updateThemeToggleState() {
+    var isDark = currentThemeIsDark();
+    $('.theme-toggle')
+      .attr('aria-pressed', isDark ? 'true' : 'false')
+      .attr('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode')
+      .attr('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+
+    try {
+      localStorage.setItem(themeStorageKey, theme === 'dark' ? 'dark' : 'light');
+    } catch (error) {
+      // localStorage can be unavailable in private or restricted browser contexts.
+    }
+
+    updateThemeToggleState();
+  }
   
   // ==========================================
   //      Start Document Ready function
   // ==========================================
   $(document).ready(function () {
+    updateThemeToggleState();
+
+    $('.theme-toggle').on('click', function () {
+      setTheme(currentThemeIsDark() ? 'light' : 'dark');
+    });
     
   // ============== Mobile Menu Sidebar & Offcanvas Js Start ========
   $('.toggle-mobileMenu').on('click', function () {

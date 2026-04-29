@@ -63,6 +63,12 @@
                 <button type="button" class="offcanvas-btn d-lg-block d-none">
                      
                 </button>
+
+                <button type="button" class="theme-toggle ms-3" aria-label="Switch to dark mode" aria-pressed="false"
+                    title="Switch to dark mode">
+                    <i class="las la-moon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></i>
+                    <i class="las la-sun theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></i>
+                </button>
                 
                 <button type="button" class="toggle-mobileMenu d-lg-none ms-3"> <i class="las la-bars"></i>
                 </button>

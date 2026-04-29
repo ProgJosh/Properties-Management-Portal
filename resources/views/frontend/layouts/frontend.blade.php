@@ -9,6 +9,17 @@
     <title> @yield('title') </title>
     <!-- Front-End - Home Page Web Icon -->
     <link rel="shortcut icon" href="{{ asset('frontend/assets/images/logo/system-logo.png') }}">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('pmp-theme') === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (error) {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        })();
+    </script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">

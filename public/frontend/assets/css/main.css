@@ -9542,4 +9542,229 @@ p.account-alert:last-child {
     }
 }
 /* ============================ Pricing Plan Css End ================================ */
+/* ========================= Theme Toggle Css Start ========================= */
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background-color: var(--gray-100);
+    color: hsl(var(--heading-color));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 0 0 42px;
+    transition: 0.2s linear;
+}
+
+.theme-toggle:hover {
+    border-color: hsl(var(--main));
+    color: hsl(var(--main));
+}
+
+.theme-toggle__icon {
+    position: absolute;
+    font-size: 22px;
+    line-height: 1;
+    transition: 0.2s linear;
+}
+
+.theme-toggle__icon--sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.7);
+}
+/* ========================= Theme Toggle Css End ========================= */
+
+/* ========================= Dark Mode Css Start ========================= */
+html[data-theme=dark] {
+    color-scheme: dark;
+    --heading-color: 210 24% 92%;
+    --body-color: 214 18% 72%;
+    --body-bg: 218 22% 10%;
+    --section-bg: 218 20% 13%;
+    --border-color: #2a3848;
+    --gray-100: #151e29;
+    --gray-200: #2a3848;
+    --gray-800: #9fb0c4;
+    --dark-surface: #111821;
+    --dark-surface-soft: #151e29;
+    --dark-surface-raised: #1b2734;
+    --dark-line: #2a3848;
+    --dark-muted: #9fb0c4;
+    --box-shadow: 0px 14px 32px rgba(2, 8, 16, 0.32);
+}
+
+html[data-theme=dark] body,
+html[data-theme=dark] .body-bg,
+html[data-theme=dark] .section-bg {
+    background-color: var(--dark-surface);
+    color: hsl(var(--body-color));
+}
+
+html[data-theme=dark] main.body-bg {
+    background: linear-gradient(180deg, #101722 0%, #111821 36%, #141b24 100%);
+}
+
+html[data-theme=dark] .banner,
+html[data-theme=dark] .about,
+html[data-theme=dark] .property-type,
+html[data-theme=dark] .portfolio,
+html[data-theme=dark] .message,
+html[data-theme=dark] .blog,
+html[data-theme=dark] .contact,
+html[data-theme=dark] .padding-y-120 {
+    background-color: transparent;
+}
+
+html[data-theme=dark] .header {
+    background-color: rgba(17, 24, 33, 0.94);
+    border-bottom: 1px solid var(--dark-line);
+}
+
+html[data-theme=dark] .header.fixed-header {
+    background-color: rgba(17, 24, 33, 0.88) !important;
+    box-shadow: 0 10px 28px rgba(2, 8, 16, 0.38);
+}
+
+html[data-theme=dark] .theme-toggle {
+    background-color: #1b2734;
+    border-color: #354559;
+    color: #f6c768;
+}
+
+html[data-theme=dark] .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.7);
+}
+
+html[data-theme=dark] .theme-toggle__icon--sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+html[data-theme=dark] .mobile-menu,
+html[data-theme=dark] .nav-submenu,
+html[data-theme=dark] .common-card,
+html[data-theme=dark] .card,
+html[data-theme=dark] .modal-content,
+html[data-theme=dark] .contact-card,
+html[data-theme=dark] .blog-item,
+html[data-theme=dark] .search-sidebar,
+html[data-theme=dark] .filter,
+html[data-theme=dark] .property-item.style-two .property-item__content {
+    background-color: var(--dark-surface-soft);
+    border-color: var(--border-color);
+    color: hsl(var(--body-color));
+}
+
+html[data-theme=dark] .filter {
+    box-shadow: 0 18px 44px rgba(2, 8, 16, 0.32);
+}
+
+html[data-theme=dark] .property,
+html[data-theme=dark] .dark-background,
+html[data-theme=dark] .footer,
+html[data-theme=dark] .bottom-footer {
+    background-color: #151312;
+}
+
+html[data-theme=dark] .nav-submenu {
+    box-shadow: 0 18px 40px rgba(2, 8, 16, 0.38);
+}
+
+html[data-theme=dark] .nav-submenu__item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme=dark] .common-input,
+html[data-theme=dark] .form-control,
+html[data-theme=dark] .form-select,
+html[data-theme=dark] textarea,
+html[data-theme=dark] input,
+html[data-theme=dark] select {
+    background-color: #121b26 !important;
+    border-color: var(--border-color);
+    color: hsl(var(--heading-color)) !important;
+}
+
+html[data-theme=dark] .common-input::placeholder,
+html[data-theme=dark] .form-control::placeholder {
+    color: #9aacbf;
+}
+
+html[data-theme=dark] select option,
+html[data-theme=dark] select optgroup {
+    background-color: #f8fafc !important;
+    color: #18212d !important;
+}
+
+html[data-theme=dark] select option:checked,
+html[data-theme=dark] select option:hover,
+html[data-theme=dark] select option:focus {
+    background-color: #dbeafe !important;
+    color: #111827 !important;
+}
+
+html[data-theme=dark] .select-has-icon::before,
+html[data-theme=dark] .select-has-icon.icon-black::before {
+    -webkit-text-fill-color: #f6a142;
+    color: #f6a142;
+}
+
+html[data-theme=dark] label,
+html[data-theme=dark] .property-filter__text,
+html[data-theme=dark] .text-gray-800,
+html[data-theme=dark] .text-body,
+html[data-theme=dark] .text-muted {
+    color: hsl(var(--body-color)) !important;
+}
+
+html[data-theme=dark] .table,
+html[data-theme=dark] .table-striped > tbody > tr:nth-of-type(odd) > * {
+    color: hsl(var(--body-color));
+}
+
+html[data-theme=dark] .table > :not(caption) > * > * {
+    background-color: var(--dark-surface-soft);
+    border-color: var(--border-color);
+}
+
+html[data-theme=dark] .text-dark,
+html[data-theme=dark] .section-heading__title,
+html[data-theme=dark] .banner-content__subtitle,
+html[data-theme=dark] .property-item.style-two .property-item__title,
+html[data-theme=dark] .property-item.style-two .property-item__price {
+    color: hsl(var(--heading-color)) !important;
+}
+
+html[data-theme=dark] .section-heading__desc,
+html[data-theme=dark] .banner-content__desc,
+html[data-theme=dark] p {
+    color: hsl(var(--body-color));
+}
+
+html[data-theme=dark] .property-item.style-two .property-item__location,
+html[data-theme=dark] .property-item.style-two .amenities-list__item .text {
+    color: hsl(var(--body-color));
+}
+
+html[data-theme=dark] .close-button {
+    background-color: var(--dark-line);
+    color: hsl(var(--heading-color));
+}
+
+html[data-theme=dark] .side-overlay.show,
+html[data-theme=dark] .overlay.show {
+    background-color: rgba(0, 0, 0, 0.72);
+}
+
+html[data-theme=dark] ::-webkit-scrollbar-track {
+    background: #111821;
+}
+
+html[data-theme=dark] ::-webkit-scrollbar-thumb {
+    background: #506176;
+}
+/* ========================= Dark Mode Css End ========================= */
 /*# sourceMappingURL=main.css.map */
