@@ -27,9 +27,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Fortify::loginView(fn () => view('auth.login'));
-        Fortify::registerView(fn () => view('auth.register'));
-
         Fortify::createUsersUsing(\App\Actions\Fortify\CreateNewUser::class);
         
         RateLimiter::for('login', function (Request $request) {
