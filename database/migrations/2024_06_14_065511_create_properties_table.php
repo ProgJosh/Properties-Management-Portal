@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('facility')->nullable();
         
-            $table->foreign('landlord_id')->references('id')->on('Admins')->onDelete('cascade');
+            $table->foreign('landlord_id')->references('id')->on('admins')->onDelete('cascade');
 
 
 
