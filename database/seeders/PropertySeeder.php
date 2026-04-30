@@ -15,6 +15,7 @@ class PropertySeeder extends Seeder
     {
         Property::create([
             'landlord_id' => 1,
+            'name' => 'DENIELLE LEEN APARTMENT',
             'address' => 'San Miguel',
             'barangay' => 'San Miguel',
             'price' => 10000,
@@ -24,6 +25,7 @@ class PropertySeeder extends Seeder
 
         Property::create([
             'landlord_id' => 1,
+            'name' => 'GUIAO APARTMENT',
             'address' => 'San Juan Bautista',
             'barangay' => 'San Juan Bautista',
             'price' => 5000,
@@ -33,6 +35,7 @@ class PropertySeeder extends Seeder
 
         Property::create([
             'landlord_id' => 1,
+            'name' => 'GOZUM APARTMENT',
             'address' => 'San Juan Nepomuceno',
             'barangay' => 'San Juan Nepomuceno',
             'price' => 8000,

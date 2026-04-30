@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('landlord_id');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->string('address');
             $table->string('street')->nullable();
             $table->string('purok')->nullable();
