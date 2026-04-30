@@ -14,6 +14,7 @@ class PropertySeeder extends Seeder
     public function run()
     {
         Property::create([
+            'landlord_id' => 1,
             'address' => 'San Miguel',
             'barangay' => 'San Miguel',
             'price' => 10000,
@@ -22,6 +23,7 @@ class PropertySeeder extends Seeder
         ]);
 
         Property::create([
+            'landlord_id' => 1,
             'address' => 'San Juan Bautista',
             'barangay' => 'San Juan Bautista',
             'price' => 5000,
@@ -30,6 +32,7 @@ class PropertySeeder extends Seeder
         ]);
 
         Property::create([
+            'landlord_id' => 1,
             'address' => 'San Juan Nepomuceno',
             'barangay' => 'San Juan Nepomuceno',
             'price' => 8000,
