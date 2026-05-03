@@ -37,7 +37,7 @@
     },
     "scripts": {
         "ensure-laravel-dirs": [
-            "@php -r \"foreach (['bootstrap/cache','storage/framework/cache','storage/framework/cache/data','storage/framework/sessions','storage/framework/views'] as $dir) { if (! is_dir($dir)) { mkdir($dir, 0775, true); } @chmod($dir, 0775); }\""
+            "@php scripts/ensure-laravel-dirs.php"
         ],
         "pre-install-cmd": [
             "@ensure-laravel-dirs"
