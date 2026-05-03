@@ -3,4 +3,4 @@ vendor
 .env
 .git
 storage/logs
-bootstrap/cache
+bootstrap/cache/*.php
