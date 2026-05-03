@@ -32,7 +32,7 @@
                                     <td> {{ $property->name }} </td>
                                     <td> {{ $property->address }} </td>
                                     <td> {{ $property->bedroom }} Bedromm - {{ $property->bathroom }} Bathroom </td>
-                                    <td> <img src="{{ asset('storage/' . $property->thumbnail) }}" width="100px"></td>
+                                    <td> <img src="{{ $property->thumbnail_url }}" width="100px"></td>
                                     <td> {{ $property->price }} </td>
                                     <td>
 

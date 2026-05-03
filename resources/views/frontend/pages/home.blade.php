@@ -184,7 +184,7 @@
                 <div class="property-item">
                     <div class="property-item__thumb">
                         <a href="{{ route('property', $property->id)}}" class="link">
-                            <img src="{{ asset('storage/'.$property->thumbnail) }}"
+                            <img src="{{ $property->thumbnail_url }}"
                                 alt="" class="cover-img">
                       
                             </a>
@@ -349,7 +349,7 @@
         @foreach ($portfolios as $portfolio)
         <div class="portfolio-item">
             <div class="portfolio-item__thumb">
-                <img src="{{  asset('storage/'.$portfolio->thumbnail) }}" alt=""
+                <img src="{{ $portfolio->thumbnail_url }}" alt=""
                     class="cover-img">
             </div>
             <div class="portfolio-item__content">
@@ -536,7 +536,7 @@
                 <div class="blog-item">
                     <div class="blog-item__thumb">
                         <a href="{{ route('property', $property->id)}}" class="blog-item__thumb-link">
-                            <img src="{{  asset('storage/'.$property->thumbnail) }}"
+                            <img src="{{ $property->thumbnail_url }}"
                                 class="cover-img" alt="">
                         </a>
                     </div>

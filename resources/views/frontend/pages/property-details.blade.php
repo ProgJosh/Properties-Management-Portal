@@ -30,7 +30,7 @@
                     <div class="row gy-4">
                         <div class="col-sm-12 col-6">
                             <div class="property-details__thumb">
-                                <img src="{{ asset('storage/' . $property->thumbnail) }}" alt="" class="cover-img">
+                                <img src="{{ $property->thumbnail_url }}" alt="" class="cover-img">
                             </div>
                         </div>
 
@@ -38,7 +38,7 @@
                         @foreach ($property->gallery as $img)
                             <div class="col-sm-4 col-6">
                                 <div class="property-details__thumb">
-                                    <img src="{{ asset('storage/' . $img->image) }}" alt="" class="cover-img">
+                                    <img src="{{ $img->image_url }}" alt="" class="cover-img">
                                 </div>
                             </div>
                         @endforeach
@@ -292,7 +292,7 @@
                                 <div class="latest-blog">
                                     <div class="latest-blog__thumb">
                                         <a href="{{ route('property', $property->id) }}"> <img
-                                                src="{{ asset('storage/' . $property->thumbnail) }}" class="cover-img"
+                                                src="{{ $property->thumbnail_url }}" class="cover-img"
                                                 alt=""></a>
                                     </div>
                                     <div class="latest-blog__content">
@@ -323,7 +323,7 @@
                             @foreach ($sameTypeProperties as $sameTypeProperty)
                             <div class="col-lg-6 col-sm-4 col-6">
                                 <a href="{{ route('property', $sameTypeProperty->id)}}" class="properties-item d-block w-100">
-                                    <img src="{{ asset('storage/' . $sameTypeProperty->thumbnail) }}" alt="Property Image"
+                                    <img src="{{ $sameTypeProperty->thumbnail_url }}" alt="Property Image"
                                         class="cover-img">
                                     <span class="properties-item__text"> {{ $sameTypeProperty->name }}</span>
                                 </a>

@@ -16,6 +16,8 @@ use App\Http\Controllers\LeaseAgreementController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Frontend\ConversationController as FrontendConversationController;
 use App\Http\Controllers\Admin\ConversationController as AdminConversationController;
+use App\Support\PublicImage;
+use Illuminate\Support\Facades\Storage;
 
 require_once __DIR__.'/jetstream.php';
 
@@ -30,6 +32,13 @@ Route::get('/properties', function (\Illuminate\Http\Request $request) {
     return redirect($target, 301);
 })->name('properties.legacy');
 Route::get('/property/{id}', [HomeController::class, 'property'])->name('property');
+Route::get('/public-files/{path}', function (string $path) {
+    $path = PublicImage::normalize($path);
+
+    abort_if($path === '' || str_contains($path, '..') || ! Storage::disk('public')->exists($path), 404);
+
+    return Storage::disk('public')->response($path);
+})->where('path', '.*')->name('public-files.show');
 
 Route::get('listings/{type}', [HomeController::class, 'propertyByType'])->name('propertyByType');
 Route::get('properties/{type}', function (string $type, \Illuminate\Http\Request $request) {

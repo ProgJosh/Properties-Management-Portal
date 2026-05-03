@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Support\PublicImage;
 
 class PropertyGallery extends Model
 {
@@ -14,5 +15,10 @@ class PropertyGallery extends Model
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_id');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return PublicImage::url($this->image);
     }
 }

@@ -44,7 +44,7 @@
                             <div class="property-item style-two">
                                 <div class="property-item__thumb">
                                     <a href="{{ route('property', $property->id) }}" class="link">
-                                        <img src=" {{ asset('storage/' . $property->thumbnail) }}" alt=""
+                                        <img src="{{ $property->thumbnail_url }}" alt=""
                                             class="cover-img">
                                     </a>
                                 </div>

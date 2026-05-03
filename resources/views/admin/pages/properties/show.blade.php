@@ -31,12 +31,12 @@
             <div class="d-flex">
                 
 
-                <img src="{{ asset('storage/' . $property->thumbnail) }}" alt="" class="m-1" width="100">
+                <img src="{{ $property->thumbnail_url }}" alt="" class="m-1" width="100">
 
                 
                     @if (count($property->gallery) > 0)
                         @foreach ($property->gallery as $key => $image)
-                            <img src="{{ asset('storage/' . $image->image) }}" alt="" width="100"
+                            <img src="{{ $image->image_url }}" alt="" width="100"
                                 class="m-1">
                         @endforeach
                     @endif

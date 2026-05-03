@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Admin;
 use App\Models\PropertyGallery;
+use App\Support\PublicImage;
 
 
 class Property extends Model
@@ -36,5 +37,10 @@ class Property extends Model
     public function conversations()
     {
         return $this->hasMany(Conversation::class);
+    }
+
+    public function getThumbnailUrlAttribute()
+    {
+        return PublicImage::url($this->thumbnail);
     }
 }
