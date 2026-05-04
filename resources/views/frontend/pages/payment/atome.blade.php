@@ -60,11 +60,13 @@
                             </button>
                         </form>
 
-                        <div class="mt-3">
-                            <a href="{{ route('checkout') }}" class="btn btn-secondary w-100">
-                                <i class="fas fa-arrow-left"></i> Go Back
-                            </a>
-                        </div>
+                        @if($property_id)
+                            <div class="mt-3">
+                                <a href="{{ route('booking', $property_id) }}" class="btn btn-secondary w-100">
+                                    <i class="fas fa-arrow-left"></i> Go Back
+                                </a>
+                            </div>
+                        @endif
 
                         <div class="alert alert-warning mt-3" role="alert">
                             <strong>Note:</strong> This is a demo payment page. In production, integrate with actual Atome API for real-time verification.

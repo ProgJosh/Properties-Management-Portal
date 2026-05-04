@@ -28,11 +28,13 @@ class PaymentController extends Controller
         ]);
         
         $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" . urlencode($qrData);
+        $bookingRequest = Session::get('request');
         
         return view('frontend.pages.payment.gcash', [
             'reference_id' => $referenceId,
             'amount' => $amount,
             'qr_code_url' => $qrCodeUrl,
+            'property_id' => $bookingRequest['property_id'] ?? null,
         ]);
     }
 
@@ -49,19 +51,54 @@ class PaymentController extends Controller
         
         if (!$bookingRequest) {
             Toastr::error('Session expired. Please try again.');
-            return redirect()->route('booking.index');
+            return redirect()->route('home');
         }
 
-        // Simulate payment verification (in production, call actual GCash API)
-        $payment = new Payment();
-        $payment->reference_id = $request->reference_id;
-        $payment->payment_method = 'GCash';
-        $payment->currency = 'PHP';
-        $payment->amount = $bookingRequest['amount'];
-        $payment->status = 'completed';
-        $payment->save();
-
         return $this->createBookingAndRedirect($bookingRequest, $request->reference_id, 'GCash');
+    }
+
+    /**
+     * Show GoTyme Bank payment page with QR code
+     */
+    public function showGoTyme(Request $request)
+    {
+        $referenceId = $request->reference_id;
+        $amount = $request->amount;
+        $qrData = $request->qr_data ? urldecode($request->qr_data) : json_encode([
+            'reference_id' => $referenceId,
+            'amount' => $amount,
+            'currency' => 'PHP',
+            'merchant' => config('payment-gateways.gotyme.merchant_id'),
+        ]);
+
+        $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" . urlencode($qrData);
+        $bookingRequest = Session::get('request');
+
+        return view('frontend.pages.payment.gotyme', [
+            'reference_id' => $referenceId,
+            'amount' => $amount,
+            'qr_code_url' => $qrCodeUrl,
+            'property_id' => $bookingRequest['property_id'] ?? null,
+        ]);
+    }
+
+    /**
+     * Verify GoTyme Bank payment
+     */
+    public function verifyGoTyme(Request $request)
+    {
+        $request->validate([
+            'reference_id' => 'required',
+        ]);
+
+        $bookingRequest = Session::get('request');
+
+        if (!$bookingRequest) {
+            Toastr::error('Session expired. Please try again.');
+            return redirect()->route('home');
+        }
+
+        return $this->createBookingAndRedirect($bookingRequest, $request->reference_id, 'GoTyme Bank');
     }
 
     /**
@@ -72,9 +109,12 @@ class PaymentController extends Controller
         $referenceId = $request->reference_id;
         $amount = $request->amount;
         
+        $bookingRequest = Session::get('request');
+
         return view('frontend.pages.payment.bdopay', [
             'reference_id' => $referenceId,
             'amount' => $amount,
+            'property_id' => $bookingRequest['property_id'] ?? null,
         ]);
     }
 
@@ -91,17 +131,8 @@ class PaymentController extends Controller
         
         if (!$bookingRequest) {
             Toastr::error('Session expired. Please try again.');
-            return redirect()->route('booking.index');
+            return redirect()->route('home');
         }
-
-        // Simulate payment verification (in production, call actual BDO Pay API)
-        $payment = new Payment();
-        $payment->reference_id = $request->reference_id;
-        $payment->payment_method = 'BDO Pay';
-        $payment->currency = 'PHP';
-        $payment->amount = $bookingRequest['amount'];
-        $payment->status = 'completed';
-        $payment->save();
 
         return $this->createBookingAndRedirect($bookingRequest, $request->reference_id, 'BDO Pay');
     }
@@ -114,9 +145,12 @@ class PaymentController extends Controller
         $referenceId = $request->reference_id;
         $amount = $request->amount;
         
+        $bookingRequest = Session::get('request');
+
         return view('frontend.pages.payment.atome', [
             'reference_id' => $referenceId,
             'amount' => $amount,
+            'property_id' => $bookingRequest['property_id'] ?? null,
         ]);
     }
 
@@ -133,17 +167,8 @@ class PaymentController extends Controller
         
         if (!$bookingRequest) {
             Toastr::error('Session expired. Please try again.');
-            return redirect()->route('booking.index');
+            return redirect()->route('home');
         }
-
-        // Simulate payment verification (in production, call actual Atome API)
-        $payment = new Payment();
-        $payment->reference_id = $request->reference_id;
-        $payment->payment_method = 'Atome';
-        $payment->currency = 'PHP';
-        $payment->amount = $bookingRequest['amount'];
-        $payment->status = 'completed';
-        $payment->save();
 
         return $this->createBookingAndRedirect($bookingRequest, $request->reference_id, 'Atome');
     }
@@ -176,13 +201,16 @@ class PaymentController extends Controller
         // Create lease agreement automatically
         $leaseAgreement = LeaseAgreement::createFromBooking($booking);
         
-        // Update payment with booking and user info
-        $payment = Payment::where('reference_id', $referenceId)->first();
-        if ($payment) {
-            $payment->booking_id = $booking->id;
-            $payment->user_id = auth()->user()->id;
-            $payment->save();
-        }
+        Payment::create([
+            'booking_id' => $booking->id,
+            'user_id' => auth()->user()->id,
+            'email' => $bookingRequest['email'] ?? null,
+            'payment_method' => $paymentMethod,
+            'transaction_id' => $referenceId,
+            'currency' => 'PHP',
+            'amount' => $bookingRequest['amount'],
+            'status' => 'completed',
+        ]);
 
         Session::forget('request');
         Session::forget('session');
@@ -197,6 +225,12 @@ class PaymentController extends Controller
     public function gcashCallback(Request $request)
     {
         // Handle GCash webhook
+        return response()->json(['status' => 'received']);
+    }
+
+    public function gotymeCallback(Request $request)
+    {
+        // Handle GoTyme Bank webhook
         return response()->json(['status' => 'received']);
     }
 

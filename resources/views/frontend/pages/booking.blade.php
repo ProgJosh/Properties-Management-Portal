@@ -205,10 +205,10 @@
                                     </div> --}}
                                     <div class="payment-method">
                                         <div class="common-radio">
-                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payCard" checked>
-                                            <label class="form-check-label" for="payCard">
-                                                Pay By Card
-                                                <img src="{{asset('frontend/assets/images/thumbs/cardlogo.png')}}" alt="Card">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="GoTyme" id="gotymeQR" checked>
+                                            <label class="form-check-label" for="gotymeQR">
+                                                Pay By GoTyme Bank (QR Code)
+                                                <img src="{{asset('assets/images/payment-logos/gotyme-logo.svg')}}" alt="GoTyme Bank QR" style="max-width: 40px;">
                                                 
                                             </label>
                                         </div>

@@ -94,6 +94,8 @@ class BookingController extends Controller
 
         if ($paymentMethod === 'stripe') {
             return $this->processStripePayment($request, $property);
+        } elseif ($paymentMethod === 'gotyme') {
+            return $this->processGoTymePayment($request, $property);
         } elseif ($paymentMethod === 'gcash') {
             return $this->processGCashPayment($request, $property);
         } elseif ($paymentMethod === 'bdopay') {
@@ -155,6 +157,30 @@ class BookingController extends Controller
 
         // Redirect to QR code payment page
         return redirect()->route('payment.gcash.show', [
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+            'qr_data' => urlencode($qrData),
+        ]);
+    }
+
+    /**
+     * Process GoTyme Bank payment with QR code
+     */
+    private function processGoTymePayment(Request $request, Property $property)
+    {
+        $referenceId = 'GTY-' . time() . '-' . rand(10000, 99999);
+
+        $qrData = json_encode([
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+            'currency' => 'PHP',
+            'merchant' => config('payment-gateways.gotyme.merchant_id'),
+        ]);
+
+        Session::put('payment_reference', $referenceId);
+        Session::put('payment_gateway', 'gotyme');
+
+        return redirect()->route('payment.gotyme.show', [
             'reference_id' => $referenceId,
             'amount' => $request->amount,
             'qr_data' => urlencode($qrData),

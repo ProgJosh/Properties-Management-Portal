@@ -14,6 +14,12 @@ Route::middleware('auth')->group(function () {
         Route::post('verify', [PaymentController::class, 'verifyGCash'])->name('verify');
     });
 
+    // GoTyme Bank Payment Routes
+    Route::prefix('payment/gotyme')->name('payment.gotyme.')->group(function () {
+        Route::get('show', [PaymentController::class, 'showGoTyme'])->name('show');
+        Route::post('verify', [PaymentController::class, 'verifyGoTyme'])->name('verify');
+    });
+
     // BDO Pay Routes
     Route::prefix('payment/bdopay')->name('payment.bdopay.')->group(function () {
         Route::get('show', [PaymentController::class, 'showBDOPay'])->name('show');
@@ -30,6 +36,7 @@ Route::middleware('auth')->group(function () {
 // Webhook routes (no auth needed)
 Route::prefix('payment')->name('payment.')->group(function () {
     Route::get('gcash/callback', [PaymentController::class, 'gcashCallback'])->name('gcash.callback');
+    Route::get('gotyme/callback', [PaymentController::class, 'gotymeCallback'])->name('gotyme.callback');
     Route::get('bdopay/callback', [PaymentController::class, 'bdopayCallback'])->name('bdopay.callback');
     Route::get('atome/callback', [PaymentController::class, 'atomeCallback'])->name('atome.callback');
 });

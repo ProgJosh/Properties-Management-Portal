@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="breadcrumb__wrapper">
-                    <h2 class="breadcrumb__title">BDO Pay Payment</h2>
+                    <h2 class="breadcrumb__title">GoTyme Bank Payment</h2>
                     <ul class="breadcrumb__list">
                         <li class="breadcrumb__item"><a href="{{ url('/') }}" class="breadcrumb__link"><i class="las la-home"></i> Home</a></li>
                         <li class="breadcrumb__item"><i class="fas fa-angle-right"></i></li>
@@ -27,31 +27,28 @@
                 <div class="card common-card">
                     <div class="card-body">
                         <h3 class="title mb-4">
-                            <img src="{{asset('assets/images/payment-logos/bdopay-logo.svg')}}" alt="BDO Pay" style="max-width: 60px; margin-right: 10px;">
-                            BDO Pay Payment
+                            <img src="{{asset('assets/images/payment-logos/gotyme-logo.svg')}}" alt="GoTyme Bank" style="max-width: 60px; margin-right: 10px;">
+                            GoTyme Bank QR Payment
                         </h3>
-                        
+
+                        <div class="text-center mb-4">
+                            <p class="text-muted">Scan this QR code using your GoTyme Bank app to complete your payment.</p>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <img src="{{ $qr_code_url }}" alt="GoTyme Bank QR Code" class="img-fluid" style="max-width: 300px; border: 1px solid #ddd; padding: 10px; border-radius: 8px;">
+                        </div>
+
                         <div class="alert alert-info" role="alert">
                             <strong>Payment Reference:</strong> {{ $reference_id }}<br>
                             <strong>Amount:</strong> ₱{{ number_format($amount, 2) }}
                         </div>
 
-                        <div class="payment-instructions mb-4">
-                            <h5>Payment Instructions:</h5>
-                            <ol>
-                                <li>Open your BDO mobile app or website</li>
-                                <li>Select "Pay Bills" or "Fund Transfer"</li>
-                                <li>Enter the reference number: <strong>{{ $reference_id }}</strong></li>
-                                <li>Enter the amount: <strong>₱{{ number_format($amount, 2) }}</strong></li>
-                                <li>Complete the transaction</li>
-                            </ol>
-                        </div>
-
-                        <form action="{{ route('payment.bdopay.verify') }}" method="POST">
+                        <form action="{{ route('payment.gotyme.verify') }}" method="POST">
                             @csrf
                             <input type="hidden" name="reference_id" value="{{ $reference_id }}">
                             <button type="submit" class="btn btn-main w-100">
-                                <i class="fas fa-check-circle"></i> Confirm Payment
+                                <i class="fas fa-check-circle"></i> I Have Paid
                             </button>
                         </form>
 
@@ -64,7 +61,7 @@
                         @endif
 
                         <div class="alert alert-warning mt-3" role="alert">
-                            <strong>Note:</strong> This is a demo payment page. In production, integrate with actual BDO Pay API for real-time verification.
+                            <strong>Note:</strong> This is a demo QR payment page. In production, connect it to the GoTyme Bank payment API for real-time verification.
                         </div>
                     </div>
                 </div>
