@@ -192,16 +192,6 @@ class BookingController extends Controller
             'amount' => $request->amount,
         ]);
     }
-      
-        
-      
-       
-       
- 
-    }
-
-   
-
 
     public function thankyou(){
 
