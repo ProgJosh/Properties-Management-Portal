@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#ffffff"/>
+  
+  <!-- BDO Blue Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#003A9E" opacity="0.1"/>
+  
+  <!-- Main BDO Logo Circle -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#003A9E" stroke-width="8"/>
+  
+  <!-- BDO Text/Initials -->
+  <text x="100" y="120" font-size="56" font-weight="bold" fill="#003A9E" text-anchor="middle" font-family="Arial, sans-serif">B</text>
+  
+  <!-- BDO Pay Text -->
+  <text x="100" y="175" font-size="14" font-weight="bold" fill="#003A9E" text-anchor="middle" font-family="Arial, sans-serif">BDO PAY</text>
+</svg>

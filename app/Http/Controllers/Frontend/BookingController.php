@@ -87,38 +87,111 @@ class BookingController extends Controller
 
         Session::put('request', $request->all());
 
-
-        \Stripe\Stripe::setApiKey(config('stripe.sk'));
-
-       
-
         $property = Property::find($request->property_id);
 
-        
+        // Route to appropriate payment gateway
+        $paymentMethod = strtolower($request->payment_method);
 
-        
-            $session = \Stripe\Checkout\Session::create([
-                'line_items'  => [
-                    [
-                        'price_data' => [
-                            'currency'     => 'PHP',
-                            'product_data' => [
-                                "name" => $property->name,
-                            ],
-                            'unit_amount'  => $request->amount * 100, // Convert to centavos for Stripe
+        if ($paymentMethod === 'stripe') {
+            return $this->processStripePayment($request, $property);
+        } elseif ($paymentMethod === 'gcash') {
+            return $this->processGCashPayment($request, $property);
+        } elseif ($paymentMethod === 'bdopay') {
+            return $this->processBDOPayPayment($request, $property);
+        } elseif ($paymentMethod === 'atome') {
+            return $this->processAtomePayment($request, $property);
+        }
+
+        Toastr::error('Invalid payment method selected');
+        return redirect()->back();
+    }
+
+    /**
+     * Process Stripe payment
+     */
+    private function processStripePayment(Request $request, Property $property)
+    {
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items'  => [
+                [
+                    'price_data' => [
+                        'currency'     => 'PHP',
+                        'product_data' => [
+                            "name" => $property->name,
                         ],
-                        'quantity'   => 1,
+                        'unit_amount'  => $request->amount * 100,
                     ],
-                     
+                    'quantity'   => 1,
                 ],
-                'mode'        => 'payment',
-                'success_url' => route('thankyou'),
-                'cancel_url'  => route('checkout'),
-            ]);
+            ],
+            'mode'        => 'payment',
+            'success_url' => route('thankyou'),
+            'cancel_url'  => route('checkout'),
+        ]);
 
-            Session::put('session', $session);
+        Session::put('session', $session);
+        return redirect()->away($session->url);
+    }
+
+    /**
+     * Process GCash payment with QR code
+     */
+    private function processGCashPayment(Request $request, Property $property)
+    {
+        $referenceId = 'GCH-' . time() . '-' . rand(10000, 99999);
         
-           return redirect()->away($session->url);
+        // Generate QR code data
+        $qrData = json_encode([
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+            'currency' => 'PHP',
+            'merchant' => config('payment-gateways.gcash.merchant_id'),
+        ]);
+
+        Session::put('payment_reference', $referenceId);
+        Session::put('payment_gateway', 'gcash');
+
+        // Redirect to QR code payment page
+        return redirect()->route('payment.gcash.show', [
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+            'qr_data' => urlencode($qrData),
+        ]);
+    }
+
+    /**
+     * Process BDO Pay payment
+     */
+    private function processBDOPayPayment(Request $request, Property $property)
+    {
+        $referenceId = 'BDO-' . time() . '-' . rand(10000, 99999);
+
+        Session::put('payment_reference', $referenceId);
+        Session::put('payment_gateway', 'bdopay');
+
+        return redirect()->route('payment.bdopay.show', [
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+        ]);
+    }
+
+    /**
+     * Process Atome payment
+     */
+    private function processAtomePayment(Request $request, Property $property)
+    {
+        $referenceId = 'ATOME-' . time() . '-' . rand(10000, 99999);
+
+        Session::put('payment_reference', $referenceId);
+        Session::put('payment_gateway', 'atome');
+
+        return redirect()->route('payment.atome.show', [
+            'reference_id' => $referenceId,
+            'amount' => $request->amount,
+        ]);
+    }
       
         
       

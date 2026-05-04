@@ -51,6 +51,10 @@ Route::get('booking/{id}', [BookingController::class, 'index'])->name('booking')
 
 Route::post('/checkout', [BookingController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::get('/thankyou', [BookingController::class, 'thankyou'])->name('thankyou');
+
+// Include payment gateway routes
+require_once __DIR__.'/payment-gateways.php';
+
 Route::post('/chatbot/message', [ChatbotController::class, 'reply'])->name('chatbot.reply');
 
 // add the delete route for user bookings

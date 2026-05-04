@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#ffffff"/>
+  
+  <!-- GCash Blue Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#0066CC" opacity="0.1"/>
+  
+  <!-- Main GCash Logo Circle -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#0066CC" stroke-width="8"/>
+  
+  <!-- GCash Icon - Phone/Mobile Signal -->
+  <path d="M 70 80 L 70 120 Q 70 130 80 130 L 120 130 Q 130 130 130 120 L 130 80 Q 130 70 120 70 L 80 70 Q 70 70 70 80 Z" fill="none" stroke="#0066CC" stroke-width="3"/>
+  
+  <!-- Antenna Bars -->
+  <rect x="75" y="85" width="3" height="15" fill="#0066CC"/>
+  <rect x="82" y="80" width="3" height="20" fill="#0066CC"/>
+  <rect x="89" y="75" width="3" height="25" fill="#0066CC"/>
+  <rect x="96" y="75" width="3" height="25" fill="#0066CC"/>
+  
+  <!-- GCash Text -->
+  <text x="100" y="175" font-size="14" font-weight="bold" fill="#0066CC" text-anchor="middle" font-family="Arial, sans-serif">GCash QR</text>
+</svg>

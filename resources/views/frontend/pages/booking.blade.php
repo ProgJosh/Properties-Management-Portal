@@ -205,27 +205,27 @@
                                     </div> --}}
                                     <div class="payment-method">
                                         <div class="common-radio">
-                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal" checked>
-                                            <label class="form-check-label" for="payPal">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payCard" checked>
+                                            <label class="form-check-label" for="payCard">
                                                 Pay By Card
-                                                <img src="{{asset('frontend/assets/images/thumbs/cardlogo.png')}}" alt="">
+                                                <img src="{{asset('frontend/assets/images/thumbs/cardlogo.png')}}" alt="Card">
                                                 
                                             </label>
                                         </div>
                                         
                                         <div class="common-radio">
-                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
-                                            <label class="form-check-label" for="payPal">
-                                                Pay By GCash
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/GCash_logo.svg" alt="">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="GCash" id="gcashQR">
+                                            <label class="form-check-label" for="gcashQR">
+                                                Pay By GCash (QR Code)
+                                                <img src="{{asset('assets/images/payment-logos/gcash-qr-logo.svg')}}" alt="GCash QR" style="max-width: 40px;">
                                                 
                                             </label>
                                         </div>
                                         <div class="common-radio">
-                                            <input class="form-check-input" type="radio" name="payment_method" value="Stripe" id="payPal">
-                                            <label class="form-check-label" for="payPal">
-                                                Pay By Bank
-                                                <img src="{{asset('frontend/assets/images/thumbs/visa.png')}}" alt="">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="BDOPay" id="bdopay">
+                                            <label class="form-check-label" for="bdopay">
+                                                Pay By BDO Pay
+                                                <img src="{{asset('assets/images/payment-logos/bdopay-logo.svg')}}" alt="BDO Pay" style="max-width: 40px;">
                                                 
                                             </label>
                                         </div>
@@ -233,7 +233,7 @@
                                             <input class="form-check-input" type="radio" name="payment_method" value="Atome" id="atome">
                                             <label class="form-check-label" for="atome">
                                                 Pay By Atome
-                                                <img src="https://cdn.worldvectorlogo.com/logos/atome.svg" alt="Atome">
+                                                <img src="{{asset('assets/images/payment-logos/atome-logo.svg')}}" alt="Atome" style="max-width: 40px;">
                                                 
                                             </label>
                                         </div>
