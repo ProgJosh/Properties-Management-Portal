@@ -229,6 +229,14 @@
                                                 
                                             </label>
                                         </div>
+                                        <div class="common-radio">
+                                            <input class="form-check-input" type="radio" name="payment_method" value="Atome" id="atome">
+                                            <label class="form-check-label" for="atome">
+                                                Pay By Atome
+                                                <img src="https://cdn.worldvectorlogo.com/logos/atome.svg" alt="Atome">
+                                                
+                                            </label>
+                                        </div>
 
                                         @error('payment_method')
                                             <span class="text-danger">{{$message}}</span>
