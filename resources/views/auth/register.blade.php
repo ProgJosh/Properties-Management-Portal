@@ -297,12 +297,6 @@
             </div>
         </form>
 
-        <!-- Tenant Rental Policy Modal -->
-        <x-tenant-rental-policy-modal />
-
-        <!-- Tenant Rental Policy Script -->
-        <script src="{{ asset('assets/js/tenant-rental-policy-modal.js') }}?v={{ now()->timestamp }}"></script>
-
         <script>
             // Password Toggle Functionality
             document.addEventListener('DOMContentLoaded', function() {
@@ -346,4 +340,10 @@
             });
         </script>
     </x-authentication-card>
+
+    <!-- Tenant Rental Policy Modal -->
+    <x-tenant-rental-policy-modal />
+
+    <!-- Tenant Rental Policy Script -->
+    <script src="{{ asset('assets/js/tenant-rental-policy-modal.js') }}?v={{ now()->timestamp }}"></script>
 </x-guest-layout>
