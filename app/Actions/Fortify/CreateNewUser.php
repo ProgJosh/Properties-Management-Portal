@@ -5,6 +5,8 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use App\Services\IdValidationService;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -78,6 +80,65 @@ class CreateNewUser implements CreatesNewUsers
             );
         }
 
+        $this->sendAccountCreatedEmails($user);
+
         return $user;
+    }
+
+    private function sendAccountCreatedEmails(User $user): void
+    {
+        $this->sendTenantWelcomeEmail($user);
+        $this->sendAdminNewAccountEmail($user);
+    }
+
+    private function sendTenantWelcomeEmail(User $user): void
+    {
+        try {
+            Mail::send('emails.account-created', [
+                'user' => $user,
+                'appName' => config('app.name'),
+                'loginUrl' => route('login'),
+            ], function ($message) use ($user) {
+                $message->to($user->email, $user->name)
+                    ->subject('Your tenant account has been created');
+            });
+
+            Log::info('Account created email sent.', [
+                'user_id' => $user->id,
+                'email' => $user->email,
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('Account created email failed: ' . $e->getMessage(), [
+                'user_id' => $user->id,
+                'email' => $user->email,
+            ]);
+        }
+    }
+
+    private function sendAdminNewAccountEmail(User $user): void
+    {
+        $supportEmail = config('mail.from.address');
+
+        try {
+            Mail::send('emails.account-created-admin', [
+                'user' => $user,
+                'appName' => config('app.name'),
+                'registeredAt' => now(),
+            ], function ($message) use ($user, $supportEmail) {
+                $message->to($supportEmail)
+                    ->replyTo($user->email, $user->name)
+                    ->subject('New tenant account registered');
+            });
+
+            Log::info('New account notification email sent.', [
+                'user_id' => $user->id,
+                'recipient' => $supportEmail,
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('New account notification email failed: ' . $e->getMessage(), [
+                'user_id' => $user->id,
+                'recipient' => $supportEmail,
+            ]);
+        }
     }
 }
