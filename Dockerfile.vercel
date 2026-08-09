@@ -1,0 +1,81 @@
+# ============================================
+# Stage 1: Build Vite Frontend
+# ============================================
+FROM node:18 AS frontend
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+
+# ============================================
+# Stage 2: Laravel + PHP
+# ============================================
+FROM php:8.2-cli
+
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    unzip \
+    libpq-dev \
+    libonig-dev \
+    libzip-dev \
+    zip \
+    && docker-php-ext-install \
+        pdo \
+        pdo_pgsql \
+        mbstring \
+        zip \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+
+WORKDIR /var/www
+
+
+# Copy Laravel application
+COPY . .
+
+
+# Copy Vite production build
+COPY --from=frontend /app/public/build ./public/build
+
+
+# Create Laravel required directories
+RUN mkdir -p \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache \
+    bootstrap/cache
+
+
+# Permissions
+RUN chmod -R 775 storage bootstrap/cache
+
+
+# Install PHP dependencies
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader
+
+
+# Clear Laravel caches
+RUN php artisan config:clear && \
+    php artisan route:clear && \
+    php artisan view:clear
+
+
+# Vercel provides PORT at runtime
+EXPOSE 80
+
+
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-80}"]
