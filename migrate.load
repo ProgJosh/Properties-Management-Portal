@@ -1,0 +1,22 @@
+LOAD DATABASE
+     FROM mysql://migration_user@172.29.144.1:3306/properties-management
+     INTO postgresql://postgres.pjunwhihwimvorhklnqw@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+
+WITH create tables,
+     create indexes,
+     reset sequences,
+     foreign keys,
+     workers = 2
+
+SET PostgreSQL PARAMETERS
+    maintenance_work_mem to '256MB',
+    work_mem to '16MB'
+
+SET MySQL PARAMETERS
+    net_read_timeout to '60',
+    net_write_timeout to '60'
+
+CAST type tinyint when (= precision 1) to boolean drop typemod using tinyint-to-boolean,
+     type json to jsonb
+
+ALTER SCHEMA 'properties-management' RENAME TO 'public';
