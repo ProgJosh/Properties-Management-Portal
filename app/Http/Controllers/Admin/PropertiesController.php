@@ -38,8 +38,9 @@ class PropertiesController extends Controller
         $data = $request->validated();
     
         //process image
-        $tmpimgpath = $request->file('thumbnail')->store('public/properties');
-        $data['thumbnail'] = str_replace('public/', '', $tmpimgpath);
+        $disk = config('filesystems.default') === 'local' ? 'public' : 'supabase';
+        $tmpimgpath = $request->file('thumbnail')->store('properties', $disk);
+        $data['thumbnail'] = $tmpimgpath;
         
         $data['landlord_id'] = auth()->user()->id;
     
@@ -54,7 +55,7 @@ class PropertiesController extends Controller
             foreach($images as $image){
                 $imgdata = [
                     'property_id' => $property->id,
-                    'image' => str_replace('public/', '', $image->store('public/properties')),
+                    'image' => $image->store('properties', $disk),
                 ];
                 PropertyGallery::create($imgdata);
             }
@@ -88,9 +89,10 @@ class PropertiesController extends Controller
             return redirect()->route('admin.properties');
         }
     
+        $disk = config('filesystems.default') === 'local' ? 'public' : 'supabase';
         if ($request->hasFile('thumbnail')) {
-            $imgpath = $request->file('thumbnail')->store('public/properties');
-            $data['thumbnail'] = str_replace('public/', '', $imgpath);
+            $imgpath = $request->file('thumbnail')->store('properties', $disk);
+            $data['thumbnail'] = $imgpath;
         }
         unset($data['images']);
     
@@ -108,7 +110,7 @@ class PropertiesController extends Controller
                     $imgdata = [
                         'property_id' => $property->id,
 
-                        'image' => str_replace('public/', '', $image->store('public/gallery'))
+                        'image' => $image->store('properties', $disk)
                     ];
                     PropertyGallery::create($imgdata);
                 }

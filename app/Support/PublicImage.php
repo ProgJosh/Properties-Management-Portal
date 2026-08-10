@@ -2,7 +2,6 @@
 
 namespace App\Support;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 class PublicImage
@@ -15,14 +14,21 @@ class PublicImage
             return asset(self::fallbackPath());
         }
 
+        // On Vercel/production, serve from Supabase
+        if (config('filesystems.default') !== 'local') {
+            if (Storage::disk('supabase')->exists($path)) {
+                return Storage::disk('supabase')->url($path);
+            }
+            return asset(self::fallbackPath());
+        }
+
+        // Local: check public disk or public folder
         if (is_file(public_path($path))) {
             return asset($path);
         }
 
         if (Storage::disk('public')->exists($path)) {
-            return Route::has('public-files.show')
-                ? route('public-files.show', ['path' => $path])
-                : Storage::disk('public')->url($path);
+            return Storage::disk('public')->url($path);
         }
 
         return asset(self::fallbackPath());
