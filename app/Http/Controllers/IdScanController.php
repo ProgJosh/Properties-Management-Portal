@@ -21,6 +21,7 @@ class IdScanController extends Controller
         'residence_permit'  => [1.45, 1.75],
         'tin_id'            => [1.45, 1.75],
         'umid'              => [1.45, 1.75],
+        'student_id'        => [0.57, 0.70], //portrait CR80 card
     ];
 
     // Minimum resolution per ID type [width, height]
@@ -161,6 +162,7 @@ class IdScanController extends Controller
             'residence_permit'  => 'Residence Permit',
             'tin_id'            => 'TIN ID',
             'umid'              => 'UMID Card',
+            'student_id'        => 'Student ID',
             default             => 'ID',
         };
     }
