@@ -244,12 +244,19 @@
                 <div class="mt-4">
                     <x-label for="id_document" value="{{ __('Upload ID Document') }}" class="font-semibold text-gray-700" />
 
-                    <!-- Preview area -->
-                    <div id="id-preview-wrap" class="hidden mt-2 mb-2 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden" style="max-height:200px;">
-                        <img id="id-preview-img" src="" alt="ID Preview" class="w-full object-contain" style="max-height:200px;" />
+                    <!-- Preview area with remove button -->
+                    <div id="id-preview-wrap" class="hidden mt-2 mb-2 rounded-lg" style="position:relative;">
+                        <img id="id-preview-img" src="" alt="ID Preview" class="w-full object-contain rounded-lg border-2 border-dashed border-gray-300" style="max-height:200px;" />
+                        <button type="button" id="id-remove-btn" title="Remove uploaded file"
+                            style="position:absolute;top:8px;right:8px;width:28px;height:28px;background:#dc2626;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);z-index:10;">
+                            <i class="fas fa-times" style="color:#fff;font-size:12px;"></i>
+                        </button>
                     </div>
 
-                    <input id="id_document" type="file" name="id_document" class="block mt-2 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" accept=".jpg,.jpeg,.png" required />
+                    <!-- File input -->
+                    <div class="mt-2">
+                        <input id="id_document" type="file" name="id_document" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" accept=".jpg,.jpeg,.png" required />
+                    </div>
                     <p class="text-gray-500 text-xs mt-1"><i class="fas fa-info-circle mr-1"></i>Accepted: JPG, PNG (Max 5MB). PDF not accepted for scanning.</p>
 
                     <!-- Scan status -->
@@ -306,6 +313,7 @@
                 const spinner     = document.getElementById('id-scan-spinner');
                 const previewWrap = document.getElementById('id-preview-wrap');
                 const previewImg  = document.getElementById('id-preview-img');
+                const removeBtn   = document.getElementById('id-remove-btn');
                 const scanPassed  = document.getElementById('id_scan_passed');
                 const form        = fileInput.closest('form');
 
@@ -313,6 +321,14 @@
                     statusBox.className = 'hidden mt-3 p-3 rounded-lg text-sm font-medium flex items-center gap-2';
                     statusBox.innerHTML = '';
                     scanPassed.value = '0';
+                }
+
+                function clearFile() {
+                    fileInput.value = '';
+                    previewImg.src = '';
+                    previewWrap.classList.add('hidden');
+                    resetScan();
+                    spinner.classList.add('hidden');
                 }
 
                 function showStatus(valid, message) {
@@ -353,6 +369,8 @@
                         showStatus(false, 'Scan failed. Please try again.');
                     }
                 }
+
+                removeBtn.addEventListener('click', clearFile);
 
                 fileInput.addEventListener('change', runScan);
                 idTypeSelect.addEventListener('change', () => {
