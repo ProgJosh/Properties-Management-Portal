@@ -183,22 +183,31 @@
 
             <!-- Government-Issued ID Upload (Required for Registration) -->
             <div class="mt-6 border-t pt-6">
-                <h3 class="text-lg font-semibold mb-4">{{ __('ID Verification Required') }}</h3>
-                
+                <h3 class="text-lg font-semibold mb-1">{{ __('ID Verification Required') }}</h3>
+                <p class="text-xs text-gray-500 mb-4">Upload a clear photo of your government-issued ID. The system will scan it to confirm it matches the selected type.</p>
+
                 <!-- ID Type Selection -->
                 <div class="mt-4">
                     <x-label for="id_type" value="{{ __('Type of ID') }}" class="font-semibold text-gray-700" />
-                    <div class="relative mt-2">
-                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-                        </span>
-                        <select id="id_type" name="id_type" class="block mt-1 w-full pl-10 border-gray-300 focus:border-purple-500 focus:ring-purple-500 rounded-lg shadow-sm form-input" required>
-                            <option value="">-- {{ __('Select ID Type') }} --</option>
-                            <option value="passport" {{ old('id_type') === 'passport' ? 'selected' : '' }}>🛂 {{ __('Passport') }}</option>
-                            <option value="drivers_license" {{ old('id_type') === 'drivers_license' ? 'selected' : '' }}>🚗 {{ __("Driver's License") }}</option>
-                            <option value="national_id" {{ old('id_type') === 'national_id' ? 'selected' : '' }}>📋 {{ __('National ID Card') }}</option>
-                            <option value="residence_permit" {{ old('id_type') === 'residence_permit' ? 'selected' : '' }}>🏠 {{ __('Residence Permit') }}</option>
-                        </select>
-                    </div>
+                    <select id="id_type" name="id_type" class="block mt-1 w-full border-gray-300 focus:border-purple-500 focus:ring-purple-500 rounded-lg shadow-sm form-input" required>
+                        <option value="">-- {{ __('Select ID Type') }} --</option>
+                        <optgroup label="Primary IDs">
+                            <option value="passport"          {{ old('id_type') === 'passport'          ? 'selected' : '' }}>🛂 Passport</option>
+                            <option value="drivers_license"   {{ old('id_type') === 'drivers_license'   ? 'selected' : '' }}>🚗 Driver's License</option>
+                            <option value="national_id"       {{ old('id_type') === 'national_id'       ? 'selected' : '' }}>📋 National ID (PhilSys)</option>
+                            <option value="umid"              {{ old('id_type') === 'umid'              ? 'selected' : '' }}>🪪 UMID Card</option>
+                        </optgroup>
+                        <optgroup label="Government IDs">
+                            <option value="sss_id"            {{ old('id_type') === 'sss_id'            ? 'selected' : '' }}>🏛️ SSS ID</option>
+                            <option value="pagibig_id"        {{ old('id_type') === 'pagibig_id'        ? 'selected' : '' }}>🏠 Pag-IBIG ID</option>
+                            <option value="philhealth_id"     {{ old('id_type') === 'philhealth_id'     ? 'selected' : '' }}>🏥 PhilHealth ID</option>
+                            <option value="voters_id"         {{ old('id_type') === 'voters_id'         ? 'selected' : '' }}>🗳️ Voter's ID</option>
+                            <option value="tin_id"            {{ old('id_type') === 'tin_id'            ? 'selected' : '' }}>📄 TIN ID</option>
+                            <option value="postal_id"         {{ old('id_type') === 'postal_id'         ? 'selected' : '' }}>📮 Postal ID</option>
+                            <option value="senior_citizen_id" {{ old('id_type') === 'senior_citizen_id' ? 'selected' : '' }}>👴 Senior Citizen ID</option>
+                            <option value="residence_permit"  {{ old('id_type') === 'residence_permit'  ? 'selected' : '' }}>📑 Residence Permit</option>
+                        </optgroup>
+                    </select>
                     @error('id_type')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -231,14 +240,30 @@
                     @enderror
                 </div>
 
-                <!-- ID Document Upload -->
+                <!-- ID Document Upload + Live Scan -->
                 <div class="mt-4">
                     <x-label for="id_document" value="{{ __('Upload ID Document') }}" class="font-semibold text-gray-700" />
-                    <input id="id_document" type="file" name="id_document" class="block mt-2 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" accept=".pdf,.jpg,.jpeg,.png" required />
-                    <p class="text-gray-500 text-xs mt-2 flex items-center">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        {{ __('Accepted formats: PDF, JPG, PNG (Max 5MB)') }}
-                    </p>
+
+                    <!-- Preview area -->
+                    <div id="id-preview-wrap" class="hidden mt-2 mb-2 border-2 border-dashed border-gray-300 rounded-lg overflow-hidden" style="max-height:200px;">
+                        <img id="id-preview-img" src="" alt="ID Preview" class="w-full object-contain" style="max-height:200px;" />
+                    </div>
+
+                    <input id="id_document" type="file" name="id_document" class="block mt-2 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" accept=".jpg,.jpeg,.png" required />
+                    <p class="text-gray-500 text-xs mt-1"><i class="fas fa-info-circle mr-1"></i>Accepted: JPG, PNG (Max 5MB). PDF not accepted for scanning.</p>
+
+                    <!-- Scan status -->
+                    <div id="id-scan-status" class="hidden mt-3 p-3 rounded-lg text-sm font-medium flex items-center gap-2"></div>
+
+                    <!-- Scanning spinner -->
+                    <div id="id-scan-spinner" class="hidden mt-2 flex items-center gap-2 text-purple-600 text-sm">
+                        <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                        </svg>
+                        Scanning your ID image...
+                    </div>
+
                     @error('id_document')
                         <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -261,13 +286,89 @@
                         <i class="fas fa-lock text-blue-600 mt-1 mr-3"></i>
                         <div>
                             <p class="text-sm font-semibold text-blue-900">{{ __('Your Privacy is Protected') }}</p>
-                            <p class="text-sm text-blue-800 mt-1">
-                                {{ __('Your ID document is securely stored and only visible to our verification team. It will never be shared with other users.') }}
-                            </p>
+                            <p class="text-sm text-blue-800 mt-1">{{ __('Your ID document is securely stored and only visible to our verification team. It will never be shared with other users.') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Hidden field to track scan result -->
+            <input type="hidden" id="id_scan_passed" name="id_scan_passed" value="0" />
+
+            <script>
+            (function () {
+                const scanUrl   = '{{ route('id.scan') }}';
+                const csrfToken = '{{ csrf_token() }}';
+
+                const fileInput   = document.getElementById('id_document');
+                const idTypeSelect = document.getElementById('id_type');
+                const statusBox   = document.getElementById('id-scan-status');
+                const spinner     = document.getElementById('id-scan-spinner');
+                const previewWrap = document.getElementById('id-preview-wrap');
+                const previewImg  = document.getElementById('id-preview-img');
+                const scanPassed  = document.getElementById('id_scan_passed');
+                const form        = fileInput.closest('form');
+
+                function resetScan() {
+                    statusBox.className = 'hidden mt-3 p-3 rounded-lg text-sm font-medium flex items-center gap-2';
+                    statusBox.innerHTML = '';
+                    scanPassed.value = '0';
+                }
+
+                function showStatus(valid, message) {
+                    spinner.classList.add('hidden');
+                    statusBox.innerHTML = (valid ? '✅ ' : '❌ ') + message;
+                    statusBox.className = 'mt-3 p-3 rounded-lg text-sm font-medium flex items-center gap-2 ' +
+                        (valid ? 'bg-green-100 text-green-800 border border-green-400' : 'bg-red-100 text-red-800 border border-red-400');
+                    scanPassed.value = valid ? '1' : '0';
+                }
+
+                async function runScan() {
+                    const file   = fileInput.files[0];
+                    const idType = idTypeSelect.value;
+
+                    if (!file || !idType) return;
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        previewImg.src = e.target.result;
+                        previewWrap.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+
+                    resetScan();
+                    spinner.classList.remove('hidden');
+
+                    const formData = new FormData();
+                    formData.append('id_document', file);
+                    formData.append('id_type', idType);
+                    formData.append('_token', csrfToken);
+
+                    try {
+                        const res  = await fetch(scanUrl, { method: 'POST', body: formData });
+                        const data = await res.json();
+                        showStatus(data.valid, data.message);
+                    } catch (e) {
+                        showStatus(false, 'Scan failed. Please try again.');
+                    }
+                }
+
+                fileInput.addEventListener('change', runScan);
+                idTypeSelect.addEventListener('change', () => {
+                    if (fileInput.files.length) runScan();
+                });
+
+                // Block form submission if scan not passed
+                form.addEventListener('submit', function (e) {
+                    if (fileInput.files.length && scanPassed.value !== '1') {
+                        e.preventDefault();
+                        showStatus(false, 'Your ID image did not pass the scan. Please upload a valid, clear photo of the selected ID type.');
+                        statusBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, true);
+            })();
+            </script>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

@@ -18,8 +18,11 @@ use App\Http\Controllers\Frontend\ConversationController as FrontendConversation
 use App\Http\Controllers\Admin\ConversationController as AdminConversationController;
 use App\Support\PublicImage;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\IdScanController;
 
 require_once __DIR__.'/jetstream.php';
+
+Route::post('/id-scan', [IdScanController::class, 'scan'])->name('id.scan');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

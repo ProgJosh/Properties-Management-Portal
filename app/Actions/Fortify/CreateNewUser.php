@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             // ID Validation Rules
             'id_document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:5120', 'min:100'],
-            'id_type' => ['required', 'string', 'in:passport,drivers_license,national_id,residence_permit'],
+            'id_type' => ['required', 'string', 'in:passport,drivers_license,national_id,sss_id,pagibig_id,philhealth_id,voters_id,postal_id,senior_citizen_id,residence_permit,tin_id,umid'],
             'id_number' => ['required', 'string', 'min:5', 'max:50'],
             'full_name_on_id' => ['required', 'string', 'min:3', 'max:100'],
             'id_expiry_date' => ['required', 'date', 'after:today', 'date_format:Y-m-d'],

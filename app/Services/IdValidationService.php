@@ -184,7 +184,7 @@ class IdValidationService
         }
 
         // Check MIME type
-        $mimeTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+        $mimeTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
         if (!in_array($file->getMimeType(), $mimeTypes)) {
             return false;
         }
@@ -320,10 +320,10 @@ class IdValidationService
     private function getStatusMessage(string $status): string
     {
         return match ($status) {
-            'pending' => '⏳ Pending verification',
+            'pending'  => '⏳ Pending verification',
             'approved' => '✓ Verified',
             'rejected' => '✗ Rejected - Please resubmit',
-            default => 'Not submitted',
+            default    => 'Not submitted',
         };
     }
 
