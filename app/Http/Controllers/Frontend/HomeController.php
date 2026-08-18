@@ -22,7 +22,7 @@ class HomeController extends Controller
 
         try {
             $properties = Property::query()->where('status', 1)->latest()->take(6)->get();
-            $portfolios = Property::query()->where('status', 1)->latest()->skip(6)->take(5)->get();
+            $portfolios = Property::query()->where('status', 1)->latest()->take(5)->get();
             $newProperties = Property::query()->where('status', 1)->oldest()->take(3)->get();
         } catch (QueryException $exception) {
             Log::error('Failed to load home page property data.', [
