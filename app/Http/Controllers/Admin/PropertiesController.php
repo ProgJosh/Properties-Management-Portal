@@ -11,6 +11,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdatePropertyRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class PropertiesController extends Controller
@@ -37,19 +38,23 @@ class PropertiesController extends Controller
 
         $data = $request->validated();
     
-        //process image
         $disk = config('filesystems.default') === 'local' ? 'public' : 'supabase';
         $tmpimgpath = $request->file('thumbnail')->store('properties', $disk);
         $data['thumbnail'] = $tmpimgpath;
         
         $data['landlord_id'] = auth()->user()->id;
     
-        // Remove 'images' key from $data array
         unset($data['images']);
+
+        // Store title document securely (private disk, not publicly accessible)
+        if ($request->hasFile('title_document')) {
+            $data['title_document'] = $request->file('title_document')
+                ->store('title_documents', 'local');
+            $data['title_verification_status'] = 'pending';
+        }
     
         $property = Property::create($data);
     
-        //Gather all images
         if($request->hasFile('images')){
             $images = $request->file('images');
             foreach($images as $image){
@@ -61,7 +66,7 @@ class PropertiesController extends Controller
             }
         }
     
-        Toastr::success('Property created successfully');
+        Toastr::success('Property created successfully. Title document is pending admin verification.');
     
         return redirect()->route('admin.properties');
     }
@@ -146,10 +151,75 @@ class PropertiesController extends Controller
 
     public function ajaxStatusUpdate(Request $request){
         $property = Property::find($request->id);
+
+        // Prevent activating a property whose title is not yet approved
+        if ($request->status == 1 && $property->title_verification_status !== 'approved') {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Cannot activate property: title document is not yet approved.',
+            ], 422);
+        }
+
         $property->status = $request->status;
         $property->save();
         return response()->json(['status' => 'success', 'message' => 'Property status updated successfully']);
-         
     }
-    
+
+    // ── Title Verification (admin-only) ──────────────────────────────────────
+
+    public function titleVerificationIndex()
+    {
+        if (Auth::guard('admin')->user()->role != '0') {
+            Toastr::error('Unauthorized');
+            return redirect()->back();
+        }
+        $properties = Property::whereNotNull('title_document')->latest()->get();
+        return view('admin.pages.properties.title-verification', compact('properties'));
+    }
+
+    public function titleApprove($id)
+    {
+        if (Auth::guard('admin')->user()->role != '0') {
+            Toastr::error('Unauthorized');
+            return redirect()->back();
+        }
+        $property = Property::findOrFail($id);
+        $property->update([
+            'title_verification_status' => 'approved',
+            'title_rejection_reason'    => null,
+        ]);
+        Toastr::success('Title document approved.');
+        return redirect()->route('admin.title-verification.index');
+    }
+
+    public function titleReject(Request $request, $id)
+    {
+        if (Auth::guard('admin')->user()->role != '0') {
+            Toastr::error('Unauthorized');
+            return redirect()->back();
+        }
+        $request->validate(['reason' => 'required|string|max:500']);
+        $property = Property::findOrFail($id);
+        $property->update([
+            'title_verification_status' => 'rejected',
+            'title_rejection_reason'    => $request->reason,
+            'status'                    => 0, // deactivate if active
+        ]);
+        Toastr::success('Title document rejected.');
+        return redirect()->route('admin.title-verification.index');
+    }
+
+    public function titleDocumentView($id)
+    {
+        if (Auth::guard('admin')->user()->role != '0') {
+            abort(403);
+        }
+        $property = Property::findOrFail($id);
+        abort_if(!$property->title_document, 404);
+
+        $path = storage_path('app/' . $property->title_document);
+        abort_if(!file_exists($path), 404);
+
+        return response()->file($path);
+    }
 }

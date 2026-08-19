@@ -7,6 +7,27 @@
             <div class="card-box">
                 <h4 class="header-title mb-3">Property Details</h4>
                 <p>LandLoad : {{ $property->landlord->name }}</p>
+
+                {{-- Title Verification Status --}}
+                <div class="mb-2">
+                    <strong>Title Verification:</strong>
+                    @if($property->title_verification_status === 'approved')
+                        <span class="badge badge-success">&#10003; Approved</span>
+                    @elseif($property->title_verification_status === 'rejected')
+                        <span class="badge badge-danger">&#10007; Rejected</span>
+                        @if($property->title_rejection_reason)
+                            <small class="text-danger ml-2">Reason: {{ $property->title_rejection_reason }}</small>
+                        @endif
+                    @else
+                        <span class="badge badge-warning">&#8987; Pending Review</span>
+                    @endif
+                </div>
+
+                @if($property->title_document && Auth::guard('admin')->user()->role == 0)
+                    <a href="{{ route('admin.title-verification.document', $property->id) }}" target="_blank" class="btn btn-sm btn-info mb-2">
+                        <i class="fas fa-file-alt"></i> View Title Document
+                    </a>
+                @endif
             </div>
         </div>
 

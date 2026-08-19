@@ -6,21 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 class StorePropertyRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return Auth::check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        $isLandlord = Auth::guard('admin')->check() && Auth::guard('admin')->user()->role == 1;
+
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
@@ -39,6 +33,18 @@ class StorePropertyRequest extends FormRequest
             'images.*' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:25600'],
             'accommodation' => ['required', 'numeric', 'min:0'],
             'pet_friendly' => ['nullable', 'numeric',],
+            'title_document' => $isLandlord
+                ? ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240']
+                : ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title_document.required' => 'A scanned copy of the property title/house document is required.',
+            'title_document.mimes'    => 'The title document must be a PDF, JPG, or PNG file.',
+            'title_document.max'      => 'The title document must not exceed 10MB.',
         ];
     }
 }

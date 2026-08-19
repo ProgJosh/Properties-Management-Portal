@@ -119,6 +119,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/property/delete/{id}', [PropertiesController::class, 'delete'])->name('property.delete')->middleware(['auth:admin']);
     Route::get('/property/{id}', [PropertiesController::class, 'show'])->name('property.show')->middleware(['auth:admin']);
     Route::post('/property/status', [PropertiesController::class, 'ajaxStatusUpdate'])->name('property.status');
+
+    // Title Verification Routes (super-admin only)
+    Route::get('/title-verification', [PropertiesController::class, 'titleVerificationIndex'])->name('title-verification.index')->middleware(['auth:admin']);
+    Route::post('/title-verification/{id}/approve', [PropertiesController::class, 'titleApprove'])->name('title-verification.approve')->middleware(['auth:admin']);
+    Route::post('/title-verification/{id}/reject', [PropertiesController::class, 'titleReject'])->name('title-verification.reject')->middleware(['auth:admin']);
+    Route::get('/title-verification/{id}/document', [PropertiesController::class, 'titleDocumentView'])->name('title-verification.document')->middleware(['auth:admin']);
     Route::get('/messages', [AdminConversationController::class, 'index'])->name('messages.index')->middleware(['auth:admin']);
     Route::get('/messages/{conversation}', [AdminConversationController::class, 'show'])->name('messages.show')->middleware(['auth:admin']);
     Route::post('/messages/{conversation}', [AdminConversationController::class, 'store'])->name('messages.store')->middleware(['auth:admin']);
@@ -129,6 +135,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/landlords', [LandlordsController::class, 'landlords'])->name('landlords')->middleware(['auth:admin']);
     Route::get('/landlord/{id}', [LandlordsController::class, 'SingleLandlordProperties'])->name('single.landlord')->middleware(['auth:admin']);
+    Route::post('/landlord/{id}/approve', [LandlordsController::class, 'approveLandlord'])->name('landlord.approve')->middleware(['auth:admin']);
+    Route::post('/landlord/{id}/reject', [LandlordsController::class, 'rejectLandlord'])->name('landlord.reject')->middleware(['auth:admin']);
+    Route::get('/landlord/{id}/title-document', [LandlordsController::class, 'viewTitleDocument'])->name('landlord.title-document')->middleware(['auth:admin']);
 
     Route::get('/tenants', [TenantController::class, 'tenants'])->name('tenants')->middleware(['auth:admin']);
     Route::get('tenant/delete/{id}', [TenantController::class, 'tanentDelete'])->name('tenant.delete')->middleware(['auth:admin']);

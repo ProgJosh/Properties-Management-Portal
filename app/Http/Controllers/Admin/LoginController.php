@@ -63,14 +63,29 @@ class LoginController extends Controller
                 Toastr::error('Invalid or missing ID document file');
                 return redirect()->back()->withInput($request->except('id_document', 'password'));
             }
+
+            // Handle property title document upload
+            if ($request->hasFile('property_title_document') && $request->file('property_title_document')->isValid()) {
+                $titleFile = $request->file('property_title_document');
+                $titlePath = public_path('uploads/property_title_documents');
+                if (!file_exists($titlePath)) {
+                    mkdir($titlePath, 0777, true);
+                }
+                $titleFilename = time() . '_title_' . $titleFile->getClientOriginalName();
+                $titleFile->move($titlePath, $titleFilename);
+                $data['property_title_document'] = 'uploads/property_title_documents/' . $titleFilename;
+            } else {
+                Toastr::error('Invalid or missing property title document file');
+                return redirect()->back()->withInput($request->except('id_document', 'property_title_document', 'password'));
+            }
            
             $data['password'] = bcrypt($data['password']);
-            $admin = Admin::create($data);
-          
-            Auth::guard('admin')->login($admin);
-          
-            Toastr::success('Registration Successful! Welcome to the platform.');
-            return redirect()->route('admin.dashboard');
+            $data['status'] = 0; // pending until super-admin approves
+            $data['role'] = 1;   // always landlord on self-registration
+            Admin::create($data);
+
+            Toastr::success('Registration submitted! Your account is pending admin approval. You will be notified once approved.');
+            return redirect()->route('admin.login');
             
         } catch (\Exception $e) {
             \Log::error('Registration Error: ' . $e->getMessage());
@@ -90,13 +105,18 @@ class LoginController extends Controller
             return redirect()->back();
         }
 
+        // Check status before attempting login
+        if ($admin->status == 0) {
+            Toastr::error('Your account is pending approval. Please wait for admin verification.');
+            return redirect()->back();
+        }
+
         if(Auth::guard('admin')->attempt($data)){
             $request->session()->regenerate();
             Toastr::success('Login successful!');
             return redirect()->intended(route('admin.dashboard'));
         }
 
-    
         Toastr::error('Invalid password');
         return redirect()->back();
     }

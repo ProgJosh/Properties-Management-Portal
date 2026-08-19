@@ -81,37 +81,23 @@
             /* File Upload Styling */
             .file-upload-wrapper {
                 position: relative;
-                overflow: hidden;
             }
 
-            .file-upload-wrapper input[type="file"] {
-                position: absolute;
-                left: -9999px;
-            }
-
-            .file-upload-label {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
+            input[type="file"].styled-file-input {
+                display: block;
+                width: 100%;
+                padding: 20px;
                 background-color: #ffffff;
                 border: 2px dashed #9ca3af;
                 border-radius: 8px;
-                padding: 20px;
                 cursor: pointer;
-                transition: all 0.3s ease;
                 color: #6b7280;
-                font-weight: 500;
+                font-size: 14px;
+                transition: border-color 0.3s ease;
             }
 
-            .file-upload-label:hover {
-                background-color: #f9fafb;
+            input[type="file"].styled-file-input:hover {
                 border-color: #6b7280;
-                color: #4b5563;
-            }
-
-            .file-upload-label i {
-                font-size: 24px;
             }
 
             /* Checkbox Styling */
@@ -430,93 +416,6 @@
     <body class="authentication-bg bg-gradient">
 
         <script>
-            // Immediate execution - no setTimeout, no DOMContentLoaded
-            console.log('=== FILE UPLOAD SCRIPT STARTING ===');
-            
-            var attempts = 0;
-            var maxAttempts = 20;
-            
-            function trySetup() {
-                attempts++;
-                console.log('Setup attempt:', attempts);
-                
-                var fileInput = document.getElementById('id_document');
-                
-                if (!fileInput) {
-                    console.log('fileInput not found yet, retrying...');
-                    if (attempts < maxAttempts) {
-                        setTimeout(trySetup, 100);
-                    }
-                    return;
-                }
-                
-                console.log('fileInput FOUND! Setting up...');
-                
-                var fileUploadDisplay = document.getElementById('fileUploadDisplay');
-                var selectedFileName = document.getElementById('selectedFileName');
-                var selectedFileSize = document.getElementById('selectedFileSize');
-                var removeFileBtn = document.getElementById('removeFileBtn');
-                var fileLabel = document.getElementById('fileLabel');
-                
-                function formatFileSize(bytes) {
-                    if (bytes === 0) return '0 Bytes';
-                    var k = 1024;
-                    var sizes = ['Bytes', 'KB', 'MB'];
-                    var i = Math.floor(Math.log(bytes) / Math.log(k));
-                    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-                }
-                
-                function handleFileSelect() {
-                    console.log('FILE CHANGED - Files count:', fileInput.files.length);
-                    if (fileInput.files && fileInput.files.length > 0) {
-                        var file = fileInput.files[0];
-                        console.log('File selected:', file.name, 'Size:', file.size, 'Type:', file.type);
-                        
-                        // Validate file type
-                        var validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
-                        if (!validTypes.includes(file.type)) {
-                            alert('Please select a valid file format (PDF, JPG, JPEG, or PNG)');
-                            fileInput.value = '';
-                            return;
-                        }
-                        
-                        // Validate file size (5MB = 5242880 bytes)
-                        if (file.size > 5242880) {
-                            alert('File size must not exceed 5MB');
-                            fileInput.value = '';
-                            return;
-                        }
-                        
-                        selectedFileName.textContent = file.name;
-                        selectedFileSize.textContent = formatFileSize(file.size);
-                        fileUploadDisplay.style.display = 'flex';
-                        fileUploadDisplay.classList.add('show');
-                        console.log('Display updated successfully');
-                    } else {
-                        console.log('No files selected');
-                    }
-                }
-                
-                // Add change event listener
-                fileInput.addEventListener('change', handleFileSelect);
-                
-                // Add click handler for remove button
-                if (removeFileBtn) {
-                    removeFileBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log('REMOVE CLICKED');
-                        fileInput.value = '';
-                        fileUploadDisplay.style.display = 'none';
-                        fileUploadDisplay.classList.remove('show');
-                    });
-                }
-                
-                console.log('=== SETUP COMPLETE ===');
-            }
-            
-            trySetup();
-
             // Password Toggle Functionality
             document.addEventListener('DOMContentLoaded', function() {
                 var togglePassword = document.getElementById('togglePassword');
@@ -648,7 +547,30 @@
                         }
                     });
                 }
+
+                // File input preview + remove
+                ['id_document', 'property_title_document'].forEach(function(id) {
+                    var input = document.getElementById(id);
+                    if (!input) return;
+                    input.addEventListener('change', function() {
+                        var preview = document.getElementById(id + '_preview');
+                        var nameEl  = document.getElementById(id + '_name');
+                        if (this.files && this.files[0]) {
+                            nameEl.textContent = '📄 ' + this.files[0].name;
+                            preview.style.display = 'flex';
+                        } else {
+                            preview.style.display = 'none';
+                        }
+                    });
+                });
             });
+
+            function removeFile(id) {
+                var input   = document.getElementById(id);
+                var preview = document.getElementById(id + '_preview');
+                if (input)   input.value = '';
+                if (preview) preview.style.display = 'none';
+            }
         </script>
             @include('components.landlord-terms-modal')
             @include('components.commission-policy-modal')
@@ -797,30 +719,12 @@
                                             </div>
 
                                             <div class="form-group mb-3">
-                                                <label for="id_document"><i class="fas fa-file-upload"></i>Upload ID Document</label>
-                                                <div class="file-upload-wrapper">
-                                                    <input type="file" id="id_document" name="id_document" accept=".pdf,.jpg,.jpeg,.png" required="">
-                                                    <label for="id_document" class="file-upload-label">
-                                                        <i class="fas fa-cloud-upload-alt"></i>
-                                                        <span id="fileLabel">Choose File or Drag & Drop</span>
-                                                    </label>
+                                                <label for="id_document"><i class="fas fa-file-upload"></i> Upload ID Document</label>
+                                                <input type="file" id="id_document" name="id_document" class="styled-file-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <div id="id_document_preview" style="display:none; margin-top:8px; padding:10px 14px; background:#f0fdf4; border:1px solid #86efac; border-radius:8px; align-items:center; justify-content:space-between; gap:10px;">
+                                                    <span id="id_document_name" style="color:#374151; font-size:13px; word-break:break-all;"></span>
+                                                    <button type="button" onclick="removeFile('id_document')" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:13px;white-space:nowrap;"><i class="fas fa-times"></i> Remove</button>
                                                 </div>
-
-                                                <!-- File Upload Display -->
-                                                <div id="fileUploadDisplay" class="file-upload-display" style="display: none !important;">
-                                                    <div class="file-info">
-                                                        <i class="fas fa-file"></i>
-                                                        <div>
-                                                            <div class="file-name" id="selectedFileName"></div>
-                                                            <div class="file-size" id="selectedFileSize"></div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="button" id="removeFileBtn" style="background-color: #dc3545 !important; color: white !important; border: none !important; border-radius: 4px !important; padding: 8px 12px !important; cursor: pointer !important; font-size: 14px !important; transition: all 0.3s ease !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 5px !important; white-space: nowrap !important; flex-shrink: 0 !important;">
-                                                        <i class="fas fa-times" style="font-size: 16px !important; pointer-events: none !important;"></i>
-                                                        Remove
-                                                    </button>
-                                                </div>
-
                                                 <small class="form-text text-muted d-block mt-2">
                                                     <i class="fas fa-info-circle"></i> Accepted formats: PDF, JPG, PNG | Max size: 5MB
                                                 </small>
@@ -844,6 +748,30 @@
                                                 <i class="fas fa-lock"></i>
                                                 <strong>Your Privacy is Protected</strong><br>
                                                 Your ID document is securely stored and only visible to our verification team. It will never be shared with other users.
+                                            </div>
+
+                                            <div class="form-section-divider" style="margin: 20px 0;"></div>
+
+                                            <!-- Property Title Document -->
+                                            <h5><i class="fas fa-file-contract"></i> Property Title / House Document</h5>
+                                            <p class="text-muted" style="font-size:13px;">Upload a scanned copy or photo of your property title or house document for ownership verification.</p>
+
+                                            <div class="form-group mb-3">
+                                                <label for="property_title_document"><i class="fas fa-file-contract"></i> Upload Property Title Document <span class="text-danger">*</span></label>
+                                                <input type="file" id="property_title_document" name="property_title_document" class="styled-file-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                                                <div id="property_title_document_preview" style="display:none; margin-top:8px; padding:10px 14px; background:#f0fdf4; border:1px solid #86efac; border-radius:8px; align-items:center; justify-content:space-between; gap:10px;">
+                                                    <span id="property_title_document_name" style="color:#374151; font-size:13px; word-break:break-all;"></span>
+                                                    <button type="button" onclick="removeFile('property_title_document')" style="background:#ef4444;color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:13px;white-space:nowrap;"><i class="fas fa-times"></i> Remove</button>
+                                                </div>
+                                                <small class="form-text text-muted d-block mt-2">
+                                                    <i class="fas fa-info-circle"></i> Accepted formats: PDF, JPG, PNG | Max size: 10MB
+                                                </small>
+                                                @error('property_title_document')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <div class="mt-2 p-2" style="background:#fffbeb;border-left:3px solid #f59e0b;border-radius:4px;font-size:13px;color:#92400e;">
+                                                    <i class="fas fa-info-circle"></i> Your account will be <strong>pending</strong> until an administrator reviews and approves your title document.
+                                                </div>
                                             </div>
                                         </div>
 
@@ -919,8 +847,8 @@
         <!-- Trigger Warning Modal on Page Load -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Show the warning modal when the page loads
-                if (typeof openWarningModal === 'function') {
+                // Only show warning modal if not already acknowledged this session
+                if (!sessionStorage.getItem('warningAcknowledged') && typeof openWarningModal === 'function') {
                     openWarningModal();
                 }
             });

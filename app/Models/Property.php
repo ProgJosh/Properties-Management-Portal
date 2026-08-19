@@ -16,6 +16,24 @@ class Property extends Model
 
     protected $guarded = [];
 
+    protected $attributes = [
+        'title_verification_status' => 'pending',
+    ];
+
+    public function isTitleVerified(): bool
+    {
+        return $this->title_verification_status === 'approved';
+    }
+
+    public function getTitleVerificationBadgeAttribute(): string
+    {
+        return match($this->title_verification_status) {
+            'approved' => '<span class="badge badge-success">✓ Approved</span>',
+            'rejected' => '<span class="badge badge-danger">✗ Rejected</span>',
+            default    => '<span class="badge badge-warning">⏳ Pending</span>',
+        };
+    }
+
 
     public function landlord()
     {

@@ -244,6 +244,21 @@
                             @enderror
                             <div id="thumbnail-preview" class="mt-2"></div>
                         </div>
+
+                        @if(Auth::guard('admin')->user()->role == 1)
+                        <div class="form-group mb-3" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:16px;">
+                            <label for="title_document"><i class="fas fa-file-contract"></i> Property Title / House Document <span class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="title_document" name="title_document"
+                                accept=".pdf,.jpg,.jpeg,.png" required>
+                            <small class="text-muted">Upload a scanned copy or photo of the property title/house document. Accepted: PDF, JPG, PNG. Max: 10MB.</small>
+                            @error('title_document')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <div class="mt-2 p-2" style="background:#fffbeb;border-left:3px solid #f59e0b;border-radius:4px;font-size:13px;color:#92400e;">
+                                <i class="fas fa-info-circle"></i> Your property will be set to <strong>Pending</strong> until an administrator reviews and approves your title document.
+                            </div>
+                        </div>
+                        @endif
         
                     </div>
 

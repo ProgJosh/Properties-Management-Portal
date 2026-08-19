@@ -68,6 +68,13 @@
                 
                 @if (Auth::user()->role == 0)
                 <li>
+                    <a href="{{ route('admin.title-verification.index') }}">
+                        <i class="fe-check-circle"></i>
+                        <span> Title Verification </span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="javascript: void(0);">
                         <i class="far fa-address-card"></i>
                         <span> Payment </span>

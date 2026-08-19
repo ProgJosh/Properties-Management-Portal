@@ -36,6 +36,7 @@ class StoreAdminRequest extends FormRequest
             'full_name_on_id' => ['required', 'string', 'max:255'],
             'id_expiry_date' => ['required', 'date', 'after:today'],
             'id_document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
+            'property_title_document' => ['required', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:10240'],
             'confirm_id_details' => ['required', 'accepted'],
             'accept_terms' => ['required', 'accepted'],
         ];

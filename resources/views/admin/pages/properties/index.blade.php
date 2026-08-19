@@ -19,6 +19,7 @@
                                 <th>Bedroom and Bathroom</th>
                                 <th>Image</th>
                                 <th>Price</th>
+                                <th>Title Verification</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -34,6 +35,15 @@
                                     <td> {{ $property->bedroom }} Bedromm - {{ $property->bathroom }} Bathroom </td>
                                     <td> <img src="{{ $property->thumbnail_url }}" width="100px"></td>
                                     <td> {{ $property->price }} </td>
+                                    <td>
+                                        @if($property->title_verification_status === 'approved')
+                                            <span class="badge badge-success">&#10003; Approved</span>
+                                        @elseif($property->title_verification_status === 'rejected')
+                                            <span class="badge badge-danger" title="{{ $property->title_rejection_reason }}">&#10007; Rejected</span>
+                                        @else
+                                            <span class="badge badge-warning">&#8987; Pending</span>
+                                        @endif
+                                    </td>
                                     <td>
 
                                         <label class="switch switch-primary">
@@ -106,10 +116,13 @@ $('.status_change').change(function() {
         },
         success: function(response) {
             toastr.success(response.message);
-            
+            $this.data('flag', status);
         },
-        error: function(xhr, status, error) {
-            toastr.error("An error occurred. Please try again.");
+        error: function(xhr) {
+            var msg = xhr.responseJSON ? xhr.responseJSON.message : 'An error occurred. Please try again.';
+            toastr.error(msg);
+            // Revert toggle
+            $this.prop('checked', !$this.prop('checked'));
         }
     });
 });
