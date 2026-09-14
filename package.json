@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "deploy": "npm run build && wrangler deploy"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.7",
